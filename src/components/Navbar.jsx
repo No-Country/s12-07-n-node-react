@@ -34,12 +34,12 @@ const Navbar = () => {
     const [activeSearch, setActiveSearch] = useState(false)
     const [sizeScreen, setSizeScreen] = useState('lg') // ['lg','sm'
     const [sectionCurrent, setSectionCurrent] = useState('home') // ['generos','ficha','favoritos','home']
-    const stylesMenuState = menuVisible? 'top-11 left-0':'-top-full left-full'
+    const stylesMenuState = menuVisible? 'top-11 left-0':'-top-11 -left-full'
     
     const [resultsSearch, setResultsSearch] = useState([])
     const [resultsAutocomplete, setResultsAutocomplete] = useState([])
     const [searchTerm, setSearchTerm] = useState('')
-
+    const [searchEjecuted, setSearchEjecuted] = useState(false)
 
     const handleChangeSearch = (e) => {
         const { value } = e.target
@@ -53,6 +53,8 @@ const Navbar = () => {
     }
     const handleClickSearch = async() => {
         if(activeSearch){
+            if(searchTerm.length === 0) return; // si no hay nada en el input no se ejecuta la busqueda
+            setActiveSearch(true)
             const data = await getDataSearch(searchTerm)
             setResultsSearch(data)
         }
@@ -60,10 +62,18 @@ const Navbar = () => {
         setActiveSearch(true)
     }
     const handleSearchTerm =async () => {
+        setSearchEjecuted(true)
+        if(searchTerm.length === 0) return; // si no hay nada en el input no se ejecuta la busqueda
         const data = await getDataSearch(searchTerm)
         console.log(data)
         setResultsSearch(data)
     }
+    const handleKeyPress = (e) => {
+        if(e.key === 'Enter'){
+            handleSearchTerm()
+        }
+    }
+        
     const handlerClickSection = (section) => {
         setSectionCurrent(section)
         setMenuVisible(false)
@@ -71,22 +81,6 @@ const Navbar = () => {
     const handleClickHeart = () => {
         setMenuVisible(false)
     }
-    const handleKeyPress = (e) => {
-        if(e.key === 'Enter'){
-            handleSearchTerm()
-        }
-        // const timeoutAutocomplete = setTimeout(async () => {
-        //     const { value } = e.target
-        //     const data = await getDataForAutocomplete(value)
-        //     console.log(data)
-        //     setResultsAutocomplete(data)
-        // }, 3000)
-
-        // return () => clearTimeout(timeoutAutocomplete)
-    }
-
-
-
     // extraer al context
     const handleResize = () => {
         const { innerWidth } = window
@@ -103,21 +97,21 @@ const Navbar = () => {
     }, [])
 
     return (
-        <header className="w-screen px-4 py-3 fixed bg-black text-white lg:py-10 lg:px-14 lg:bg-transparent lg:text-black">
+        <header className="w-screen px-4 py-3 fixed bg-[#50075D] text-white lg:py-10 lg:px-14 lg:bg-transparent lg:text-black">
             <div className="w-full h-full flex items-center justify-between">
                 <div className="hidden lg:block">
                     <h2 className="uppercase font-bold text-xl">Logo</h2>
                 </div>
-                <div className="lg:hidden cursor-pointer" onClick={handleClickMenu}>
+                <div className="menu-icon lg:hidden cursor-pointer" onClick={handleClickMenu}>
                     <img className="object-cover w-6 h-6" src={menuIcon} alt="icono de menu" />
                 </div>
-                <nav className={`absolute left-0 lg:relative ${stylesMenuState} lg:inset-0`}>
+                <nav className={`z-50 absolute left-0 lg:relative ${stylesMenuState} duration-100 lg:inset-0`}>
                     <ul className="font-semibold flex flex-col lg:flex-row gap-[0.13rem] bg-white  lg:bg-transparent">
                         {
                             optionsNavbar.map((option) => (
                                 <li 
                                     key={option.id} 
-                                    className="py-2 px-4 bg-black lg:bg-transparent font-semibold hover:text-slate-500"
+                                    className="py-2 px-4 bg-[#50075D] lg:bg-transparent font-semibold hover:text-slate-500"
                                     onClick={() => handlerClickSection(option.name.toLowerCase())}
                                 >
                                     <a href={option.url}>{option.name}</a>
@@ -128,7 +122,7 @@ const Navbar = () => {
                 </nav>
                 {
                     (sectionCurrent === 'home' && !activeSearch) ?(
-                        <h2 className="text-white lg:hidden">Nombre de la aplicación</h2>
+                        <h2 className="text-white lg:hidden uppercase">Stream View</h2>
                     ):(
                         <div className="rounded-lg bg-white">
                             <input 
@@ -137,6 +131,7 @@ const Navbar = () => {
                                 placeholder="Buscar" 
                                 onKeyDown={handleKeyPress}
                                 onChange={handleChangeSearch}
+                                onClick={()=>setMenuVisible(false)}
                             />
                             {
                                 resultsAutocomplete.length > 0 && (
@@ -164,8 +159,8 @@ const Navbar = () => {
                             </div>
                         )
                     }
-                    <div className="search lg:hidden">
-                        <div className="search-icon cursor-pointer" onClick={handleClickSearch}>
+                    <div className="search flex items-center">
+                        <div className="search-icon cursor-pointer " onClick={handleClickSearch}>
                             <img className="object-cover w-[1.24rem]" src={searchIcon} alt="icono de lupa" />
                         </div>
                     </div>
@@ -178,11 +173,11 @@ const Navbar = () => {
             </div>
             <div className="w-full left-0 absolute top-full">
                 <div className="relative">
-                    <div className="bg-slate-600 opacity-30 w-full h-full absolute top-0 left-0 z-10"></div>
+                    <div className="bg-slate-300 opacity-80  w-full h-full absolute top-0 left-0 z-10"></div>
                     {
                         // show 3 results max
                         (activeSearch && resultsSearch.length > 0)? (
-                            <div className="z-20">
+                            <div className="relative z-20">
                                 <ul className="flex flex-col gap-3 px-6 py-4 lg:px-14">
                                     {
                                         resultsSearch.slice(0,3).map((result) => (
@@ -191,7 +186,7 @@ const Navbar = () => {
                                                     result?.poster_path ? (
                                                         <img className="object-cover w-[3.7rem] lg:w-[7rem]" src={`${IMAGE_URL}${result?.poster_path}`} alt="poster" />
                                                     ):(
-                                                        <div className="w-[3.7rem] h-[5.5rem] bg-gray-300 grid items-center text-center">
+                                                        <div className="w-[3.7rem] h-[5.5rem] lg:h-[10rem] lg:w-[7rem] bg-gray-300 grid items-center text-center">
                                                             <p>Not found</p>
                                                         </div>
                                                     )
@@ -207,9 +202,13 @@ const Navbar = () => {
                             </div>
                         ):(
                             <div>
-                                <h3 className="font-bold text-xl text-center py-6">
-                                    No se encontraron resultados
-                                </h3>
+                                {
+                                    searchTerm.length>0 && searchEjecuted && (
+                                        <h3 className="py-4 font-bold text-center text-xl text-black lg:text-white">
+                                            No se encontraron resultados
+                                        </h3>
+                                    )
+                                }
                             </div>
                         )
                     }
