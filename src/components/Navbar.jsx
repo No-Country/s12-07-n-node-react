@@ -67,7 +67,7 @@ const Navbar = () => {
 
     console.log('sectionCurrent',sectionCurrent)
     return (
-        <header className="w-screen px-4 py-3 fixed bg-black text-white lg:py-10 lg:px-14 lg:bg-transparent lg:text-black">
+        <header className="w-screen px-4 py-3 fixed top-0 bg-black text-white lg:py-10 lg:px-14 lg:bg-transparent lg:text-black">
             <div className="w-full h-full flex items-center justify-between">
                 <div className="hidden lg:block">
                     <h2 className="uppercase font-bold text-xl">Logo</h2>
@@ -79,8 +79,8 @@ const Navbar = () => {
                     <ul className="font-semibold flex flex-col lg:flex-row gap-[0.13rem] bg-white  lg:bg-transparent">
                         {
                             optionsNavbar.map((option) => (
-                                <li 
-                                    key={option.id} 
+                                <li
+                                    key={option.id}
                                     className="py-2 px-4 bg-black lg:bg-transparent font-semibold hover:text-slate-500"
                                     onClick={() => handlerClickSection(option.name.toLowerCase())}
                                 >
