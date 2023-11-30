@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { searchIcon,menuIcon,profileIcon,profileIconBlack,heartIcon } from "../assets/icons"
-
+import { getDataSearch,IMAGE_URL } from "../services/api"
 const optionsNavbar = [
     {
         id: 1,
@@ -31,17 +31,38 @@ const optionsNavbar = [
 
 const Navbar = () => {
     const [menuVisible, setMenuVisible] = useState(false)
+    const [activeSearch, setActiveSearch] = useState(false)
     const [sizeScreen, setSizeScreen] = useState('lg') // ['lg','sm'
     const [sectionCurrent, setSectionCurrent] = useState('home') // ['generos','ficha','favoritos','home']
     const stylesMenuState = menuVisible? 'top-11 left-0':'-top-full left-full'
+    
+    const [resultsSearch, setResultsSearch] = useState([])
+    const [resultsAutocomplete, setResultsAutocomplete] = useState([])
+    const [searchTerm, setSearchTerm] = useState('')
+
+
+    const handleChangeSearch = (e) => {
+        const { value } = e.target
+        setSearchTerm(value)
+    }
     const handleClickMenu = () => {
         setMenuVisible(!menuVisible)
     }
     const handleClickProfile = () => {
         setMenuVisible(false)
     }
-    const handleClickSearch = () => {
+    const handleClickSearch = async() => {
+        if(activeSearch){
+            const data = await getDataSearch(searchTerm)
+            setResultsSearch(data)
+        }
         setMenuVisible(false)
+        setActiveSearch(true)
+    }
+    const handleSearchTerm =async () => {
+        const data = await getDataSearch(searchTerm)
+        console.log(data)
+        setResultsSearch(data)
     }
     const handlerClickSection = (section) => {
         setSectionCurrent(section)
@@ -50,7 +71,23 @@ const Navbar = () => {
     const handleClickHeart = () => {
         setMenuVisible(false)
     }
+    const handleKeyPress = (e) => {
+        if(e.key === 'Enter'){
+            handleSearchTerm()
+        }
+        // const timeoutAutocomplete = setTimeout(async () => {
+        //     const { value } = e.target
+        //     const data = await getDataForAutocomplete(value)
+        //     console.log(data)
+        //     setResultsAutocomplete(data)
+        // }, 3000)
 
+        // return () => clearTimeout(timeoutAutocomplete)
+    }
+
+
+
+    // extraer al context
     const handleResize = () => {
         const { innerWidth } = window
         if(innerWidth < 1024){
@@ -65,7 +102,6 @@ const Navbar = () => {
         handleResize()
     }, [])
 
-    console.log('sectionCurrent',sectionCurrent)
     return (
         <header className="w-screen px-4 py-3 fixed bg-black text-white lg:py-10 lg:px-14 lg:bg-transparent lg:text-black">
             <div className="w-full h-full flex items-center justify-between">
@@ -91,8 +127,31 @@ const Navbar = () => {
                     </ul>
                 </nav>
                 {
-                    sectionCurrent === 'home' &&(
+                    (sectionCurrent === 'home' && !activeSearch) ?(
                         <h2 className="text-white lg:hidden">Nombre de la aplicación</h2>
+                    ):(
+                        <div className="rounded-lg bg-white">
+                            <input 
+                                className="search-input text-black bg-transparent outline-none px-2 lg:px-4 lg:py-2 w-full lg:w-80" 
+                                type="text" 
+                                placeholder="Buscar" 
+                                onKeyDown={handleKeyPress}
+                                onChange={handleChangeSearch}
+                            />
+                            {
+                                resultsAutocomplete.length > 0 && (
+                                    <ul className="absolute left-0 top-full w-full bg-white z-20">
+                                        {
+                                            resultsAutocomplete.slice(0,5).map((result) => (
+                                                <li key={result.id} className="text-black py-2 px-4 hover:bg-gray-200">
+                                                    <a href="#">{result.title || result.name}</a>
+                                                </li>
+                                            ))
+                                        }
+                                    </ul>
+                                )
+                            }
+                        </div>
                     )
                 }
                 <div className="icons flex gap-6">
@@ -115,6 +174,45 @@ const Navbar = () => {
                             <img className="object-cover w-6 h-6 lg:w-8 lg:h-8" src={sizeScreen=='sm'?profileIcon:profileIconBlack} alt="Icono de usuario" />
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="w-full left-0 absolute top-full">
+                <div className="relative">
+                    <div className="bg-slate-600 opacity-30 w-full h-full absolute top-0 left-0 z-10"></div>
+                    {
+                        // show 3 results max
+                        (activeSearch && resultsSearch.length > 0)? (
+                            <div className="z-20">
+                                <ul className="flex flex-col gap-3 px-6 py-4 lg:px-14">
+                                    {
+                                        resultsSearch.slice(0,3).map((result) => (
+                                            <li key={result.id} className="flex gap-2 items-center">
+                                                {
+                                                    result?.poster_path ? (
+                                                        <img className="object-cover w-[3.7rem] lg:w-[7rem]" src={`${IMAGE_URL}${result?.poster_path}`} alt="poster" />
+                                                    ):(
+                                                        <div className="w-[3.7rem] h-[5.5rem] bg-gray-300 grid items-center text-center">
+                                                            <p>Not found</p>
+                                                        </div>
+                                                    )
+                                                }
+                                                <div className="flex flex-col">
+                                                    <h2 className="text-black font-bold">{result.title || result.name}</h2>
+                                                    <p className="text-gray-500">{result.release_date || result.first_air_date}</p>
+                                                </div>
+                                            </li>
+                                        ))
+                                    }
+                                </ul>
+                            </div>
+                        ):(
+                            <div>
+                                <h3 className="font-bold text-xl text-center py-6">
+                                    No se encontraron resultados
+                                </h3>
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         </header>
