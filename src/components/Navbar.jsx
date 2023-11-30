@@ -76,12 +76,12 @@ const Navbar = () => {
                     <img className="object-cover w-6 h-6" src={menuIcon} alt="icono de menu" />
                 </div>
                 <nav className={`absolute left-0 lg:relative ${stylesMenuState} lg:inset-0`}>
-                    <ul className="font-semibold flex flex-col lg:flex-row gap-[0.13rem] bg-white lg:bg-blac">
+                    <ul className="font-semibold flex flex-col lg:flex-row gap-[0.13rem] bg-white  lg:bg-transparent">
                         {
                             optionsNavbar.map((option) => (
                                 <li 
                                     key={option.id} 
-                                    className="py-2 px-4 bg-black lg:bg-white font-semibold hover:text-slate-500"
+                                    className="py-2 px-4 bg-black lg:bg-transparent font-semibold hover:text-slate-500"
                                     onClick={() => handlerClickSection(option.name.toLowerCase())}
                                 >
                                     <a href={option.url}>{option.name}</a>
