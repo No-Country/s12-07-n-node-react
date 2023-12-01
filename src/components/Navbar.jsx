@@ -96,7 +96,7 @@ const Navbar = () => {
     }, [])
 
     return (
-        <header className="w-screen px-4 py-3 fixed bg-[#50075D] text-white lg:py-10 lg:px-14 lg:bg-transparent lg:text-black">
+        <header className="w-screen px-4 py-3 top-0 fixed bg-[#50075D] text-white lg:py-10 lg:px-14 lg:bg-transparent lg:text-black">
             <div className="w-full h-full flex items-center justify-between">
                 <div className="hidden lg:block">
                     <h2 className="uppercase font-bold text-xl">Logo</h2>
