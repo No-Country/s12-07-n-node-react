@@ -108,9 +108,11 @@ const Navbar = () => {
                     <ul className="font-semibold flex flex-col lg:flex-row gap-[0.13rem] bg-white  lg:bg-transparent">
                         {
                             optionsNavbar.map((option) => (
+
                                 <li 
                                     key={option.id} 
                                     className="py-2 px-4 bg-[#50075D] lg:bg-transparent font-semibold hover:text-slate-500"
+
                                     onClick={() => handlerClickSection(option.name.toLowerCase())}
                                 >
                                     <a href={option.url}>{option.name}</a>
