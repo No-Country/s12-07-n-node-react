@@ -1,7 +1,13 @@
 import axios from 'axios'
-import { TEST_API_URL } from '../data/constants'
+import { TRENDING_MOVIES_URL } from '../data/constants'
+import { API_KEY } from '../data/constants'
 
-export const GetTestData = async () => {
-  return await axios.get(TEST_API_URL)
+export const getTrending = async () => {
+  return await axios.get(TRENDING_MOVIES_URL, {
+    headers: {
+      Authorization: `Bearer ${API_KEY}`
+    }
+  })
 }
+
 

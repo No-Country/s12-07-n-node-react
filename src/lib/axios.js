@@ -8,7 +8,7 @@ const authApi = axios.create({
 
 authApi.interceptors.request.use(config => {
 
-  // Dejo esto para futura configuracion con tokens para los usuarios
+  // Dejo esto para futura configuracion con tokens para los usuarios, para que se puedan hacer peticiones y se autorize mediante los headers
   // (config.headers as AxiosHeaders).set('Authorization', `Bearer ${token}`)
 
   return config
