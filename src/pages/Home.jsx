@@ -2,11 +2,18 @@ import { useEffect, useState } from "react";
 import Title2 from "../components/Title2";
 import Carousel from "../components/Carousel";
 import CarouselItem from "../components/CarouselItem";
+import { GetTestData } from "../services/movies";
 
 function Home() {
   const API_KEY = import.meta.env.VITE_API_KEY;
   const API_URL = import.meta.env.VITE_API_URL;
   const [trending, setTrending] = useState(null);
+
+
+  useEffect(() => {
+    GetTestData().then(data => console.log(data.data))
+  }, [])
+
   useEffect(() => {
     const options = {
       method: "GET",
@@ -21,7 +28,9 @@ function Home() {
       .then((response) => setTrending(response.results))
       .catch((err) => console.error(err));
   }, []);
-  console.log(trending);
+
+
+
   return (
     <>
       <section>
