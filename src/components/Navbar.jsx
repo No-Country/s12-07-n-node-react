@@ -40,7 +40,6 @@ const Navbar = () => {
     const [resultsAutocomplete, setResultsAutocomplete] = useState([])
     const [searchTerm, setSearchTerm] = useState('')
     const [searchEjecuted, setSearchEjecuted] = useState(false)
-
     const handleChangeSearch = (e) => {
         const { value } = e.target
         setSearchTerm(value)
@@ -105,7 +104,7 @@ const Navbar = () => {
                 <div className="menu-icon lg:hidden cursor-pointer" onClick={handleClickMenu}>
                     <img className="object-cover w-6 h-6" src={menuIcon} alt="icono de menu" />
                 </div>
-                <nav className={`z-50 absolute left-0 lg:relative ${stylesMenuState} duration-100 lg:inset-0`}>
+                <nav className={`w-fit z-50 absolute lg:relative ${stylesMenuState} duration-50 lg:inset-0`}>
                     <ul className="font-semibold flex flex-col lg:flex-row gap-[0.13rem] bg-white  lg:bg-transparent">
                         {
                             optionsNavbar.map((option) => (
