@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 function CarouselItem({poster}) {
   return (
@@ -8,7 +8,7 @@ function CarouselItem({poster}) {
         className="rounded-[8px] w-[106px] h-[136px]"
       />
     </div>
-  );
+  )
 }
 
-export default CarouselItem;
+export default CarouselItem
