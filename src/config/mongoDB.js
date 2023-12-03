@@ -1,15 +1,14 @@
-const { connect, connection } = require('mongoose');
+const { createConnection } = require('mongoose');
 
 async function mongoDB() {
   try {
-    const DB_URI = process.env.DB_URI;
+    const DB_URI = 'mongodb+srv://NoCountry:h3Llo.$2f@cluster0.eiazo8b.mongodb.net/?retryWrites=true&w=majority';
 
-    await connect(DB_URI, {
+    const db = await createConnection(DB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
 
-    const db = connection;
     db.on('error', console.error.bind(console, 'Connection error:'));
     db.once('open', () => {
       console.log('Connected successfully');
