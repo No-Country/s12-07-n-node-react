@@ -1,14 +1,11 @@
-import React from "react";
+import React from 'react';
 
-function CarouselItem({poster}) {
-  return (
-    <div className="carousel-item">
-      <img
-        src={poster}
-        className="rounded-[8px] w-[106px] h-[136px]"
-      />
-    </div>
-  );
+function CarouselItem({ poster }) {
+	return (
+		<div className='carousel-item'>
+			<img src={poster} className='h-[136px] w-[106px] rounded-[8px]' />
+		</div>
+	);
 }
 
 export default CarouselItem;
