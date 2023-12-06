@@ -6,6 +6,7 @@ import {
 	profileIconBlack,
 	heartIcon,
 } from '../assets/icons';
+import { Link } from 'react-router-dom';
 
 const optionsNavbar = [
 	{
@@ -72,14 +73,14 @@ const Navbar = () => {
 
 	console.log('sectionCurrent', sectionCurrent);
 	return (
-		<header className="fixed top-0 w-screen bg-black px-4 py-3 text-white lg:bg-transparent lg:px-14 lg:py-10 lg:text-black">
-			<div className="flex h-full w-full items-center justify-between">
+		<header className="fixed top-0 w-full flex justify-center  px-4 py-3 text-white bg-[#50075D] lg:bg-[#50075D] lg:px-14 lg:py-4 ">
+			<div className="flex max-w-[1440px] items-center justify-between w-full h-full">
 				<div className="hidden lg:block">
-					<h2 className="text-xl font-bold uppercase">Logo</h2>
+					<Link to='/' className="text-xl font-bold uppercase">Logo</Link>
 				</div>
 				<div className="cursor-pointer lg:hidden" onClick={handleClickMenu}>
 					<img
-						className="h-6 w-6 object-cover"
+						className="object-cover w-6 h-6"
 						src={menuIcon}
 						alt="icono de menu"
 					/>
@@ -91,7 +92,7 @@ const Navbar = () => {
 						{optionsNavbar.map(option => (
 							<li
 								key={option.id}
-								className="bg-black px-4 py-2 font-semibold hover:text-slate-500 lg:bg-transparent"
+								className="px-4 py-2 font-semibold bg-black hover:text-slate-500 lg:bg-transparent"
 								onClick={() => handlerClickSection(option.name.toLowerCase())}
 							>
 								<a href={option.url}>{option.name}</a>
@@ -102,12 +103,12 @@ const Navbar = () => {
 				{sectionCurrent === 'home' && (
 					<h2 className="text-white lg:hidden">Nombre de la aplicación</h2>
 				)}
-				<div className="icons flex gap-6">
+				<div className="flex gap-6 icons">
 					{sectionCurrent === 'favoritos' && (
 						<div className="heart">
 							<div className="heart-icon" onClick={handleClickHeart}>
 								<img
-									className="h-6 w-6 object-cover"
+									className="object-cover w-6 h-6"
 									src={heartIcon}
 									alt="Icono de corazon"
 								/>
@@ -116,7 +117,7 @@ const Navbar = () => {
 					)}
 					<div className="search lg:hidden">
 						<div
-							className="search-icon cursor-pointer"
+							className="cursor-pointer search-icon"
 							onClick={handleClickSearch}
 						>
 							<img
@@ -128,11 +129,11 @@ const Navbar = () => {
 					</div>
 					<div className="user">
 						<div
-							className="user-icon cursor-pointer"
+							className="cursor-pointer user-icon"
 							onClick={handleClickProfile}
 						>
 							<img
-								className="h-6 w-6 object-cover lg:h-8 lg:w-8"
+								className="object-cover w-6 h-6 lg:h-8 lg:w-8"
 								src={sizeScreen == 'sm' ? profileIcon : profileIconBlack}
 								alt="Icono de usuario"
 							/>

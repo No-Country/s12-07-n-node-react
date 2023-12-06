@@ -40,7 +40,7 @@ const TechSheet = () => {
 		],
 	};
 	return (
-		<section className='my-8 flex flex-col items-center px-6'>
+		<main className='mt-[48px] max-w-[1440px] lg:mt-[72px] mx-auto flex flex-col items-center py-4 px-6'>
 			<figure className='px-2'>
 				<img src={dataExample.imgCover} alt='foto de pelicula' />
 			</figure>
@@ -54,16 +54,16 @@ const TechSheet = () => {
 			<section className='rounded-[0.32rem] bg-white p-4'>
 				<div className='flex items-start justify-between'>
 					<a href='#'>
-						<img src={likeIcon} alt='' className='h-8 w-8' />
+						<img src={likeIcon} alt='' className='w-8 h-8' />
 					</a>
 					<a href='#'>
-						<img src={dislikeIcon} alt='' className='h-8 w-8' />
+						<img src={dislikeIcon} alt='' className='w-8 h-8' />
 					</a>
 					<a href='#'>
-						<img src={tagIcon} alt='' className='h-8 w-8' />
+						<img src={tagIcon} alt='' className='w-8 h-8' />
 					</a>
 					<a href='#'>
-						<img src={bellIcon} alt='' className='h-8 w-8' />
+						<img src={bellIcon} alt='' className='w-8 h-8' />
 					</a>
 					<a href='#'>
 						<figure>
@@ -84,7 +84,7 @@ const TechSheet = () => {
 					<div>
 						<h3 className='font-bold'>CAST</h3>
 						{dataExample.cast.map((item, index) => (
-							<p key={index} className='mb-1 flex w-full text-sm'>
+							<p key={index} className='flex w-full mb-1 text-sm'>
 								<strong className='font-bold'>{item.name + ': '} </strong>
 								<p>{item.character}</p>
 							</p>
@@ -92,7 +92,7 @@ const TechSheet = () => {
 					</div>
 				</div>
 			</section>
-		</section>
+		</main>
 	);
 };
 
