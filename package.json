@@ -11,7 +11,8 @@
     "dev": "nodemon run serve",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "build": "tsc"
   },
   "dependencies": {
     "cors": "^2.8.5",
