@@ -43,7 +43,7 @@ const TechSheet = () => {
 		liked: false,
 	};
 	return (
-		<main className='mx-auto mt-[48px] flex h-full w-full max-w-[1440px] flex-col items-center px-6 py-10 font-roboto md:px-10 lg:mt-[72px] lg:flex-row lg:items-center lg:gap-10 lg:px-14 lg:py-[2rem] xl:gap-20 xl:py-[5rem]'>
+		<main className='mx-auto mt-[48px] flex h-full w-full max-w-[1440px] flex-col items-center px-6 py-10 font-roboto md:px-12 lg:mt-[72px] lg:flex-row lg:items-center lg:gap-10 lg:px-14 lg:py-[2rem] xl:gap-20 xl:py-[5rem]'>
 			<div className='lg:flex-[1.7] xl:flex-[1.1]'>
 				<figure className='w-full'>
 					<img
@@ -119,14 +119,14 @@ const TechSheet = () => {
 					</div>
 					<div className='flex flex-col gap-6 lg:gap-9'>
 						<div>
-							<h3 className='font- text-lg'>SINOPSIS</h3>
+							<h3 className='text-md font-semibold'>SINOPSIS</h3>
 							<p className='text-sm font-semibold text-black'>
 								{dataExample.sinopsis}
 							</p>
 						</div>
 						{/* cast */}
 						<div>
-							<h3 className='text-lg font-bold'>CAST</h3>
+							<h3 className='text-md font-bold'>CAST</h3>
 							{dataExample.cast.map((item, index) => (
 								<p
 									key={index}
