@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/v1', router)
 
-const httpServer = app.listen(PORT, () => console.log("Escuchando en el puerto 4000"))
+const httpServer = app.listen(PORT, () => console.log("Escuchando en el puerto 4000 jaja"))
 
 // Start the server
 // La conexion a la base de datos iria en otra parte
