@@ -1,5 +1,5 @@
 import { Router } from "express";
-import contentRoutes from './content.routes'
+import contentRoutes from './content.routes.js'
 
 
 const router = Router()

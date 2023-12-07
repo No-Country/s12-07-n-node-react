@@ -1,20 +1,18 @@
-import 'dotenv/config'
-import express, { Express } from 'express';
+import express from 'express'
 import cors from 'cors'
-import router from './routes/index.routes';
+import router from './routes/index.routes.js';
 
 
-
-const express = require('express');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use('/api/v1', router)
 
+const httpServer = app.listen(PORT, () => console.log("Escuchando en el puerto 4000"))
 
-const httpServer = app.listen(4000, () => console.log("Escuchando en el puerto 4000"))
 // Start the server
 // La conexion a la base de datos iria en otra parte
 // async function startServer() {
