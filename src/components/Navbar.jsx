@@ -71,9 +71,8 @@ const Navbar = () => {
 		handleResize();
 	}, []);
 
-	console.log('sectionCurrent', sectionCurrent);
 	return (
-		<header className="fixed top-0 w-full flex justify-center  px-4 py-3 text-white bg-[#50075D] lg:bg-[#50075D] lg:px-14 lg:py-4 ">
+		<header className="fixed z-50 top-0 w-full flex justify-center  px-4 py-3 text-white bg-[#50075D] lg:bg-[#50075D] lg:px-14 lg:py-4 ">
 			<div className="flex max-w-[1440px] items-center justify-between w-full h-full">
 				<div className="hidden lg:block">
 					<Link to='/' className="text-xl font-bold uppercase">Logo</Link>
@@ -134,7 +133,7 @@ const Navbar = () => {
 						>
 							<img
 								className="object-cover w-6 h-6 lg:h-8 lg:w-8"
-								src={sizeScreen == 'sm' ? profileIcon : profileIconBlack}
+								src={profileIcon}
 								alt="Icono de usuario"
 							/>
 						</div>

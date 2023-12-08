@@ -4,6 +4,7 @@ import Amazon from "../../assets/icons/Amazon.png"
 import Netflix from "../../assets/icons/netflix.png"
 import HBO from "../../assets/icons/HBO.png"
 import Disney from "../../assets/icons/disney.png"
+import CarouselItem from "../../components/CarouselItem";
 
 function Home() {
 
@@ -17,7 +18,13 @@ function Home() {
       </div>
       <section>
         <Title2 title="Disney +" />
+        <CarouselItem />
         <Title2 title="Netflix" />
+        <CarouselItem />
+        <Title2 title="HBO" />
+        <CarouselItem />
+        <Title2 title="Prime Video" />
+        <CarouselItem />
       </section>
     </main>
   );
