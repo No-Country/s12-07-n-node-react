@@ -3,6 +3,7 @@ import cors from 'cors'
 import router from './routes/index.routes.js';
 import dotenv from 'dotenv'
 dotenv.config()
+import { mongoDB } from './config/mongoDB.js';
 
 
 const app = express();
@@ -22,6 +23,7 @@ app.use(cors({
 }));
 
 app.use('/api/v1', router)
+mongoDB()
 
 const httpServer = app.listen(PORT, () => console.log("Escuchando en el puerto 4000 "))
 

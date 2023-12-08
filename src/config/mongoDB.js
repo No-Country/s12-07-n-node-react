@@ -1,17 +1,15 @@
-const { createConnection } = require('mongoose');
+import { createConnection } from 'mongoose';
 
-async function mongoDB() {
+export async function mongoDB() {
   try {
-    const DB_URI = 'mongodb+srv://NoCountry:h3Llo.$2f@cluster0.eiazo8b.mongodb.net/?retryWrites=true&w=majority';
+    const DB_URI = process.env.MONGO_URI
 
-    const db = await createConnection(DB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+    const db = createConnection(DB_URI, {
     });
 
     db.on('error', console.error.bind(console, 'Connection error:'));
     db.once('open', () => {
-      console.log('Connected successfully');
+      console.log('Database connected successfully');
     });
 
     return db;
@@ -21,4 +19,3 @@ async function mongoDB() {
   }
 }
 
-module.exports = mongoDB;
