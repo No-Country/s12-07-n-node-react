@@ -1,11 +1,8 @@
 import { model, Schema } from "mongoose";
 
-
 const usersCollection = 'users'
 
-
 const userSchema = new Schema({
-  id: String,
   name: String,
   surname: String,
   password: {
@@ -19,7 +16,7 @@ const userSchema = new Schema({
   },
   token: String,
   phone: String,
+  needsNotificacion: Boolean
 })
-
 
 export const userModel = model(usersCollection, userSchema)

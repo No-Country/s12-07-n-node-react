@@ -11,14 +11,11 @@ const listsSchema = new Schema({
     type: String,
     unique: true
   },
-  id: {
-    type: String,
-    unique: true
-  },
   list: [
     {
       title: String,
       id: Number,
+      image: String
     }
   ]
 })
