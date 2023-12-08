@@ -4,7 +4,9 @@ import contentRoutes from './content.routes.js'
 
 const router = Router()
 
-router.use('/content', contentRoutes)
+
+
+router.use('/trending', contentRoutes)
 
 
 
