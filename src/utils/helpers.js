@@ -33,7 +33,7 @@ export function transformImageUrl(array) {
   const arr = array.map(function(el) {
     let temp = el.poster_path
     return {
-      ...el, poster_path: el.poster_path = `https://image.tmdb.org/t/p/original/${temp}`, backgrop_path: el.backgrop_path = ` https://image.tmdb.org/t/p/original/${temp}`
+      ...el, poster_path: el.poster_path = `https://image.tmdb.org/t/p/original/${temp}`, backdrop_path: el.backdrop_path = `https://image.tmdb.org/t/p/original/${temp}`
     }
   })
 

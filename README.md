@@ -3,6 +3,7 @@ Aplicacion web de seleccionado No Country, plataforma para status de Peliculas y
 
 ## Tareas para backend
 
+(RICHARD)
 - [ ] Armar ruta, controlador y servicio para que la ruta /content, sin parametros, brinde peliculas y series en tendencia. ( se podria simplemente llamar a las tendencias desde la api )
 - [ ] Armar ruta, controlador y servicio para series y peliculas separado por genero
 - [ ] Armar ruta, controlador y servicio para actores
