@@ -8,12 +8,12 @@ const getContentByPlatformService = async (provider) => {
   }
 
   const movies = await tmdbAxios
-    .request(optionsHelper('https://api.themoviedb.org/3/discover/movie', 'popularity.desc', provider))
+    .request(optionsHelper('https://api.themoviedb.org/3/discover/movie', provider, 'popularity.desc',))
     .then(res => res.data.results.slice(0, 5))
     .catch((er) => {
       return er
     })
-    .request(optionsHelper('https://api.themoviedb.org/3/discover/tv', 'popularity.desc', provider))
+    .request(optionsHelper('https://api.themoviedb.org/3/discover/tv', provider, 'popularity.desc'))
   const series = await tmdbAxios
     .then(res => res.data.results.slice(0, 5))
     .catch((er) => {
@@ -34,18 +34,10 @@ const getContentByPlatformService = async (provider) => {
 
 const getUpcomingService = async () => {
 
-  const options = {
-    method: 'GET',
-    url: 'https://api.themoviedb.org/3/tv/airing_today',
-    params: { language: 'en-US', page: '1' },
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YTY0NDI5NTYwMWM4ZWJjYTkyZjMwY2MyNjc5ZDVkNSIsInN1YiI6IjY1Njk0OTVmZDA0ZDFhMDE1MDVlYjJlNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.w9JcEv-MTGYmSKpuiTStir5Ow3pWCtBuTM91R_8T7zc'
-    }
-  };
+
 
   const series = await tmdbAxios
-    .request(options)
+    .request(optionsHelper('https://api.themoviedb.org/3/tv/airing_today'))
     .then(function(response) {
       console.log(response.data);
     })
@@ -53,8 +45,24 @@ const getUpcomingService = async () => {
       console.error(error);
     });
 
+  const movies = await tmdbAxios
+    .request(optionsHelper('https://api.themoviedb.org/3/movie/upcoming'))
+    .then(function(response) {
+      console.log(response.data);
+    })
+    .catch(function(error) {
+      console.error(error);
+    });
+
+  return transformImageUrl(
+    selectionMixer(
+      [...movies, ...series]
+    )
+  )
+
+
 
 
 }
 
-export { getContentByPlatformService }
+export { getContentByPlatformService, getUpcomingService }

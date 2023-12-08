@@ -41,7 +41,7 @@ export function transformImageUrl(array) {
 
 }
 
-export function optionsHelper(url, sort = 'popularity.desc', provider) {
+export function optionsHelper(url, provider, sort = 'popularity.desc') {
   return {
     method: 'GET',
     url: url,
