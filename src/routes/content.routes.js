@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { getContent } from "../controllers/content.controller.js";
+import { getContentByPlatformController } from "../controllers/content.controller.js";
 
 
 const router = Router()
 
-router.get('/', getContent)
+router.get('/:network', getContentByPlatformController)
 
 export default router
