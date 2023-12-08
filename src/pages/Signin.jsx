@@ -1,18 +1,30 @@
 /* import React from 'react' */
 
-export default function Signin() {
+export default function Signin({vis, changeVis}) {
+
+
 	return (
 		<>
-			<div className='flex h-screen w-full mt-20 justify-center text-center text-white'>
-				<form action=''>
-					<div className='flex flex-col'>
+			{true &&
+				<div id='conteiner' className='fixed bg-black bg-opacity-40 flex h-full w-full items-center justify-center text-center text-white'>
+				<form action='' className="w-3/5">
+					<div className='bg-purple-800 rounded-md p-5 flex flex-col items-center relative'>
+						<div className="h-32 w-32 m-2">
+							<img src="" alt="" />
+						</div>
+
+						<button className="absolute top-3 right-3 h-7 w-7 bg-purple-600 rounded-md"
+                		onClick={changeVis}>x</button>
+
+						<h1 className="font-black">INICIAR SESION</h1>
+
 						<input
-							className='m-3 h-10 rounded-md border-2 border-blue-400 p-2 text-black'
+							className='m-2 h-10 w-56 rounded-md border-2 border-blue-400 p-2 text-black'
 							type='text'
 							placeholder='E-Mail'
 						/>
 						<input
-							className='m-3 h-10 rounded-md border-2 border-blue-400 p-2 text-black'
+							className='m-2 h-10 w-56 rounded-md border-2 border-blue-400 p-2 text-black'
 							type='number'
 							placeholder='Contraseña'
 						/>
@@ -23,14 +35,17 @@ export default function Signin() {
 
 						<button
 							type='submit'
-							className='my-5 rounded-md border-b-2 border-b-purple-800 bg-pink-600 py-2 transition duration-200 hover:border-b-transparent hover:bg-pink-900'
+							onClick={changeVis}
+							className='m-2 w-56 rounded-md border-b-2 border-b-purple-800 bg-pink-600 py-2 transition duration-200 hover:border-b-transparent hover:bg-pink-900'
 						>
 							Iniciar Sesion
 						</button>
 
-						<a href='' className='my-2 font-black hover:underline'>
+						{/* <a href='' className='my-2 font-black hover:underline'>
 							REGISTRATE
 						</a>
+
+						<Link to={"/signup"} className='my-2 font-black hover:underline'>REGISTRATE</Link> */}
 
 						<p>Inicia sesion con tus cuentas de redes sociales</p>
 
@@ -74,7 +89,7 @@ export default function Signin() {
 						</div>
 					</div>
 				</form>
-			</div>
+			</div>}
 		</>
 	);
 }
