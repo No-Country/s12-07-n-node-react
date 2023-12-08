@@ -2,10 +2,51 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400&display=swap');
 
 body {
 	font-family: 'Roboto Flex', sans-serif;
 }
+:root {
+	--swiper-pagination-color: var(--swiper-theme-color);
+	--swiper-pagination-left: auto;
+	--swiper-pagination-right: 8px;
+	--swiper-pagination-bottom: 8px;
+	--swiper-pagination-top: auto;
+	--swiper-pagination-fraction-color: inherit;
+	--swiper-pagination-progressbar-bg-color: rgba(0, 0, 0, 0.25);
+	--swiper-pagination-progressbar-size: 4px;
+	--swiper-pagination-bullet-size: 8px;
+	--swiper-pagination-bullet-width: 8px;
+	--swiper-pagination-bullet-height: 8px;
+	--swiper-pagination-bullet-border-radius: 50%;
+	--swiper-pagination-bullet-inactive-color: #fff;
+	--swiper-pagination-bullet-inactive-opacity: 1;
+	--swiper-pagination-bullet-opacity: 1;
+	--swiper-pagination-bullet-horizontal-gap: 4px;
+	--swiper-pagination-bullet-vertical-gap: 6px;
+}
 
+.border-gradient-rounded {
+	background:
+		radial-gradient(
+				circle at 100% 100%,
+				#aba8ab 0,
+				#aba8ab 4px,
+				transparent 4px
+			)
+			0% 0%/6px 6px no-repeat,
+		radial-gradient(circle at 0 100%, #aba8ab 0, #aba8ab 4px, transparent 4px)
+			100% 0%/6px 6px no-repeat,
+		radial-gradient(circle at 100% 0, #aba8ab 0, #aba8ab 4px, transparent 4px)
+			0% 100%/6px 6px no-repeat,
+		radial-gradient(circle at 0 0, #aba8ab 0, #aba8ab 4px, transparent 4px) 100%
+			100%/6px 6px no-repeat,
+		linear-gradient(#aba8ab, #aba8ab) 50% 50% / calc(100% - 10px)
+			calc(100% - 4px) no-repeat,
+		linear-gradient(#aba8ab, #aba8ab) 50% 50% / calc(100% - 4px)
+			calc(100% - 10px) no-repeat,
+		linear-gradient(#0f0e0e 0%, #898e91 100%);
+	border-radius: 6px;
+	box-sizing: content-box;
+}
