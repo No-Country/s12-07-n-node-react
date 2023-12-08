@@ -41,6 +41,23 @@ export function transformImageUrl(array) {
 
 }
 
+export function optionsHelper(url, sort = 'popularity.desc', provider) {
+  return {
+    method: 'GET',
+    url: url,
+    params: {
+      include_video: 'true',
+      language: 'es-ES',
+      page: '1',
+      sort_by: sort,
+      watch_region: 'PE',
+      with_watch_providers: providerSelector(provider)
+    }
+
+
+  }
+}
+
 
 
 
