@@ -6,8 +6,6 @@ import { checkJWT } from "../middlewares/session.middleware.js";
 
 const router = Router()
 
-
-
 router.use('/trending', contentRoutes)
 router.use('/auth', authRoutes)
 router.use('/favourites', checkJWT, listRoutes)

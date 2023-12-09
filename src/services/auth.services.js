@@ -32,7 +32,6 @@ export const loginService = async (user) => {
   const token = await generateToken(userFromDb._id)
   const update = await userModel.updateOne({ _id: userFromDb._id }, { $set: { token: token } });
 
-
   return {
     token: token,
     user: userFromDb.mail

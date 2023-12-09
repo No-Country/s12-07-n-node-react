@@ -20,21 +20,15 @@ const getContentByPlatformService = async (provider) => {
       return er
     })
 
-
-
   return transformImageUrl(
     selectionMixer(
       [...movies, ...series]
     )
   )
-
-
 }
 
 
 const getUpcomingService = async () => {
-
-
 
   const series = await tmdbAxios
     .request(optionsHelper('https://api.themoviedb.org/3/tv/airing_today'))
@@ -55,9 +49,6 @@ const getUpcomingService = async () => {
       [...movies, ...series]
     )
   )
-
-
-
 
 }
 

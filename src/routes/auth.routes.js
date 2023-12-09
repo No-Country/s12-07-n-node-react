@@ -3,7 +3,6 @@ import { loginController, registerController } from "../controllers/auth.control
 
 const router = Router()
 
-
 router.post('/register', registerController)
 router.post('/login', loginController)
 
