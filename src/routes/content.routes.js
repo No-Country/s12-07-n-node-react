@@ -4,7 +4,7 @@ import { getContentByPlatformController, getUpcomingController } from "../contro
 
 const router = Router()
 
-router.get('/:network', getContentByPlatformController)
 router.get('/upcoming', getUpcomingController)
+router.get('/:network', getContentByPlatformController)
 
 export default router

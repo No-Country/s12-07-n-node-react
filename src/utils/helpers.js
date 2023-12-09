@@ -29,11 +29,10 @@ export function selectionMixer(array) {
 
 // Funcion para generar urls usables para el front
 export function transformImageUrl(array) {
-
   const arr = array.map(function(el) {
     let temp = el.poster_path
     return {
-      ...el, poster_path: el.poster_path = `https://image.tmdb.org/t/p/original/${temp}`, backgrop_path: el.backdrop_path = `https://image.tmdb.org/t/p/original/${temp}`
+      ...el, poster_path: el.poster_path = `https://image.tmdb.org/t/p/original/${temp}`, backdrop_path: el.backdrop_path = `https://image.tmdb.org/t/p/original/${temp}`
     }
   })
 
@@ -42,6 +41,7 @@ export function transformImageUrl(array) {
 }
 
 export function optionsHelper(url, provider, sort = 'popularity.desc') {
+
   return {
     method: 'GET',
     url: url,

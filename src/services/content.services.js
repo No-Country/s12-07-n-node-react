@@ -38,20 +38,16 @@ const getUpcomingService = async () => {
 
   const series = await tmdbAxios
     .request(optionsHelper('https://api.themoviedb.org/3/tv/airing_today'))
-    .then(function(response) {
-      console.log(response.data);
-    })
+    .then(res => res.data.results.slice(0, 5))
     .catch(function(error) {
-      console.error(error);
+      return error
     });
 
   const movies = await tmdbAxios
     .request(optionsHelper('https://api.themoviedb.org/3/movie/upcoming'))
-    .then(function(response) {
-      console.log(response.data);
-    })
+    .then(res => res.data.results.slice(0, 5))
     .catch(function(error) {
-      console.error(error);
+      return error
     });
 
   return transformImageUrl(
