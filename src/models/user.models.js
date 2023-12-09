@@ -16,7 +16,10 @@ const userSchema = new Schema({
   },
   token: String,
   phone: String,
-  needsNotificacion: Boolean
+  needsNotificacion: {
+    type: Boolean,
+    default: false
+  }
 })
 
 export const userModel = model(usersCollection, userSchema)

@@ -1,27 +1,43 @@
 import { userModel } from "../models/user.models.js"
-import { encryptPassword } from "../utils/auth.helpers.js"
+import { encryptPassword, isPasswordVerified } from "../utils/auth.helpers.js"
 
 export const registerService = async (user) => {
 
   const { mail, name, surname, password, phone, needsNotification } = user
-  console.log(mail)
+  const isExistent = await userModel.findOne({ mail })
+  if (isExistent) throw new Error('User already registered')
+  const securePassword = await encryptPassword(password)
+  const newUser = { mail, name, surname, password: securePassword, phone, needsNotification }
 
-  // const isExistent = await userModel.findOne(mail)
-
-  // if (isExistent) throw new Error('User already registered')
-  // password = encryptPassword(password)
-  const newUser = { mail, name, surname, password, phone, needsNotification }
-
-  console.log(newUser)
   try {
     const response = await userModel.create(newUser)
-    console.log(response)
     return response
   } catch (error) {
-    console.log(error)
     return error
   }
+
+}
+
+export const loginService = async (user) => {
+
+  const { mail, password } = user
+
+  const userFromDb = await userModel.findOne({ mail })
+  if (!userFromDb) throw new Error('User not found')
+  const validation = await isPasswordVerified(password, userFromDb.password)
+  if (!validation) throw new Error('Invalid Password')
+
+  return userFromDb
+
+
+
+
+
+
 
 
 
 }
+
+
+
