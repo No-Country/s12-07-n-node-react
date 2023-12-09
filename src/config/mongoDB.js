@@ -1,6 +1,7 @@
 import mongoose from "mongoose"
 
 export async function mongoDB() {
+  mongoose.set('strictQuery', false)
   mongoose.connect(process.env.MONGO_URI, {
   })
     .then(() => {

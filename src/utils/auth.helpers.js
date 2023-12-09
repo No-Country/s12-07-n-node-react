@@ -10,4 +10,8 @@ const isPasswordVerified = async (password, passHash) => {
   return isCorrect
 }
 
+
+
+
+
 export { encryptPassword, isPasswordVerified }

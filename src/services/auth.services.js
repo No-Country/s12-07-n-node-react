@@ -1,5 +1,7 @@
 import { userModel } from "../models/user.models.js"
 import { encryptPassword, isPasswordVerified } from "../utils/auth.helpers.js"
+import { generateToken } from "../utils/session.helpers.js"
+
 
 export const registerService = async (user) => {
 
@@ -27,7 +29,14 @@ export const loginService = async (user) => {
   const validation = await isPasswordVerified(password, userFromDb.password)
   if (!validation) throw new Error('Invalid Password')
 
-  return userFromDb
+  const token = await generateToken(userFromDb._id)
+  const update = await userModel.updateOne({ _id: userFromDb._id }, { $set: { token: token } });
+
+
+  return {
+    token: token,
+    user: userFromDb.mail
+  }
 
 
 
