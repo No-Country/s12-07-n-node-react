@@ -25,7 +25,7 @@ app.use(cors({
 
 app.use('/api/v1', router)
 
-mongoDB()
+await mongoDB()
 
 const httpServer = app.listen(PORT, () => console.log("Escuchando en el puerto 4000 "))
 
