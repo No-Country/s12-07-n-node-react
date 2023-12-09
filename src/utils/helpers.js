@@ -31,8 +31,9 @@ export function selectionMixer(array) {
 export function transformImageUrl(array) {
   const arr = array.map(function(el) {
     let temp = el.poster_path
+    let temp2 = el.backdrop_path
     return {
-      ...el, poster_path: el.poster_path = `https://image.tmdb.org/t/p/original/${temp}`, backdrop_path: el.backdrop_path = `https://image.tmdb.org/t/p/original/${temp}`
+      ...el, poster_path: el.poster_path = `https://image.tmdb.org/t/p/original/${temp}`, backdrop_path: el.backdrop_path = `https://image.tmdb.org/t/p/original/${temp2}`
     }
   })
 
