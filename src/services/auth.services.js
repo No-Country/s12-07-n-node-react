@@ -37,14 +37,6 @@ export const loginService = async (user) => {
     user: userFromDb.mail
   }
 
-
-
-
-
-
-
-
-
 }
 
 

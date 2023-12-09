@@ -22,7 +22,7 @@ const checkJWT = async (req, res, next) => {
     if (!validUser) {
       res.status(400).send("Token no válido");
     } else {
-      req.user = validUser
+      req.user = { validUser, userInfo: user }
       next();
     }
   } catch (error) {
