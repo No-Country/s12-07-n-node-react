@@ -1,7 +1,12 @@
 import { loginService, registerService } from "../services/auth.services.js"
+import { validateEmail } from "../utils/auth.helpers.js"
 
 
 export const registerController = async (req, res) => {
+  const { name, surname, mail, password, phone } = req.body
+  if (!name || !surname || !mail || !password || !phone) return res.json({ message: "Fields missing" })
+  if (!validateEmail(mail)) return res.json({ message: "Enter a valid mail" })
+
   try {
     await registerService(req.body)
     res.status(200).json({ message: 'User successfully registered' })
@@ -11,6 +16,11 @@ export const registerController = async (req, res) => {
 }
 
 export const loginController = async (req, res) => {
+  const { mail, password } = req.body
+
+  if (!mail || !password) return res.json({ message: "Fields missing" })
+  if (!validateEmail(mail)) return res.json({ message: "Enter a valid mail" })
+
   try {
     const response = await loginService(req.body)
     res.status(200).json({ message: 'Login successful', user: response })
