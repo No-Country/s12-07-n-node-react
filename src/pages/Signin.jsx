@@ -6,7 +6,7 @@ export default function Signin({vis, changeVis}) {
 	return (
 		<>
 			{true &&
-				<div id='conteiner' className='fixed bg-black bg-opacity-40 flex h-full w-full items-center justify-center text-center text-white'>
+				<div id='conteiner' className='fixed top-[48px] bg-black bg-opacity-40 flex h-full w-full items-center justify-center text-center text-white'>
 				<form action='' className="w-3/5">
 					<div className='bg-purple-800 rounded-md p-5 flex flex-col items-center relative'>
 						<div className="h-32 w-32 m-2">

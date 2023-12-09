@@ -1,27 +1,33 @@
 /* import React from 'react' */
 
-export default function Signup({ vis, changeVis }) {
+
+export default function Signup({ vis, setVis }) {
+  const changeVis = () => {
+    setVis(!vis);
+  }
 	return (
 		<>
-			{true && (
+			{vis && (
 				<div
 					id='conteiner'
-					className='fixed flex h-full w-full items-center justify-center bg-black bg-opacity-40'
+					className='fixed top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-40  overflow-auto'
 				>
 					<form action='#' className="w-3/5 h-5/6">
 						<div className='relative flex flex-col items-center rounded-md bg-purple-800 p-10 pt-40 gap-5'>
 							<button
-								className='absolute right-3 top-3 h-7 w-7 rounded-md bg-purple-600'
+								className='absolute right-3 top-3 h-7 w-7 rounded-md bg-pink-600 hover:bg-pink-800'
 								onClick={changeVis}
 							>
 								x
 							</button>
-              
-							<div className='absolute right-20 top-10 h-24 w-24 rounded-full bg-white'>
-                <img src="" alt="" />
-              </div>
 
-							<div className='flex justify-center flex-wrap gap-5'>
+							<div className='absolute right-20 top-10 h-24 w-24 rounded-full bg-black bg-opacity-40'>
+                				<button className="h-7 w-7 bg-white rounded-full absolute bottom-0 right-0">
+									<img width="48" height="48" src="https://img.icons8.com/sf-regular/48/add.png" alt="add"/>
+								</button>
+							</div>
+
+							<div className='flex justify-center flex-wrap gap-5 text-black'>
 								<input
 									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
 									type='text'
@@ -33,7 +39,7 @@ export default function Signup({ vis, changeVis }) {
 									placeholder='Apellido'
 								/>
 							</div>
-							<div className='flex justify-center flex-wrap gap-5'>
+							<div className='flex justify-center flex-wrap gap-5 text-black'>
 								<input
 									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
 									type='number'
@@ -45,7 +51,7 @@ export default function Signup({ vis, changeVis }) {
 									placeholder='E-Mail'
 								/>
 							</div>
-							<div className='flex justify-center flex-wrap gap-5'>
+							<div className='flex justify-center flex-wrap gap-5 text-black'>
 								<input
 									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
 									type='number'

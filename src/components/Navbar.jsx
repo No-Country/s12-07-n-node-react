@@ -7,6 +7,7 @@ import {
 	heartIcon,
 } from '../assets/icons';
 import { Link } from 'react-router-dom';
+import Signup from '../pages/Signup';
 
 const optionsNavbar = [
 	{
@@ -37,6 +38,7 @@ const optionsNavbar = [
 ];
 
 const Navbar = () => {
+	const [signupVisible, setSignupVisible] = useState(false);
 	const [menuVisible, setMenuVisible] = useState(false);
 	const [sizeScreen, setSizeScreen] = useState('lg'); // ['lg','sm'
 	const [sectionCurrent, setSectionCurrent] = useState('home'); // ['generos','ficha','favoritos','home']
@@ -46,6 +48,7 @@ const Navbar = () => {
 	};
 	const handleClickProfile = () => {
 		setMenuVisible(false);
+		setSignupVisible(!signupVisible);
 	};
 	const handleClickSearch = () => {
 		setMenuVisible(false);
@@ -71,60 +74,78 @@ const Navbar = () => {
 		handleResize();
 	}, []);
 
-    console.log('sectionCurrent',sectionCurrent)
-    return (
-        <header className="w-screen px-4 py-3 fixed top-0 bg-black text-white lg:py-10 lg:px-14 lg:bg-transparent lg:text-black">
-            <div className="w-full h-full flex items-center justify-between">
-                <div className="hidden lg:block">
-                    <h2 className="uppercase font-bold text-xl">Logo</h2>
-                </div>
-                <div className="lg:hidden cursor-pointer" onClick={handleClickMenu}>
-                    <img className="object-cover w-6 h-6" src={menuIcon} alt="icono de menu" />
-                </div>
-                <nav className={`absolute left-0 lg:relative ${stylesMenuState} lg:inset-0`}>
-                    <ul className="font-semibold flex flex-col lg:flex-row gap-[0.13rem] bg-white  lg:bg-transparent">
-                        {
-                            optionsNavbar.map((option) => (
-                                <li
-                                    key={option.id}
-                                    className="py-2 px-4 bg-black lg:bg-transparent font-semibold hover:text-slate-500"
-                                    onClick={() => handlerClickSection(option.name.toLowerCase())}
-                                >
-                                    <a href={option.url}>{option.name}</a>
-                                </li>
-                            ))
-                        }
-                    </ul>
-                </nav>
-                {
-                    sectionCurrent === 'home' &&(
-                        <h2 className="text-white lg:hidden">Nombre de la aplicación</h2>
-                    )
-                }
-                <div className="icons flex gap-6">
-                    {
-                        sectionCurrent === 'favoritos' && (
-                            <div className="heart">
-                                <div className="heart-icon" onClick={handleClickHeart}>
-                                    <img className="object-cover w-6 h-6" src={heartIcon} alt="Icono de corazon" />
-                                </div>
-                            </div>
-                        )
-                    }
-                    <div className="search lg:hidden">
-                        <div className="search-icon cursor-pointer" onClick={handleClickSearch}>
-                            <img className="object-cover w-[1.24rem]" src={searchIcon} alt="icono de lupa" />
-                        </div>
-                    </div>
-                    <div className="user">
-                        <div className="user-icon cursor-pointer" onClick={handleClickProfile}>
-                            <img className="object-cover w-6 h-6 lg:w-8 lg:h-8" src={sizeScreen=='sm'?profileIcon:profileIconBlack} alt="Icono de usuario" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-    )
-}
+	return (
+		<header className="fixed z-50 top-0 w-full flex justify-center  px-4 py-3 text-white bg-[#50075D] lg:bg-[#50075D] lg:px-14 lg:py-4 ">
+			<div className="flex max-w-[1440px] items-center justify-between w-full h-full">
+				<div className="hidden lg:block">
+					<Link to='/' className="text-xl font-bold uppercase">Logo</Link>
+				</div>
+				<div className="cursor-pointer lg:hidden" onClick={handleClickMenu}>
+					<img
+						className="object-cover w-6 h-6"
+						src={menuIcon}
+						alt="icono de menu"
+					/>
+				</div>
+				<nav
+					className={`absolute left-0 lg:relative ${stylesMenuState} lg:inset-0`}
+				>
+					<ul className="flex flex-col gap-[0.13rem] bg-white font-semibold lg:flex-row  lg:bg-transparent">
+						{optionsNavbar.map(option => (
+							<li
+								key={option.id}
+								className="px-4 py-2 font-semibold bg-black hover:text-slate-500 lg:bg-transparent"
+								onClick={() => handlerClickSection(option.name.toLowerCase())}
+							>
+								<a href={option.url}>{option.name}</a>
+							</li>
+						))}
+					</ul>
+				</nav>
+				{sectionCurrent === 'home' && (
+					<h2 className="text-white lg:hidden">Nombre de la aplicación</h2>
+				)}
+				<div className="flex gap-6 icons">
+					{sectionCurrent === 'favoritos' && (
+						<div className="heart">
+							<div className="heart-icon" onClick={handleClickHeart}>
+								<img
+									className="object-cover w-6 h-6"
+									src={heartIcon}
+									alt="Icono de corazon"
+								/>
+							</div>
+						</div>
+					)}
+					<div className="search lg:hidden">
+						<div
+							className="cursor-pointer search-icon"
+							onClick={handleClickSearch}
+						>
+							<img
+								className="w-[1.24rem] object-cover"
+								src={searchIcon}
+								alt="icono de lupa"
+							/>
+						</div>
+					</div>
+					<div className="user">
+						<div
+							className="cursor-pointer user-icon"
+							onClick={handleClickProfile}
+						>
+							<img
+								className="object-cover w-6 h-6 lg:h-8 lg:w-8"
+								src={profileIcon}
+								alt="Icono de usuario"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+			<Signup vis={signupVisible} setVis={setSignupVisible}/>
+		</header>
+	);
+};
 
 export default Navbar;
