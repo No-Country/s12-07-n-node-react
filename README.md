@@ -21,4 +21,8 @@ Aplicacion web de seleccionado No Country, plataforma para status de Peliculas y
 - [ ] Armar logica para buscar preferencias en peliculas y series
 
 
+## Para autenticacion 
+- [ ] Agregar validaciones de campo para los controladores, de tal forma que si el usuario no ingresa un campo necesario directamente reciba una respuesta y se cancele la peticion
+
+
 
