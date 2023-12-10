@@ -40,7 +40,9 @@ app.use(cors({
 
 app.use('/api/v1', router)
 app.set('views', __dirname + '/src/views')
-
+app.use('/', (req, res) => {
+  res.redirect(301, '/api/v1');
+});
 // setup DB
 await mongoDB()
 
