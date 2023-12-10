@@ -11,7 +11,6 @@ Aplicacion web de seleccionado No Country, plataforma para status de Peliculas y
 - [X] Armar ruta, controlador y servicio para proximos estrenos.
 - [ ] Configurar ruta basica para que redirija a /api/v1
 - [ ] Configurar ruta /api/v1 para que muestre documentacion sobre nuestras rutas y sobre como funcionan
-- [ ] Probar un implementar un motor de plantillas para mostrar documentacion de la api ( sugerencias : PUG, Handlebars), esto le sirve a los fronts y a la gente de QA.
 
 
 
@@ -20,10 +19,11 @@ Aplicacion web de seleccionado No Country, plataforma para status de Peliculas y
 - [ ] Armar ruta, controlador y servicio para calendario de peliculas
 - [ ] Armar logica para notificaciones
 - [ ] Armar logica para buscar preferencias en peliculas y series
+- [ ] Probar un implementar un motor de plantillas para mostrar documentacion de la api ( sugerencias : PUG, Handlebars), esto le sirve a los fronts y a la gente de QA. (GERMAN)
 
 
 ## Para autenticacion 
-- [ ] Agregar validaciones de campo para los controladores, de tal forma que si el usuario no ingresa un campo necesario directamente reciba una respuesta y se cancele la peticion
+- [X] Agregar validaciones de campo para los controladores, de tal forma que si el usuario no ingresa un campo necesario directamente reciba una respuesta y se cancele la peticion
 
 
 
