@@ -9,3 +9,7 @@ export const authViewController = async (req, res) => {
 export const contentViewController = async (req, res) => {
   res.render('content')
 }
+
+export const discoverViewController = async (req, res) => {
+  res.render('discover')
+}
