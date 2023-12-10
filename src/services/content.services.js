@@ -2,7 +2,6 @@ import tmdbAxios from "../lib/tmdb-axios.js"
 import { optionsHelper, providerSelector, selectionMixer, transformImageUrl } from "../utils/helpers.js"
 
 const getContentByPlatformService = async (provider) => {
-  console.log(provider)
 
   if (providerSelector(provider) === 0) {
     throw new Error('Provider not available')

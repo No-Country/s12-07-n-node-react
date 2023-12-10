@@ -41,7 +41,7 @@ export function transformImageUrl(array) {
 
 }
 
-export function optionsHelper(url, provider, sort = 'popularity.desc') {
+export function optionsHelper(url, provider, page = 1, query, sort = 'popularity.desc') {
 
   return {
     method: 'GET',
@@ -49,7 +49,8 @@ export function optionsHelper(url, provider, sort = 'popularity.desc') {
     params: {
       include_video: 'true',
       language: 'es-ES',
-      page: '1',
+      page: page,
+      query: query,
       sort_by: sort,
       watch_region: 'PE',
       with_watch_providers: providerSelector(provider)

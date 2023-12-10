@@ -1,0 +1,93 @@
+<header>
+        <h1>Busquedas y contenido en general</h1>
+    </header>
+
+    <section>
+
+
+
+  </ul>
+
+<div>
+
+        <h2>Endpoint: /api/v1/discover/search</h2>
+        <p>Endpoint para realizar busquedas</p>
+
+        <div class="endpoint">
+            <h3>Método HTTP</h3>
+            <code>GET</code>
+
+            <h3>URL</h3>
+            <code>/api/v1/discover/search&query="tuvalor"&page="numero de pagina"</code>
+        </div>
+
+        <div class="request-example">
+            <h3>Ejemplo de solicitud</h3>
+            <code>
+                curl -X GET
+                -H "Content-Type: application/json"
+                https://streamview.onrender.com/api/v1/discover/search?query=batman&page=2
+            </code>
+        </div>
+
+        <div class="response-example">
+            <h3>Ejemplo de respuesta</h3>
+    <pre>
+            <code>
+
+[
+  {
+    "data": [
+      {
+        "adult": false,
+        "backdrop_path": "https://image.tmdb.org/t/p/original//f1AQhx6ZfGhPZFTVKgxG91PhEYc.jpg",
+        "id": 753342,
+        "title": "Napoleón",
+        "original_language": "en",
+        "original_title": "Napoleon",
+        "overview": "Una mirada personal a los orígenes del líder militar francés y su rápido y despiadado ascenso a emperador. La historia se ve a través de la lente de la relación adictiva y volátil de Napoleón Bonaparte con su esposa y único amor verdadero, Josefina.",
+        "poster_path": "https://image.tmdb.org/t/p/original//nGQYZ0TEUoGOlBzTCLFUCTRkZuQ.jpg",
+        "media_type": "movie",
+        "genre_ids": [18, 36, 10752],
+        "popularity": 406.671,
+        "release_date": "2023-11-22",
+        "video": false,
+        "vote_average": 6.421,
+        "vote_count": 648
+      },
+      {
+        "adult": false,
+        "backdrop_path": "https://image.tmdb.org/t/p/original//9XoUxZJ263hOggq6RiYDAWrL2Tl.jpg",
+        "id": 43320,
+        "title": "Napoleón",
+        "original_language": "fr",
+        "original_title": "Napoléon",
+        "overview": "Talleyrand, el gran político francés de finales del siglo XVIII y primer cuarto del XIX, rememora en una reunión de amigos, la vida del Emperador de los franceses, desde su nacimiento en Córcega, pasando por sus gestas militares, hasta su muerte en el destierro. La cinta es una pequeña lección de la historia de Francia.",
+        "poster_path": "https://image.tmdb.org/t/p/original//frKF1ZFc7KUf0NyUSAtNy2uSXPV.jpg",
+        "media_type": "movie",
+        "genre_ids": [18, 36, 10752],
+        "popularity": 22.633,
+        "release_date": "1955-03-25",
+        "video": false,
+        "vote_average": 6.6,
+        "vote_count": 14
+      },
+        ...
+        ...]
+                
+}            </code>
+  </pre>
+        </div>
+
+</div>
+
+
+<hr>
+<hr>
+<hr>
+
+    </section>
+
+    <footer>
+        <p>© 2023 Documentación de API</p>
+    </footer>
