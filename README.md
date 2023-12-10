@@ -25,5 +25,8 @@ Aplicacion web de seleccionado No Country, plataforma para status de Peliculas y
 ## Para autenticacion 
 - [X] Agregar validaciones de campo para los controladores, de tal forma que si el usuario no ingresa un campo necesario directamente reciba una respuesta y se cancele la peticion
 
+## Para mejorar
+- [ ] Agregar codigos a respuestas para diferenciar tipos de errores o eventualidades.
+
 
 
