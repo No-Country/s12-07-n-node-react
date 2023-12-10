@@ -2,10 +2,12 @@ import tmdbAxios from "../lib/tmdb-axios.js"
 import { optionsHelper, providerSelector, selectionMixer, transformImageUrl } from "../utils/helpers.js"
 
 const getContentByPlatformService = async (provider) => {
+  console.log(provider)
 
   if (providerSelector(provider) === 0) {
     throw new Error('Provider not available')
   }
+
 
   const movies = await tmdbAxios
     .request(optionsHelper('https://api.themoviedb.org/3/discover/movie', provider, 'popularity.desc',))
@@ -13,8 +15,8 @@ const getContentByPlatformService = async (provider) => {
     .catch((er) => {
       return er
     })
-    .request(optionsHelper('https://api.themoviedb.org/3/discover/tv', provider, 'popularity.desc'))
   const series = await tmdbAxios
+    .request(optionsHelper('https://api.themoviedb.org/3/discover/tv', provider, 'popularity.desc'))
     .then(res => res.data.results.slice(0, 5))
     .catch((er) => {
       return er
