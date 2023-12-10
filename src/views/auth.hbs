@@ -1,0 +1,91 @@
+<header>
+        <h1>Autenticacion</h1>
+    </header>
+
+    <section>
+
+
+
+  </ul>
+
+
+<div>
+        <h2>Endpoint: /api/v1/auth/login</h2>
+        <p>Endpoint para iniciar sesion</p>
+
+        <div class="endpoint">
+            <h3>Método HTTP</h3>
+            <code>POST</code>
+
+            <h3>URL</h3>
+            <code>/api/v1/auth/login</code>
+        </div>
+
+        <div class="request-example">
+            <h3>Ejemplo de solicitud</h3>
+            <code>
+      curl -X POST -H "Content-Type: application/json" -d 
+      '{"mail": "tu_mail", "password": "tu_contrasena"}' 
+      https://streamview.onrender.com/api/v1/auth/login
+            </code>
+        </div>
+
+        <div class="response-example">
+            <h3>Ejemplo de respuesta</h3>
+    <pre>
+            <code>
+                {
+    "message": "Login successful",
+    "user": {
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzQ4Zjk3OGE1OGI3NjcyNGVkMDkzYiIsImlhdCI6MTcwMjIyNzk4NH0.6FKzzTJS27O-bycIRpnYuI6R2_yipqD9oupc5eyJ6Pw",
+        "user": "test@gmail.com"
+    }
+}            </code>
+  </pre>
+        </div>
+
+</div>
+<hr>
+<hr>
+<hr>
+<div>
+        <h2>Endpoint: /api/v1/auth/register</h2>
+        <p>Endpoint para registrarse</p>
+
+        <div class="endpoint">
+            <h3>Método HTTP</h3>
+            <code>POST</code>
+
+            <h3>URL</h3>
+            <code>/api/v1/auth/register</code>
+        </div>
+
+        <div class="request-example">
+            <h3>Ejemplo de solicitud</h3>
+      <pre>
+            <code>
+          curl -X POST -H "Content-Type: application/json" -d 
+          '{"mail": "tu_mail", "password": "tu_contrasena", "name": "tu-nombre", "surname" : "tu-apellido", "phone": "tu-telefono"}' 
+           https://streamview.onrender.com/api/v1/auth/register
+            </code>
+      </pre>
+        </div>
+
+        <div class="response-example">
+            <h3>Ejemplo de respuesta</h3>
+      <pre>
+            <code>
+                {
+    "message": "User successfully registered"
+}            </code>
+      </pre>
+        </div>
+
+</div>
+
+
+    </section>
+
+    <footer>
+        <p>© 2023 Documentación de API</p>
+    </footer>
