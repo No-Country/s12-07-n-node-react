@@ -14,3 +14,27 @@ export const searchService = async (query, page) => {
     content
   )
 }
+
+
+export const detailService = async (id) => {
+
+  const tvDetail = await tmdbAxios
+    .request(optionsHelper('https://api.themoviedb.org/3/tv/' + id))
+    .then(res => res.data)
+    .catch((er) => {
+      return er
+    })
+
+  const movieDetail = await tmdbAxios
+    .request(optionsHelper('https://api.themoviedb.org/3/movie/' + id))
+    .then(res => res.data)
+    .catch((er) => {
+      return er
+    })
+
+
+  return movieDetail || tvDetail
+
+
+
+}
