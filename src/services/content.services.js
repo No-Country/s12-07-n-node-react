@@ -1,5 +1,5 @@
 import tmdbAxios from "../lib/tmdb-axios.js"
-import { optionsHelper, providerSelector, selectionMixer, transformImageUrl } from "../utils/helpers.js"
+import { optionsHelper, providerSelector, selectionMixer, sortByPopularity, transformImageUrl } from "../utils/helpers.js"
 
 const getContentByPlatformService = async (provider) => {
 
@@ -22,7 +22,7 @@ const getContentByPlatformService = async (provider) => {
     })
 
   return transformImageUrl(
-    selectionMixer(
+    sortByPopularity(
       [...movies, ...series]
     )
   )
