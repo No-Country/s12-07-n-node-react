@@ -27,6 +27,13 @@ export function selectionMixer(array) {
   return array;
 }
 
+export function sortByPopularity(arr) {
+  // Utilizamos el método sort para ordenar el array
+  // Compararemos los elementos usando la propiedad 'popularity'
+  arr.sort((a, b) => b.popularity - a.popularity);
+  return arr;
+}
+
 // Funcion para generar urls usables para el front
 export function transformImageUrl(array) {
   const arr = array.map(function(el) {
