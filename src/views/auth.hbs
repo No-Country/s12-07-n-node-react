@@ -83,6 +83,46 @@
 
 </div>
 
+<div>
+
+        <h2>Endpoint: /api/v1/auth/session</h2>
+        <p>Endpoint para validar sesion/p>
+
+        <div class="endpoint">
+            <h3>Método HTTP</h3>
+            <code>GET</code>
+
+            <h3>URL</h3>
+            <code>/api/v1/auth/session</code>
+        </div>
+
+        <div class="request-example">
+            <h3>Ejemplo de solicitud</h3>
+            <code>
+                curl -X GET
+                -H "Content-Type: application/json"
+                -H "Authorization: Bearer tu_token_de_autorizacion"
+                 https://streamview.onrender.com/api/v1/auth/session
+            </code>
+        </div>
+
+        <div class="response-example">
+            <h3>Ejemplo de respuesta</h3>
+    <pre>
+            <code>
+               {
+    "message": "welcome",
+    "userInfo": {
+        "name": "German",
+        "surname": "soto",
+        "mail": "german@gmail.com",
+        "phone": "222222222",
+        "_id": "65748f978a58b76724ed093b"
+    }
+}           </code>
+  </pre>
+        </div>
+
 
     </section>
 
