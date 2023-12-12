@@ -1,20 +1,22 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/home/Home';
+import TechSheet from './components/TechSheet';
+import Search from './pages/search.jsx/Search';
 
 function App() {
-  return (
-    <>
-      <BrowserRouter>
-        <Navbar />
-        <main className="mx-4 md:mx-5 space-y-4 mt-[64px]">
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-          </Routes>
-        </main>
-      </BrowserRouter>
-    </>
-  );
+	return (
+		<div className='min-h-[calc(100vh-48px)] lg:min-h-[calc(100vh-72px)] bg-[#23134D] bg-gradient-to-r from-[#23134D] via-secondary to-[#23134D]'>
+			<BrowserRouter>
+				<Navbar />
+				<Routes>
+					<Route path='/' element={<Home />} />
+					<Route path='/detail' element={<TechSheet />} />
+					<Route path='/search' element={<Search />} />
+				</Routes>
+			</BrowserRouter>
+		</div>
+	);
 }
 
 export default App;

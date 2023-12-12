@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-function Title1({title}) {
-  return (
-    <h1>{title}</h1>
-  )
+function Title1({ title }) {
+	return <h1>{title}</h1>;
 }
 
-export default Title1
+export default Title1;
