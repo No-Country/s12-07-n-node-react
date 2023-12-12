@@ -46,7 +46,7 @@ const getUpcomingService = async () => {
     });
 
   return transformImageUrl(
-    selectionMixer(
+    sortByPopularity(
       [...movies, ...series]
     )
   )
