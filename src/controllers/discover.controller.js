@@ -1,4 +1,4 @@
-import { searchService, filterService } from "../services/discover.service.js"
+import { searchService, filterService, actorDetailService } from "../services/discover.service.js"
 import { isPageValid } from "../utils/discover.helpers.js"
 
 export const searchController = async (req, res) => {
@@ -32,5 +32,19 @@ export const filterController = async (req, res) => {
   }
 }
 
+
+export const actorDetailController = async (req, res) => {
+
+  const { id } = req.params
+
+
+  try {
+    const response = await actorDetailService(id)
+    if (response.code === 'ERR_BAD_REQUEST') return res.json({ message: "Peticion invalida" })
+    res.json({ data: response })
+  } catch (error) {
+    res.json({ message: error.message })
+  }
+}
 
 
