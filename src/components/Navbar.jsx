@@ -6,6 +6,7 @@ import {
 	heartIcon,
 } from '../assets/icons';
 import { Link, useNavigate } from 'react-router-dom';
+import Signup from '../pages/Signup';
 
 const optionsNavbar = [
 	{
@@ -36,6 +37,7 @@ const optionsNavbar = [
 ];
 
 const Navbar = () => {
+	const [signupVisible, setSignupVisible] = useState(false);
 	const [menuVisible, setMenuVisible] = useState(false);
 	const [sectionCurrent, setSectionCurrent] = useState('home'); // ['generos','ficha','favoritos','home']
 	const stylesMenuState = menuVisible ? 'top-11 left-0' : '-top-full left-full';
@@ -47,6 +49,7 @@ const Navbar = () => {
 	};
 	const handleClickProfile = () => {
 		setMenuVisible(false);
+		setSignupVisible(!signupVisible);
 	};
 	const handleClickSearch = () => {
 		setMenuVisible(false);
@@ -141,6 +144,7 @@ const Navbar = () => {
 					</div>
 				</div>
 			</div>
+			<Signup vis={signupVisible} setVis={setSignupVisible}/>
 		</header>
 	);
 };
