@@ -20,7 +20,7 @@ export function genreSelector(genre) {
     case "ROMANCE":
       return { "tv": 10766, "movie": 10749 }
     case "ACTION":
-      return { "tv": 10759, "movie": 20 }
+      return { "tv": 10759, "movie": 28 }
     case "HORROR":
       return { "tv": 9648, "movie": 27 }
     case "DRAMA":

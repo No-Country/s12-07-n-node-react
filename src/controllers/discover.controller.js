@@ -1,4 +1,4 @@
-import { searchService } from "../services/discover.service.js"
+import { searchService, filterService } from "../services/discover.service.js"
 import { isPageValid } from "../utils/discover.helpers.js"
 
 export const searchController = async (req, res) => {
@@ -13,6 +13,22 @@ export const searchController = async (req, res) => {
     res.status(200).json({ data: response })
   } catch (error) {
     res.status(400).json({ message: error.message })
+  }
+}
+
+export const filterController = async (req, res) => {
+
+  const { genre, page } = req.params
+  if (page <= 0) return res.json({ message: "Provide a valid page" })
+  const selectedGenre = genre.toUpperCase()
+
+
+  try {
+    const response = await filterService(selectedGenre, page)
+    if (response.movies.code === 'ERR_BAD_REQUEST') return res.json({ message: "Peticion invalida" })
+    res.json({ data: response })
+  } catch (error) {
+    res.json({ message: error.message })
   }
 }
 
