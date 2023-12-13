@@ -124,6 +124,75 @@
         </div>
 
 </div>
+  <hr> 
+  <div>
+
+        <h2>Endpoint: /api/v1/discover/actors/:id</h2>
+        <p>Endpoint para obtener detalle de un actor en base a un actor, ej: 500 para tomcruise</p>
+
+        <div class="endpoint">
+            <h3>Método HTTP</h3>
+            <code>GET</code>
+
+            <h3>URL</h3>
+            <code>/api/v1/discover/actors/:id</code>
+        </div>
+
+        <div class="request-example">
+            <h3>Ejemplo de solicitud</h3>
+            <code>
+                curl -X GET
+                -H "Content-Type: application/json"
+                https://streamview.onrender.com/api/v1/discover/actors/500
+            </code>
+        </div>
+
+        <div class="response-example">
+            <h3>Ejemplo de respuesta</h3>
+    <pre>
+            <code>
+
+
+{
+  "data": [
+    {
+      "adult": false,
+      "also_known_as": [
+        "Том Круз",
+        "トム・クルーズ",
+        "ทอม ครูซ",
+        "湯姆·克魯斯",
+        "톰 크루즈",
+        "توم كروز",
+        "Thomas Cruise Mapother IV",
+        "Τομ Κρουζ",
+        "טום קרוז",
+        "Thomas 'Tom' Cruise",
+        "汤姆·克鲁斯",
+        "TC",
+        "Toms Krūzs",
+        "تام کروز"
+      ],
+      "biography": "Tom es el único hijo (entre cuatro hijos) de padres nómadas, Mary Lee (Pfeiffer), maestra de educación especial, y Thomas Cruise Mapother III, ingeniero eléctrico. Sus padres eran de Louisville, Kentucky, y él tiene ascendencia alemana, irlandesa e inglesa. Young Tom pasó su infancia siempre en movimiento, y cuando tenía 14 años había asistido a 15 escuelas diferentes en los Estados Unidos y Canadá. Finalmente se estableció en Glen Ridge, Nueva Jersey, con su madre y su nuevo esposo. Mientras estaba en la escuela secundaria, Tom quería convertirse en sacerdote, pero muy pronto desarrolló un interés en la actuación y abandonó sus planes de convertirse en sacerdote, abandonó la escuela y, a la edad de 18 años, se dirigió a Nueva York y una posible carrera como actor. Los próximos 15 años de su vida son materia de leyendas. Hizo su debut en el cine con una pequeña parte en Amor sin fin (1981) y desde el principio exhibió un innegable atractivo de taquilla para el público masculino y femenino.\n\nCon una atractiva apariencia de estrella de cine y una sonrisa carismática, en un periodo de 5 años, Tom Cruise protagonizó algunas de las películas más taquilleras de la década de 1980, incluyendo Top Gun: Ídolos del aire (1986); El color del dinero (1986), Rain Man (1988) y Nacido el cuatro de julio (1989). En la década de 1990, era uno de los actores mejor pagados del mundo, ganando un promedio de 15 millones de dólares por película en éxitos tan exitosos como Entrevista con el vampiro (1994), Mission: Impossible (1996) y Jerry Maguire (1996), por la que Recibió una nominación al Oscar al mejor actor. La mayor franquicia de Tom Cruise, Mission Impossible, también ha ganado un total de 3 mil millones de dólares en todo el mundo. Tom Cruise también ha mostrado mucho interés en producir, siendo su crédito como productor más grande la franquicia de Misión imposible.\n\nEn 1990 renunció a sus devotas creencias católicas y abrazó a la Iglesia de la Cienciología afirmando que sus enseñanzas lo habían curado de la dislexia que lo había atormentado toda su vida. Un hombre amable y reflexivo, bien conocido por su compasión y generosidad, Tom Cruise es uno de los miembros más queridos de la comunidad cinematográfica. Estuvo casado con la actriz Nicole Kidman hasta 2001. Thomas Cruise Mapother IV ha recorrido un largo camino desde el solitario viaje de su juventud hasta convertirse en una de las mayores estrellas de cine de la historia.",
+      "birthday": "1962-07-03",
+      "deathday": null,
+      "gender": 2,
+      "homepage": "http://www.tomcruise.com",
+      "id": 500,
+      "imdb_id": "nm0000129",
+      "known_for_department": "Acting",
+      "name": "Tom Cruise",
+      "place_of_birth": "Syracuse, New York, USA",
+      "popularity": 42.162,
+      "profile_path": "https://image.tmdb.org/t/p/original//eOh4ubpOm2Igdg0QH2ghj0mFtC.jpg"
+    }
+  ]
+}
+          </code>
+  </pre>
+        </div>
+
+</div>
     </section>
 
     <footer>

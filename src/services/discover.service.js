@@ -39,4 +39,16 @@ export const filterService = async (genre, page) => {
   return { movies: movies, series: series }
 }
 
+export const actorDetailService = async (id) => {
+
+
+  const actor = await tmdbAxios
+    .request(optionsHelper({ url: 'https://api.themoviedb.org/3/person/' + id }))
+    .then(res => transformImageUrl([res.data], true))
+    .catch((er) => {
+      return er
+    })
+
+  return actor
+}
 
