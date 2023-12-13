@@ -1,7 +1,7 @@
 /* import React from 'react' */
 
 import { useState } from "react";
-/* import { axios } from 'axios'; */
+import axios  from 'axios';
 
 
 export default function Signup({ vis, setVis }) {
@@ -9,12 +9,20 @@ export default function Signup({ vis, setVis }) {
     setVis(!vis);
   }
   const [userData, setUserData] = useState({
-	mail: '',
-	password: '',
-	name: '',
-	surnme: '',
-	phone: '',
+	mail: 'test1@correo.com',
+	password: '123456789',
+	name: 'user1',
+	surname: 'surname1',
+	phone: '123456789',
   })
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUserData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const manSubmint = async (e) => {
 		e.preventDefault();
@@ -25,8 +33,8 @@ export default function Signup({ vis, setVis }) {
 				'Content-Type': 'application/json',
 			  },
 			});
-			console.log(response.data.message); 
-		  } catch (error) {
+			console.log("PE", response.data.message);
+		} catch (error) {
 			console.error('Error al registrar al usuario:', error);
 		  }
   }
@@ -58,13 +66,11 @@ export default function Signup({ vis, setVis }) {
 									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
 									type='text'
 									placeholder='Nombre'
-									onChange={e=>setUserData.name=(e.target.value)}
 								/>
 								<input
 									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
 									type='text'
 									placeholder='Apellido'
-									onChange={e=>setUserData.surname=(e.target.value)}
 								/>
 							</div>
 							<div className='flex justify-center flex-wrap gap-5 text-black'>
@@ -72,14 +78,14 @@ export default function Signup({ vis, setVis }) {
 									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
 									type='number'
 									placeholder='Telefono'
-									onChange={e=>setUserData.phone=(e.target.value)}
+									
 								/>
 								<input
 									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2
 									invalid:border-red-600 invalid:text-red-600'
 									type='email'
 									placeholder='E-Mail'
-									onChange={e=>setUserData.mail=(e.target.value)}
+									
 								/>
 							</div>
 							<div className='flex justify-center flex-wrap gap-5 text-black'>
@@ -87,7 +93,7 @@ export default function Signup({ vis, setVis }) {
 									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
 									type='number'
 									placeholder='Contraseña'
-									onChange={e=>setUserData.password=(e.target.value)}
+									
 								/>
 								<input
 									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
@@ -101,7 +107,6 @@ export default function Signup({ vis, setVis }) {
 							</h1>
 							<button
 									type='submit'
-                  					/* onClick={changeVis} */
 									className='w-56 rounded-md border-b-2 border-b-purple-800 bg-pink-600 py-2 transition duration-200 hover:border-b-transparent hover:bg-pink-900'
 							>
 									Guardar
