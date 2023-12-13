@@ -1,5 +1,5 @@
 import tmdbAxios from "../lib/tmdb-axios.js"
-import { optionsHelper, providerSelector, selectionMixer, sortByPopularity, transformImageUrl } from "../utils/helpers.js"
+import { optionsHelper, providerSelector, genreSelector, sortByPopularity, transformImageUrl } from "../utils/helpers.js"
 
 const getContentByPlatformService = async (provider) => {
 
@@ -9,13 +9,13 @@ const getContentByPlatformService = async (provider) => {
 
 
   const movies = await tmdbAxios
-    .request(optionsHelper('https://api.themoviedb.org/3/discover/movie', provider, 'popularity.desc',))
+    .request(optionsHelper({ url: 'https://api.themoviedb.org/3/discover/movie', provider: provider }))
     .then(res => res.data.results.slice(0, 5))
     .catch((er) => {
       return er
     })
   const series = await tmdbAxios
-    .request(optionsHelper('https://api.themoviedb.org/3/discover/tv', provider, 'popularity.desc'))
+    .request(optionsHelper({ url: 'https://api.themoviedb.org/3/discover/tv', provider: provider }))
     .then(res => res.data.results.slice(0, 5))
     .catch((er) => {
       return er
@@ -32,14 +32,14 @@ const getContentByPlatformService = async (provider) => {
 const getUpcomingService = async () => {
 
   const series = await tmdbAxios
-    .request(optionsHelper('https://api.themoviedb.org/3/tv/airing_today'))
+    .request(optionsHelper({ url: 'https://api.themoviedb.org/3/tv/airing_today' }))
     .then(res => res.data.results.slice(0, 5))
     .catch(function(error) {
       return error
     });
 
   const movies = await tmdbAxios
-    .request(optionsHelper('https://api.themoviedb.org/3/movie/upcoming'))
+    .request(optionsHelper({ url: "https://api.themoviedb.org/3/movie/upcoming" }))
     .then(res => res.data.results.slice(0, 5))
     .catch(function(error) {
       return error
@@ -52,5 +52,33 @@ const getUpcomingService = async () => {
   )
 
 }
+const getContentByGenreService = async (genre) => {
 
-export { getContentByPlatformService, getUpcomingService }
+  if (genreSelector(genre) === 0) {
+    throw new Error("Genero no disponible")
+  }
+
+
+
+  const movies = await tmdbAxios
+    .request(optionsHelper({ url: 'https://api.themoviedb.org/3/discover/movie', genre: genreSelector(genre).movie }))
+    .then(res => res.data.results.slice(0, 5))
+    .catch((er) => {
+      return er
+    })
+  const series = await tmdbAxios
+    .request(optionsHelper({ url: 'https://api.themoviedb.org/3/discover/tv', genre: genreSelector(genre).tv }))
+    .then(res => res.data.results.slice(0, 5))
+    .catch((er) => {
+      return er
+    })
+
+  return transformImageUrl(
+    sortByPopularity(
+      [...movies, ...series]
+    )
+  )
+}
+
+
+export { getContentByPlatformService, getUpcomingService, getContentByGenreService }
