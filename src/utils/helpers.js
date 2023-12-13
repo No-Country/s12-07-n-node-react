@@ -18,7 +18,7 @@ export function providerSelector(provider) {
 export function genreSelector(genre) {
   switch (genre) {
     case "ROMANCE":
-      return { "tv": 10764, "movie": 10749 }
+      return { "tv": 10766, "movie": 10749 }
     case "ACTION":
       return { "tv": 10759, "movie": 20 }
     case "HORROR":
