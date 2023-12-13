@@ -48,7 +48,18 @@ export const actorDetailService = async (id) => {
     .catch((er) => {
       return er
     })
-
-  return actor
+  const movies = await tmdbAxios
+    .request(optionsHelper({ url: 'https://api.themoviedb.org/3/person/' + id + '/movie_credits' }))
+    .then(res => res.data)
+    .catch((er) => {
+      return er
+    })
+  const series = await tmdbAxios
+    .request(optionsHelper({ url: 'https://api.themoviedb.org/3/person/' + id + '/tv_credits' }))
+    .then(res => res.data)
+    .catch((er) => {
+      return er
+    })
+  return { ...actor, movies, series }
 }
 
