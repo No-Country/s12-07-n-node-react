@@ -28,12 +28,8 @@ app.use(express.static('public'))
 
 // Middleware
 app.use(cors({
-  origin: [
-    'https://s12-07-n-node-react.vercel.app/',
-    'http://localhost:3000',
-    'http://localhost:5173'
-  ],
-  credentials: true,
+  origin: '*',
+  credentials: false,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['*'],
 }));
