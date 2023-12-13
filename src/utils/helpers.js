@@ -50,7 +50,20 @@ export function sortByPopularity(arr) {
 }
 
 // Funcion para generar urls usables para el front
-export function transformImageUrl(array) {
+export function transformImageUrl(array, actors) {
+
+  if (actors === true) {
+    const arr = array.map(function(el) {
+      let temp3 = el.profile_path
+      return {
+        ...el, profile_path: el.profile_path = `https://image.tmdb.org/t/p/original/${temp3}`
+      }
+    })
+    return arr
+
+  }
+
+
   const arr = array.map(function(el) {
     let temp = el.poster_path
     let temp2 = el.backdrop_path

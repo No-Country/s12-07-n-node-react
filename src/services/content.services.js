@@ -79,6 +79,21 @@ const getContentByGenreService = async (genre) => {
     )
   )
 }
+const getActorsService = async () => {
 
 
-export { getContentByPlatformService, getUpcomingService, getContentByGenreService }
+  const actors = await tmdbAxios
+    .request(optionsHelper({ url: 'https://api.themoviedb.org/3/trending/person/week' }))
+    .then(res => res.data.results)
+    .catch((er) => {
+      return er
+    })
+
+
+  return transformImageUrl(sortByPopularity(actors), true)
+}
+
+
+
+
+export { getContentByPlatformService, getUpcomingService, getContentByGenreService, getActorsService }

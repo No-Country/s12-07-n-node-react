@@ -1,4 +1,4 @@
-import { getContentByPlatformService, getUpcomingService, getContentByGenreService } from "../services/content.services.js"
+import { getContentByPlatformService, getUpcomingService, getContentByGenreService, getActorsService } from "../services/content.services.js"
 
 const getContentByPlatformController = async (req, res) => {
   const { network } = req.params// Aca va el id de la plataforma, se la pasaremos al controlador
@@ -37,7 +37,18 @@ const getContentByGenreController = async (req, res) => {
   }
 
 }
+const getActorsController = async (req, res) => {
 
 
-export { getContentByPlatformController, getUpcomingController, getContentByGenreController }
+  try {
+    const response = await getActorsService()
+    res.json(response)
+  } catch (error) {
+    res.json(error.message)
+
+  }
+
+}
+
+export { getContentByPlatformController, getUpcomingController, getContentByGenreController, getActorsController }
 
