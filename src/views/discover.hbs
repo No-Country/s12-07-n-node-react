@@ -85,7 +85,45 @@
 <hr>
 <hr>
 <hr>
+<div>
 
+        <h2>Endpoint: /api/v1/discover/filter/:genero/:pagina</h2>
+        <p>Endpoint para filtrar por genero, recibe "action", "horror", "romance", "drama", y numeros para la paginacion</p>
+
+        <div class="endpoint">
+            <h3>Método HTTP</h3>
+            <code>GET</code>
+
+            <h3>URL</h3>
+            <code>/api/v1/discover/filter/:genero/:pagina</code>
+        </div>
+
+        <div class="request-example">
+            <h3>Ejemplo de solicitud</h3>
+            <code>
+                curl -X GET
+                -H "Content-Type: application/json"
+                https://streamview.onrender.com/api/v1/discover/filter/horror/2
+            </code>
+        </div>
+
+        <div class="response-example">
+            <h3>Ejemplo de respuesta</h3>
+    <pre>
+            <code>
+
+[
+  {
+    "data": [
+          "movies": [...],
+          "series": [...],
+        ]
+               
+}            </code>
+  </pre>
+        </div>
+
+</div>
     </section>
 
     <footer>

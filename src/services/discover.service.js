@@ -1,5 +1,6 @@
 import tmdbAxios from "../lib/tmdb-axios.js"
-import { optionsHelper, transformImageUrl } from "../utils/helpers.js"
+import { optionsHelper, transformImageUrl, genreSelector } from "../utils/helpers.js"
+
 
 export const searchService = async (query, page) => {
 
@@ -14,3 +15,28 @@ export const searchService = async (query, page) => {
     content
   )
 }
+
+export const filterService = async (genre, page) => {
+
+  if (genreSelector(genre) === 0) {
+    throw new Error("Genero no disponible")
+  }
+
+
+  const movies = await tmdbAxios
+    .request(optionsHelper({ url: 'https://api.themoviedb.org/3/discover/movie', genre: genreSelector(genre).movie, page: page }))
+    .then(res => transformImageUrl(res.data.results))
+    .catch((er) => {
+      return er
+    })
+  const series = await tmdbAxios
+    .request(optionsHelper({ url: 'https://api.themoviedb.org/3/discover/tv', genre: genreSelector(genre).tv, page: page }))
+    .then(res => transformImageUrl(res.data.results))
+    .catch((er) => {
+      return er
+    })
+
+  return { movies: movies, series: series }
+}
+
+
