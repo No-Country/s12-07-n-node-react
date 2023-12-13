@@ -14,6 +14,21 @@ export function providerSelector(provider) {
   }
 }
 
+
+export function genreSelector(genre) {
+  switch (genre) {
+    case "ROMANCE":
+      return { "tv": 10764, "movie": 10749 }
+    case "ACTION":
+      return { "tv": 10759, "movie": 20 }
+    case "HORROR":
+      return { "tv": 9648, "movie": 27 }
+    case "DRAMA":
+      return { "tv": 18, "movie": 18 }
+    default:
+      return 0
+  }
+}
 // Funcion para desordenar array de peliculas y series
 export function selectionMixer(array) {
   // Función de comparación aleatoria
@@ -48,7 +63,9 @@ export function transformImageUrl(array) {
 
 }
 
-export function optionsHelper(url, provider, page = 1, query, sort = 'popularity.desc') {
+export function optionsHelper(options) {
+
+  const { url, page, query, sort, genre, provider } = options
 
   return {
     method: 'GET',
@@ -56,11 +73,12 @@ export function optionsHelper(url, provider, page = 1, query, sort = 'popularity
     params: {
       include_video: 'true',
       language: 'es-ES',
-      page: page,
+      page: page || 1,
       query: query,
-      sort_by: sort,
+      sort_by: sort || 'popularity.desc',
       watch_region: 'PE',
-      with_watch_providers: providerSelector(provider)
+      with_genres: genre,
+      with_watch_providers: providerSelector(provider) || ''
     }
 
 
