@@ -1,31 +1,34 @@
 /* import React from 'react' */
 
 import { useState } from "react";
+/* import { axios } from 'axios'; */
 
 
 export default function Signup({ vis, setVis }) {
   const changeVis = () => {
     setVis(!vis);
   }
-  const [mail, setMail] = useState('')
-  const [password, setPassword] = useState('')
-  const [name, setName] = useState('')
-  const [surname, setSurname] = useState('')
-  const [phone, setPhone] = useState('')
-  const apiurl = "https://streamview.onrender.com/api/v1/auth/register"
+  const [userData, setUserData] = useState({
+	mail: '',
+	password: '',
+	name: '',
+	surnme: '',
+	phone: '',
+  })
 
   const manSubmint = async (e) => {
 		e.preventDefault();
-		/* try {
-			const response = await axios.post(apiurl, {mail, password, name, surname, phone})
 
-			console.log(response.data)
-		} catch (error) {
-			console.log(error)
-		} */
-		
-		
-		/* console.log("data" + [mail, password, name, surname, phone]) */
+		try {
+			const response = await axios.post('https://streamview.onrender.com/api/v1/auth/register', userData, {
+			  headers: {
+				'Content-Type': 'application/json',
+			  },
+			});
+			console.log(response.data.message); 
+		  } catch (error) {
+			console.error('Error al registrar al usuario:', error);
+		  }
   }
 
 	return (
@@ -55,13 +58,13 @@ export default function Signup({ vis, setVis }) {
 									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
 									type='text'
 									placeholder='Nombre'
-									onChange={e=>setName(e.target.value)}
+									onChange={e=>setUserData.name=(e.target.value)}
 								/>
 								<input
 									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
 									type='text'
 									placeholder='Apellido'
-									onChange={e=>setSurname(e.target.value)}
+									onChange={e=>setUserData.surname=(e.target.value)}
 								/>
 							</div>
 							<div className='flex justify-center flex-wrap gap-5 text-black'>
@@ -69,14 +72,14 @@ export default function Signup({ vis, setVis }) {
 									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
 									type='number'
 									placeholder='Telefono'
-									onChange={e=>setPhone(e.target.value)}
+									onChange={e=>setUserData.phone=(e.target.value)}
 								/>
 								<input
 									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2
 									invalid:border-red-600 invalid:text-red-600'
 									type='email'
 									placeholder='E-Mail'
-									onChange={e=>setMail(e.target.value)}
+									onChange={e=>setUserData.mail=(e.target.value)}
 								/>
 							</div>
 							<div className='flex justify-center flex-wrap gap-5 text-black'>
@@ -84,7 +87,7 @@ export default function Signup({ vis, setVis }) {
 									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
 									type='number'
 									placeholder='Contraseña'
-									onChange={e=>setPassword(e.target.value)}
+									onChange={e=>setUserData.password=(e.target.value)}
 								/>
 								<input
 									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'

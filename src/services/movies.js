@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { TRENDING_MOVIES_URL } from '../data/constants';
-import { API_KEY } from '../data/constants';
+import { API_URL,API_KEY } from '../data/constants';
 
 export const getTrending = async () => {
 	console.log(TRENDING_MOVIES_URL);
@@ -10,3 +10,9 @@ export const getTrending = async () => {
 		},
 	});
 };
+
+export const getMovieSearch = async (query,page) => {
+	return await axios.get(
+		`${API_URL}/discover/search?query=${query}&page=${page}`
+	);
+}
