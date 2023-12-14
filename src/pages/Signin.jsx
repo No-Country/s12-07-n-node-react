@@ -5,17 +5,22 @@ export default function Signin({vis, setVis}) {
 		setVis(!vis);
 	  }
 
+	  const manSubmint = async (e) => {
+		e.preventDefault();
+	  
+	}	
+
 	return (
 		<>
 			{vis &&
 				<div id='conteiner' className='fixed top-0 bg-black bg-opacity-40 flex h-full w-full items-center justify-center text-center text-white'>
-				<form action='' className="w-3/5">
+				<form action='' className="w-3/5" onSubmit={manSubmint}>
 					<div className='bg-purple-800 rounded-md p-5 flex flex-col items-center relative'>
 						<div className="h-32 w-32 m-2">
 							<img src="" alt="" />
 						</div>
 
-						<button className="absolute top-3 right-3 h-7 w-7 bg-purple-600 rounded-md"
+						<button className="absolute top-3 right-3 h-7 w-7 bg-pink-600 hover:bg-pink-800 rounded-md"
                 		onClick={changeVis}>x</button>
 
 						<h1 className="font-black">INICIAR SESION</h1>
@@ -37,7 +42,6 @@ export default function Signin({vis, setVis}) {
 
 						<button
 							type='submit'
-							onClick={changeVis}
 							className='m-2 w-56 rounded-md border-b-2 border-b-purple-800 bg-pink-600 py-2 transition duration-200 hover:border-b-transparent hover:bg-pink-900'
 						>
 							Iniciar Sesion
