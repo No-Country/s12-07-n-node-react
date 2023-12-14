@@ -22,7 +22,7 @@ const checkJWT = async (req, res, next) => {
     if (!user) return res.status(401).json({ message: "Do not have access" })
     // const validUser = verifyToken(jwt)
 
-    req.user = { validUser, userInfo: user }
+    req.user = { userInfo: user }
     next();
 
   } catch (error) {
