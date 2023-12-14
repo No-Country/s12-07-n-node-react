@@ -21,12 +21,10 @@ const checkJWT = async (req, res, next) => {
     const user = await userModel.findOne({ token: jwt })
     if (!user) return res.status(401).json({ message: "Do not have access" })
     // const validUser = verifyToken(jwt)
-    if (!validUser) {
-      res.status(400).send("Token no válido");
-    } else {
-      req.user = { validUser, userInfo: user }
-      next();
-    }
+
+    req.user = { validUser, userInfo: user }
+    next();
+
   } catch (error) {
     console.log(error)
     res.status(400)
