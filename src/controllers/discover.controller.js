@@ -1,4 +1,4 @@
-import { searchService, filterService, actorDetailService } from "../services/discover.service.js"
+import { searchService, filterService, actorDetailService, detailService } from "../services/discover.service.js"
 import { isPageValid } from "../utils/discover.helpers.js"
 
 export const searchController = async (req, res) => {
@@ -15,6 +15,21 @@ export const searchController = async (req, res) => {
     res.status(400).json({ message: error.message })
   }
 }
+
+export const detailController = async (req, res) => {
+
+
+  const { media_type, id } = req.params
+  if (id <= 0) return res.json({ message: "Ingresa un id valido" })
+
+  try {
+    const response = await detailService(media_type.toLowerCase(), id)
+    res.json({ data: response })
+  } catch (error) {
+    res.json({ message: error.message })
+  }
+}
+
 
 export const filterController = async (req, res) => {
 
