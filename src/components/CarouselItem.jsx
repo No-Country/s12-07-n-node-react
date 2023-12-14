@@ -12,8 +12,9 @@ import { Navigation } from 'swiper/modules';
 import useTrendingMovies from '../hooks/useTrendingMovies';
 import { Link } from 'react-router-dom';
 
-function CarouselItem() {
-	const { trendingData } = useTrendingMovies()
+function CarouselItem({ path }) {
+	const { trendingData } = useTrendingMovies(path)
+
 	return (
 		<Swiper slidesPerGroup={2}
 			speed={500} slidesPerView='auto'
@@ -27,7 +28,7 @@ function CarouselItem() {
 					speed: 1000
 				}
 			}}
-			spaceBetween={24} navigation autoplay={true} modules={[Navigation]} className="mySwiper my-4 w-full rounded-xl " >
+			spaceBetween={24} navigation autoplay={true} modules={[Navigation]} className="w-full my-4 mySwiper rounded-xl " >
 			{trendingData?.map((movie, key) => (
 				<SwiperSlide key={key} className='w-[136px] lg:w-[190px] aspect-[0.78] overflow-hidden rounded-xl'>
 					<Link to='detail'>
