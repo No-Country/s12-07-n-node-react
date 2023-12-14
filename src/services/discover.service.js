@@ -63,3 +63,56 @@ export const actorDetailService = async (id) => {
   return { ...actor, movies, series }
 }
 
+export const detailService = async (media_type, id) => {
+
+  const trailerUrl = (arg) => {
+    if (arg.length === 0) return false
+    if (arg[0].key === undefined) return 'No trailer'
+
+    return 'https://www.youtube.com/watch?v=' + arg[0].key
+  }
+  if (media_type == 'tv') {
+
+    const tvTrailer = await tmdbAxios
+      .request(optionsHelper({ url: `https://api.themoviedb.org/3/tv/${id}/videos`, language: 'en-EN' }))
+      .then(res => res.data.results
+        .filter(el => el.type === 'Trailer' || 'Teaser'))
+      .catch((er) => {
+        return er
+      })
+
+    const tvDetail = await tmdbAxios
+      .request(optionsHelper({ url: 'https://api.themoviedb.org/3/tv/' + id }))
+      .then(res => res.data)
+      .catch((er) => {
+        return er
+      })
+
+
+    return { ...tvDetail, Trailer: trailerUrl(tvTrailer) }
+
+  }
+
+
+  if (media_type === 'movie') {
+    const movieTrailer = await tmdbAxios
+      .request(optionsHelper({ url: `https://api.themoviedb.org/3/movie/${id}/videos`, language: 'en-EN' }))
+      .then(res => res.data.results
+        .filter(el => el.type === 'Trailer' || 'Teaser'))
+      .catch((er) => {
+        return er
+      })
+    const movieDetail = await tmdbAxios
+      .request(optionsHelper({ url: 'https://api.themoviedb.org/3/movie/' + id }))
+      .then(res => res.data)
+      .catch((er) => {
+        return er
+      })
+
+    return { ...movieDetail, Trailer: trailerUrl(movieTrailer) }
+
+  }
+
+
+}
+

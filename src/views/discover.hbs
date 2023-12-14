@@ -193,6 +193,106 @@
         </div>
 
 </div>
+  <hr>
+<div>
+
+        <h2>Endpoint: /api/v1/discover/:media_type/:id</h2>
+        <p>Endpoint para obtener detalle de pelicula o serie, requiere de media_type(Puede ser o 'tv', o 'movie',), y del id de la serie o pelicula</p>
+
+        <div class="endpoint">
+            <h3>Método HTTP</h3>
+            <code>GET</code>
+
+            <h3>URL</h3>
+            <code>/api/v1/discover/:media_type/:id</code>
+        </div>
+
+        <div class="request-example">
+            <h3>Ejemplo de solicitud</h3>
+            <code>
+                curl -X GET
+                -H "Content-Type: application/json"
+                https://streamview.onrender.com/api/v1/discover/movie/500
+            </code>
+        </div>
+
+        <div class="response-example">
+            <h3>Ejemplo de respuesta</h3>
+    <pre>
+            <code>
+
+
+
+{
+  "data": {
+    "adult": false,
+    "backdrop_path": "/jqFjgNnxpXIXWuPsyfqmcLXRo9p.jpg",
+    "belongs_to_collection": null,
+    "budget": 1200000,
+    "genres": [
+      {
+        "id": 80,
+        "name": "Crimen"
+      },
+      {
+        "id": 53,
+        "name": "Suspense"
+      }
+    ],
+    "homepage": "",
+    "id": 500,
+    "imdb_id": "tt0105236",
+    "original_language": "en",
+    "original_title": "Reservoir Dogs",
+    "overview": "Una banda organizada formada por seis individuos es contratada para dar un golpe. Anteriormente varios de los miembros no se conocían entre sí, por lo que entre ellos usan nombres en clave. El objetivo: atracar una empresa para llevarse unos diamantes. Pero, antes de que suene la alarma, la policía ya está allí. Algunos mueren en el atraco, y el resto se reúne en el lugar convenido.",
+    "popularity": 67.618,
+    "poster_path": "/hxmJqXFFnXLlvPIdCW2k3UGLCgZ.jpg",
+    "production_companies": [
+      {
+        "id": 285,
+        "logo_path": null,
+        "name": "Live Entertainment",
+        "origin_country": "US"
+      },
+      {
+        "id": 26198,
+        "logo_path": null,
+        "name": "Dog Eat Dog Productions",
+        "origin_country": ""
+      }
+    ],
+    "production_countries": [
+      {
+        "iso_3166_1": "US",
+        "name": "United States of America"
+      }
+    ],
+    "release_date": "1992-09-02",
+    "revenue": 2859750,
+    "runtime": 99,
+    "spoken_languages": [
+      {
+        "english_name": "English",
+        "iso_639_1": "en",
+        "name": "English"
+      }
+    ],
+    "status": "Released",
+    "tagline": "Cada perro tiene su día.",
+    "title": "Reservoir Dogs",
+    "video": false,
+    "vote_average": 8.132,
+    "vote_count": 13463,
+    "Trailer": "https://www.youtube.com/watch?v=t_ecM-orD5w"
+  }
+}
+
+          </code>
+  </pre>
+        </div>
+
+</div>
+
     </section>
 
     <footer>

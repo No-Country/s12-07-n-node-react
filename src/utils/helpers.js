@@ -78,14 +78,14 @@ export function transformImageUrl(array, actors) {
 
 export function optionsHelper(options) {
 
-  const { url, page, query, sort, genre, provider } = options
+  const { url, page, query, sort, genre, provider, language = 'es-ES' } = options
 
   return {
     method: 'GET',
     url: url,
     params: {
       include_video: 'true',
-      language: 'es-ES',
+      language: language,
       page: page || 1,
       query: query,
       sort_by: sort || 'popularity.desc',
