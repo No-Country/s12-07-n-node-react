@@ -5,12 +5,14 @@ const checkJWT = async (req, res, next) => {
   try {
     // Obtener el jwt que genera el usuario
     const jwtByUser = req.headers.authorization || '';
+    console.log('jwt by user' + jwtByUser)
     if (!jwtByUser) {
       res.status(400).send("No token received");
       return;
     }
     // Separo el Bearer y el token solo devuelvo el token
     const jwt = jwtByUser.split(' ').pop()
+    console.log('token splitted' + jwt)
 
     if (!jwt) {
       res.status(400).send("No Token provided");
@@ -18,7 +20,7 @@ const checkJWT = async (req, res, next) => {
     }
     const user = await userModel.findOne({ token: jwt })
     if (!user) return res.status(401).json({ message: "Do not have access" })
-    const validUser = verifyToken(jwt)
+    // const validUser = verifyToken(jwt)
     if (!validUser) {
       res.status(400).send("Token no válido");
     } else {
