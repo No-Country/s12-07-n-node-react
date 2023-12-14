@@ -1,4 +1,5 @@
-import { searchService, filterService, actorDetailService, detailService } from "../services/discover.service.js"
+import { searchService, filterService, actorDetailService, detailService, filterByPlatformService } from "../services/discover.service.js"
+import { providerSelector } from "../utils/helpers.js"
 import { isPageValid } from "../utils/discover.helpers.js"
 
 export const searchController = async (req, res) => {
@@ -30,7 +31,19 @@ export const detailController = async (req, res) => {
   }
 }
 
+export const filterByPlatformController = async (req, res) => {
 
+  const { platform, page } = req.params
+  console.log(platform)
+  if (page <= 0) return res.json({ message: "Provide a valid page" })
+  try {
+    const response = await filterByPlatformService(platform, page)
+    if (response.movies.code === 'ERR_BAD_REQUEST') return res.json({ message: "Peticion invalida" })
+    res.json({ data: response })
+  } catch (error) {
+    res.json({ message: error.message })
+  }
+}
 export const filterController = async (req, res) => {
 
   const { genre, page } = req.params
