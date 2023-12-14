@@ -7,6 +7,7 @@ import {
 } from '../assets/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import Signup from '../pages/Signup';
+import Signin from '../pages/Signin';
 
 const optionsNavbar = [
 	{
@@ -37,10 +38,13 @@ const optionsNavbar = [
 ];
 
 const Navbar = () => {
+	const [perfilMenuVisible, setPerfilMenuVisible] = useState(false);
+	const [signinVisible, setSigninVisible] = useState(false);
 	const [signupVisible, setSignupVisible] = useState(false);
 	const [menuVisible, setMenuVisible] = useState(false);
 	const [sectionCurrent, setSectionCurrent] = useState('home'); // ['generos','ficha','favoritos','home']
 	const stylesMenuState = menuVisible ? 'top-11 left-0' : '-top-full left-full';
+	const stylePerfilState = perfilMenuVisible ? '' : 'hidden';
 	const [searchInputActive, setSearchInputActive] = useState(false);
 	const [searchTerm, setSearchTerm] = useState('');
 	const navigate = useNavigate();
@@ -49,7 +53,7 @@ const Navbar = () => {
 	};
 	const handleClickProfile = () => {
 		setMenuVisible(false);
-		setSignupVisible(!signupVisible);
+		setPerfilMenuVisible(!perfilMenuVisible);
 	};
 	const handleClickSearch = () => {
 		setMenuVisible(false);
@@ -68,6 +72,12 @@ const Navbar = () => {
 	};
 	const handleChangeSearch = e => {
 		setSearchTerm(e.target.value);
+	}
+	const handleClickSignup = () => {
+		setSignupVisible(!signupVisible)
+	}
+	const handleClickSignin = () => {
+		setSigninVisible(!signinVisible)
 	}
 	return (
 		<header className="fixed z-50 top-0 w-full flex justify-center px-4 py-3 text-white bg-[#50075D] lg:bg-[#50075D] lg:px-14 lg:py-4  h-[48px] lg:h-[72px]">
@@ -143,8 +153,32 @@ const Navbar = () => {
 						/>
 					</div>
 				</div>
+
+				<div className={`absolute ${stylePerfilState} top-11 lg:top-[72px] right-0`}>
+					<ul className="flex flex-col gap-[0.13rem] bg-white font-semibold">
+						<li className="px-4 py-2 font-semibold bg-[#50075D] hover:text-slate-500">
+							<button
+							onClick={handleClickSignin}
+							>
+							Iniciar Sesion
+							</button>
+						</li>
+						<li className="px-4 py-2 font-semibold bg-[#50075D] hover:text-slate-500">
+							<button
+							onClick={handleClickSignup}
+							>
+							Registrarse
+							</button>
+						</li>
+						<li className="px-4 py-2 font-semibold bg-[#50075D] hover:text-slate-500">
+							<button>Perfil</button>
+						</li>
+					</ul>
+				</div>
+
 			</div>
 			<Signup vis={signupVisible} setVis={setSignupVisible}/>
+			<Signin vis={signinVisible} setVis={setSigninVisible}/>
 		</header>
 	);
 };
