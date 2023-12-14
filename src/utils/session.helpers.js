@@ -1,7 +1,7 @@
 import pkg from "jsonwebtoken"
 
 
-const JWT_SECRET = process.env.JWT_SECRET || "aca puede ir una clave generica"
+const JWT_SECRET = process.env.JWT_SECRET
 const { sign } = pkg
 const generateToken = async (id) => {
   const jwt = sign({ id }, JWT_SECRET)
