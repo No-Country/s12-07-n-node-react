@@ -79,7 +79,6 @@ export function transformImageUrl(array, actors) {
 export function optionsHelper(options) {
 
   const { url, page, query, sort, genre, provider, language = 'es-ES' } = options
-  console.log(provider)
 
   return {
     method: 'GET',
