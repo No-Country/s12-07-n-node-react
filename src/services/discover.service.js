@@ -123,7 +123,7 @@ export const detailService = async (media_type, id) => {
         return er
       })
     const movieDetail = await tmdbAxios
-      .request(optionsHelper({ url: 'https://api.themoviedb.org/3/movie/' + id }))
+      .request(optionsHelper({ credits: 'credits', url: 'https://api.themoviedb.org/3/movie/' + id }))
       .then(res => transformImageUrl([res.data]))
       .catch((er) => {
         return er
