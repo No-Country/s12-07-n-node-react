@@ -11,6 +11,7 @@ import { useParams } from 'react-router-dom';
 
 const TechSheet = () => {
 	const [dataMovie, setDataMovie] = useState({});
+	const [trailer, setTrailer] = useState('');
 	const [likedMedia, setLikedMedia] = useState([0, 0]);
 	const { id, type } = useParams();
 
@@ -18,11 +19,12 @@ const TechSheet = () => {
 		const getInfo = async () => {
 			const data = await getDetailMovie(id, type);
 			setDataMovie(data.data.data[0]);
-			console.log(data.data.data[0]);
+			console.log('trailer: ', data.data.data.Trailer);
 			setLikedMedia([
 				data.data.data[0].vote_average,
 				data.data.data[0].vote_count,
 			]);
+			setTrailer(data.data.data.Trailer);
 		};
 		getInfo();
 	}, [id, type]);
@@ -56,7 +58,9 @@ const TechSheet = () => {
 			<section className='lg:mb-20 lg:flex-[2.5] 2xl:mb-16'>
 				<div className='flex items-center justify-center gap-8 py-4 lg:justify-start'>
 					<div className='hidden items-center gap-12 lg:flex'>
-						<h2 className='text-4xl font-bold text-white'>{dataMovie.title}</h2>
+						<h2 className='max-w-[500px] text-4xl font-bold text-white'>
+							{dataMovie.title}
+						</h2>
 						<div>
 							<figure>
 								<img
@@ -68,7 +72,7 @@ const TechSheet = () => {
 						</div>
 					</div>
 					<a
-						href='https://www.youtube.com/watch?v=fM7v_IFaH1g'
+						href={trailer || 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'}
 						className='border-gradient-rounded my-3 flex h-fit w-fit items-center justify-center gap-4 rounded-md px-8 py-3 text-black'
 						target='_blank'
 						rel='noreferrer'
