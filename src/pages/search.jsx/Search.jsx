@@ -15,6 +15,7 @@ const Search = () => {
 			setSearchResults(results.data.data);
 		};
 		getSearchResults();
+		console.log(searchResults);
 	}, [termSearch]);
 	useEffect(() => {
 		const validResults = searchResults.filter(
@@ -23,7 +24,7 @@ const Search = () => {
 		setValidSearchResults(validResults);
 	}, [searchResults]);
 
-	console.log(validSearchResults);
+	// console.log(validSearchResults);
 	return (
 		<section className='mx-auto mt-[48px] max-w-[1440px] px-4 md:px-8 md:pt-6 lg:mt-[72px] lg:px-10 lg:pt-10'>
 			{validSearchResults.length === 0 ? (
@@ -47,8 +48,12 @@ const Search = () => {
 									key={result.id}
 									className={`${
 										result.poster_path.split('/')[7] ? '' : 'hidden'
-									} ease cursor-pointer transition-all duration-100 hover:opacity-70`}
-									onClick={() => navigate(`/detail`)}
+									} ease cursor-pointer transition-all duration-100 hover:opacity-70 id-${
+										result.id
+									}`}
+									onClick={() =>
+										navigate(`/detail/${result.media_type}/${result.id}`)
+									}
 								>
 									{result.poster_path.split('/')[7] ? (
 										<img

@@ -7,12 +7,12 @@ import Platform from './components/Platform';
 
 function App() {
 	return (
-		<div className='min-h-[calc(100vh-48px)] bg-[#23134D] bg-gradient-to-r from-[#23134D] via-secondary to-[#23134D] lg:min-h-[calc(100vh-72px)]'>
+		<div className='background-img-gradient min-h-[calc(100vh-48px)] bg-[#23134D] bg-gradient-to-r from-[#23134D] via-secondary to-[#23134D] lg:min-h-[calc(100vh-72px)]'>
 			<BrowserRouter>
 				<Navbar />
 				<Routes>
 					<Route path='/' element={<Home />} />
-					<Route path='/detail' element={<TechSheet />} />
+					<Route path='/detail/:type/:id' element={<TechSheet />} />
 					<Route path='/search' element={<Search />} />
 					<Route path='/platform/:platform' element={<Platform />} />
 				</Routes>
