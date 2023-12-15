@@ -29,7 +29,7 @@ const Platform = () => {
 								className={`${
 									result.poster_path.split('/')[7] ? '' : 'hidden'
 								} ease cursor-pointer transition-all duration-100 hover:opacity-70`}
-								onClick={() => navigate(`/detail`)}
+								onClick={() => navigate(`/detail/movie/${result.id}`)}
 							>
 								{result.poster_path.split('/')[7] ? (
 									<img
@@ -53,7 +53,7 @@ const Platform = () => {
 								className={`${
 									result.poster_path.split('/')[7] ? '' : 'hidden'
 								} ease cursor-pointer transition-all duration-100 hover:opacity-70`}
-								onClick={() => navigate(`/detail`)}
+								onClick={() => navigate(`/detail/tv/${result.id}`)}
 							>
 								{result.poster_path.split('/')[7] ? (
 									<img
