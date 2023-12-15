@@ -9,13 +9,13 @@ const optionsNavbar = [
 	{
 		id: 1,
 		name: 'Género',
+		url: '/genre/',
 		submenu: [
-			{ name: 'Acción', url: 'accion' },
-			{ name: 'Drama', url: 'drama' },
-			{ name: 'Terror', url: 'terror' },
-			{ name: 'Romance', url: 'romance' },
+			{ name: 'Acción', url: '/genre/action' },
+			{ name: 'Drama', url: '/genre/drama' },
+			{ name: 'Terror', url: '/genre/horror' },
+			{ name: 'Romance', url: '/genre/romance' },
 		],
-		url: '/',
 	},
 	{
 		id: 2,
@@ -116,18 +116,20 @@ const Navbar = () => {
 							>
 								{option.submenu && option.submenu.length > 0 ? (
 									<div className='w-full'>
-										<span>{option.name}</span>{' '}
 										<span
 											onClick={handleSubMenu}
 											role='show-submenu'
-											className='hidden lg:inline-block'
+											className='hidden cursor-pointer lg:inline-block'
 										>
-											+
+											{option.name} +
 										</span>
 										<div className={isElementShown ? 'lg:show' : 'lg:hidden'}>
-											<ul className='flex flex-col p-4 lg:absolute'>
+											<ul
+												className='flex
+													flex-col gap-1 bg-white p-4 text-black lg:absolute'
+											>
 												{option.submenu.map(item => (
-													<li key={item.name}>
+													<li className=' bg-[#D9D9D9]' key={item.name}>
 														<Link to={item.url}>{item.name}</Link>
 													</li>
 												))}

@@ -18,6 +18,10 @@ export const getPlatform = async path => {
 	return await axios.get(`${API_URL}/discover/filter/platform/${path}`);
 };
 
+export const getGenreFilter = async path => {
+	return await axios.get(`${API_URL}/discover/filter/genre/${path}`);
+};
+
 export const getDetailMovie = async (id, mType) => {
 	return await axios.get(`${API_URL}/discover/detail/${mType}/${id}`);
 };
