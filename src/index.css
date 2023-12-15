@@ -50,3 +50,9 @@ body {
 	border-radius: 6px;
 	box-sizing: content-box;
 }
+
+.background-img-gradient {
+	background-image: url(./assets/FONDO.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+}
