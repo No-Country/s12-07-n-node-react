@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import 'daisyui/dist/full.css';
 import { searchIcon, menuIcon, profileIcon, heartIcon } from '../assets/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import Signup from '../pages/Signup';
@@ -7,28 +8,29 @@ import { useAuthContext } from '../hooks/useAuthContext';
 const optionsNavbar = [
 	{
 		id: 1,
-		name: 'Sugerencias',
-		url: '#suggest',
+		name: 'Género',
+		submenu: [
+			{ name: 'Acción', url: 'accion' },
+			{ name: 'Drama', url: 'drama' },
+			{ name: 'Terror', url: 'terror' },
+			{ name: 'Romance', url: 'romance' },
+		],
+		url: '/',
 	},
 	{
 		id: 2,
-		name: 'Estrenos',
-		url: '#new',
+		name: 'Actores',
+		url: '/#actores',
 	},
 	{
 		id: 3,
-		name: 'Próximamente',
-		url: '#next',
+		name: 'Próximos estrenos',
+		url: 'proximos-estrenos',
 	},
 	{
 		id: 4,
-		name: 'Favoritos',
-		url: '#favorites',
-	},
-	{
-		id: 5,
-		name: 'Series',
-		url: '#series',
+		name: 'Mi Lista',
+		url: 'mi-lista',
 	},
 ];
 
@@ -42,8 +44,11 @@ const Navbar = () => {
 
 	const { setTermSearch, termSearch } = useAuthContext();
 	const navigate = useNavigate();
-	const handleClickMenu = () => {
-		setMenuVisible(!menuVisible);
+	const handleClickMenu = e => {
+		console.log(e.target.role);
+		if (e.target.role == 'icon-menu') {
+			setMenuVisible(!menuVisible);
+		}
 	};
 	const handleClickProfile = () => {
 		setMenuVisible(false);
@@ -75,6 +80,14 @@ const Navbar = () => {
 	const handleChangeSearch = e => {
 		setValueSearchTerm(e.target.value);
 	};
+
+	const [isElementShown, setIsElementShown] = useState(false);
+	const handleSubMenu = e => {
+		console.log(e.target);
+		if (e.target.role == 'show-submenu') {
+			setIsElementShown(!isElementShown);
+		}
+	};
 	return (
 		<header className='fixed top-0 z-50 flex h-[48px] w-full justify-center bg-[#50075D] px-4 py-3 text-white lg:h-[72px] lg:bg-[#50075D]  lg:px-14 lg:py-4'>
 			<div className='flex h-full w-full max-w-[1440px] items-center justify-between'>
@@ -87,6 +100,7 @@ const Navbar = () => {
 					<img
 						className='h-6 w-6 object-cover'
 						src={menuIcon}
+						role='icon-menu'
 						alt='icono de menu'
 					/>
 				</div>
@@ -97,10 +111,32 @@ const Navbar = () => {
 						{optionsNavbar.map(option => (
 							<li
 								key={option.id}
-								className='bg-[#50075D] px-4 py-2 font-semibold hover:text-slate-500 lg:bg-transparent'
+								className='bg-primary px-4 py-2 font-semibold hover:text-slate-500 lg:bg-transparent'
 								onClick={() => handlerClickSection(option.name.toLowerCase())}
 							>
-								<a href={option.url}>{option.name}</a>
+								{option.submenu && option.submenu.length > 0 ? (
+									<div className='w-full'>
+										<span>{option.name}</span>{' '}
+										<span
+											onClick={handleSubMenu}
+											role='show-submenu'
+											className='hidden lg:inline-block'
+										>
+											+
+										</span>
+										<div className={isElementShown ? 'lg:show' : 'lg:hidden'}>
+											<ul className='flex flex-col p-4 lg:absolute'>
+												{option.submenu.map(item => (
+													<li key={item.name}>
+														<Link to={item.url}>{item.name}</Link>
+													</li>
+												))}
+											</ul>
+										</div>
+									</div>
+								) : (
+									<Link to={option.url}>{option.name}</Link>
+								)}
 							</li>
 						))}
 					</ul>
@@ -110,7 +146,7 @@ const Navbar = () => {
 						searchInputActive ? 'hidden' : 'block'
 					}`}
 				>
-					Nombre de la aplicación
+					STREAMVIEW
 				</h2>
 				{/* ICONS */}
 				<div
