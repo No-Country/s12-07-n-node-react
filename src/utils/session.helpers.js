@@ -9,7 +9,6 @@ const generateToken = async (id) => {
 }
 
 const verifyToken = (jwt) => {
-  console.log(JWT_SECRET)
   const { verify } = pkg
 
   const isValid = verify(jwt, JWT_SECRET)

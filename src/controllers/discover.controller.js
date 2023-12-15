@@ -34,7 +34,6 @@ export const detailController = async (req, res) => {
 export const filterByPlatformController = async (req, res) => {
 
   const { platform, page } = req.params
-  console.log(platform)
   if (page <= 0) return res.json({ message: "Provide a valid page" })
   try {
     const response = await filterByPlatformService(platform, page)

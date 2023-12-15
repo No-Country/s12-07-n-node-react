@@ -22,13 +22,13 @@ export const filterByPlatformService = async (platform, page) => {
 
 
   const movies = await tmdbAxios
-    .request(optionsHelper({ url: 'https://api.themoviedb.org/3/discover/movie', provider: providerSelector(platform.toUpperCase()), page: page }))
+    .request(optionsHelper({ url: 'https://api.themoviedb.org/3/discover/movie', provider: platform.toUpperCase(), page: page }))
     .then(res => transformImageUrl(res.data.results))
     .catch((er) => {
       return er
     })
   const series = await tmdbAxios
-    .request(optionsHelper({ url: 'https://api.themoviedb.org/3/discover/tv', provider: providerSelector(platform.toUpperCase()), page: page }))
+    .request(optionsHelper({ url: 'https://api.themoviedb.org/3/discover/tv', provider: platform.toUpperCase(), page: page }))
     .then(res => transformImageUrl(res.data.results))
     .catch((er) => {
       return er
