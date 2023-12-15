@@ -94,7 +94,7 @@ export const detailService = async (media_type, id) => {
   if (media_type == 'tv') {
 
     const tvTrailer = await tmdbAxios
-      .request(optionsHelper({ url: `https://api.themoviedb.org/3/tv/${id}/videos`, language: 'en-EN' }))
+      .request(optionsHelper({ credits: 'credits', url: `https://api.themoviedb.org/3/tv/${id}/videos`, language: 'en-EN' }))
       .then(res => res.data.results
         .filter(el => el.type === 'Trailer' || 'Teaser'))
       .catch((er) => {
@@ -102,7 +102,7 @@ export const detailService = async (media_type, id) => {
       })
 
     const tvDetail = await tmdbAxios
-      .request(optionsHelper({ url: 'https://api.themoviedb.org/3/tv/' + id }))
+      .request(optionsHelper({ credits: 'credits', url: 'https://api.themoviedb.org/3/tv/' + id }))
       .then(res => transformImageUrl([res.data]))
       .catch((er) => {
         return er
