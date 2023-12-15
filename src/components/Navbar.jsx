@@ -141,13 +141,14 @@ const Navbar = () => {
 						))}
 					</ul>
 				</nav>
-				<h2
+				<Link
+					to={'/'}
 					className={`text-white lg:hidden ${
 						searchInputActive ? 'hidden' : 'block'
 					}`}
 				>
 					STREAMVIEW
-				</h2>
+				</Link>
 				{/* ICONS */}
 				<div
 					className={`flex gap-6 lg:w-[30%] ${
