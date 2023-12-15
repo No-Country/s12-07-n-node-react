@@ -6,7 +6,6 @@ const Platform = () => {
 	const { platform } = useParams();
 	const [results, setResults] = useState();
 	const navigate = useNavigate();
-	console.log(platform);
 	useEffect(() => {
 		const getSearchResults = async () => {
 			const results = await getPlatform(`${platform}/1`);
@@ -14,7 +13,6 @@ const Platform = () => {
 		};
 		getSearchResults();
 	}, [platform]);
-	console.log(results);
 
 	return (
 		<section className='mx-auto mt-[48px] max-w-[1440px] px-4 md:px-8 md:pt-6 lg:mt-[72px] lg:px-10 lg:pt-10'>
