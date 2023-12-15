@@ -14,7 +14,7 @@ function Home() {
 			<section>
 				<Carousel />
 			</section>
-			<div className='flex justify-evenly gap-4 py-4'>
+			<div className='flex justify-evenly gap-4 pb-14 pt-10'>
 				<Link to='/platform/prime'>
 					<img
 						src={Amazon}
@@ -41,14 +41,14 @@ function Home() {
 				<Platforms title='Drama' path='genre/drama' />
 				<Platforms title='Terror' path='genre/horror' />
 				<Platforms title='Romance' path='genre/romance' />
-				<div>
+				<div className='pb-10'>
 					<div className='text-lg'>
 						<Title2 title='Actores' />
 					</div>
 					<CarouselActors path='actors' />
 				</div>
 				<Platforms title='Proximos Estrenos' path='upcoming' />
-				<Platforms title='Mi lista' path='genre/horror' />
+				<Platforms title='Mi Lista' path='genre/horror' />
 				{/*         <Platforms title='Series' path='genre/romance' />
         <Platforms title='pelicula' path='genre/romance' /> */}
 			</section>

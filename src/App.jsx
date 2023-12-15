@@ -4,6 +4,7 @@ import Home from './pages/home/Home';
 import TechSheet from './components/TechSheet';
 import Search from './pages/search.jsx/Search';
 import Platform from './components/Platform';
+import GenreFilter from './components/GenreFilter';
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 					<Route path='/detail/:type/:id' element={<TechSheet />} />
 					<Route path='/search' element={<Search />} />
 					<Route path='/platform/:platform' element={<Platform />} />
+					<Route path='/genre/:genre' element={<GenreFilter />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
