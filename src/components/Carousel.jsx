@@ -14,7 +14,7 @@ import useTrendingMovies from '../hooks/useTrendingMovies';
 import { Link } from 'react-router-dom';
 
 function Carousel() {
-	const { trendingData } = useTrendingMovies()
+	const { trendingData } = useTrendingMovies('upcoming')
 	return (
 		<Swiper navigation slidesPerView={1} autoplay={true} pagination={{
 			clickable: true,
@@ -26,7 +26,7 @@ function Carousel() {
 					</Link>
 				</SwiperSlide>
 
-			)).slice(0, 3)}
+			)).slice(7, 10)}
 		</Swiper >
 	);
 }
