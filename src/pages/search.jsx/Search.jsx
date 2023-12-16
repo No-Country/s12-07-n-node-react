@@ -10,6 +10,11 @@ const Search = () => {
 	const navigate = useNavigate();
 	const { termSearch } = useAuthContext();
 	useEffect(() => {
+		console.log(termSearch);
+		if (!termSearch) {
+			navigate('/');
+			return;
+		}
 		const getSearchResults = async () => {
 			const results = await getMovieSearch(termSearch, 1);
 			setSearchResults(results.data.data);
@@ -17,7 +22,9 @@ const Search = () => {
 		getSearchResults();
 		console.log(searchResults);
 	}, [termSearch]);
+
 	useEffect(() => {
+		if (searchResults.length === 0) return;
 		const validResults = searchResults.filter(
 			movie => movie.poster_path.split('/')[7]
 		);

@@ -8,6 +8,7 @@ import {
 } from '../assets/icons';
 import { getDetailMovie } from '../services/movies';
 import { useParams } from 'react-router-dom';
+import { data } from 'autoprefixer';
 
 const TechSheet = () => {
 	const [dataMovie, setDataMovie] = useState({});
@@ -42,7 +43,9 @@ const TechSheet = () => {
 				<div className='mx-5 my-5 hidden items-start justify-center gap-3 bg-[#D9D9D9] p-2 lg:flex'>
 					<a href='#'>
 						<img src={likeIcon} alt='' className='h-8 w-8' />
-						<p className='text-center text-[14px]'>{likedMedia[1]}</p>
+						<p className='text-center text-[14px] text-black'>
+							{likedMedia[1]}
+						</p>
 					</a>
 					<a href='#'>
 						<img src={dislikeIcon} alt='' className='h-8 w-8' />
@@ -56,7 +59,7 @@ const TechSheet = () => {
 				</div>
 			</div>
 			<section className='lg:mb-20 lg:flex-[2.5] 2xl:mb-16'>
-				<div className='flex items-center justify-center gap-8 py-4 lg:justify-start'>
+				<div className='flex items-center justify-center gap-8 py-4 text-black lg:justify-start'>
 					<div className='hidden items-center gap-12 lg:flex'>
 						<h2 className='max-w-[500px] text-4xl font-bold text-white'>
 							{dataMovie.title}
@@ -85,7 +88,9 @@ const TechSheet = () => {
 					<div className='flex items-start justify-between lg:hidden'>
 						<a href='#' className='flex flex-col items-center'>
 							<img src={likeIcon} alt='' className='h-8 w-8' />
-							<p className='text-center text-[13px]'>{likedMedia[1]}</p>
+							<p className='text-center text-[13px] text-black'>
+								{likedMedia[1]}
+							</p>
 						</a>
 						<a href='#'>
 							<img src={dislikeIcon} alt='' className='h-8 w-8' />
@@ -106,11 +111,12 @@ const TechSheet = () => {
 							</figure>
 						</div>
 					</div>
-					<div className='flex flex-col gap-6 lg:gap-9'>
+					<div className='flex flex-col gap-6 text-black lg:gap-9'>
 						<div>
 							<h3 className='text-md font-semibold'>SINOPSIS</h3>
 							<p className='text-sm font-semibold text-black'>
-								{dataMovie.overview}
+								{dataMovie?.overview ||
+									'No hay sinopsis disponible para esta película'}
 							</p>
 						</div>
 						{/* cast */}

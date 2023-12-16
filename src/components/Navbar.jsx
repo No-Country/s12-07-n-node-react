@@ -56,7 +56,8 @@ const Navbar = () => {
 	};
 	const handleClickSearch = () => {
 		setMenuVisible(false);
-		if (termSearch) {
+		console.log(valueSearchTerm);
+		if (valueSearchTerm) {
 			setTermSearch(valueSearchTerm);
 			navigate(`/search`);
 			return;
@@ -64,7 +65,7 @@ const Navbar = () => {
 		setSearchInputActive(!searchInputActive);
 	};
 	const handleKeyPressSearch = e => {
-		if (e.key === 'Enter') {
+		if (e.key === 'Enter' && valueSearchTerm) {
 			setMenuVisible(false);
 			setTermSearch(valueSearchTerm);
 			navigate(`/search`);
@@ -87,6 +88,26 @@ const Navbar = () => {
 		if (e.target.role == 'show-submenu') {
 			setIsElementShown(!isElementShown);
 		}
+	};
+
+	const handleResize = () => {
+		setMenuVisible(false);
+		setSearchInputActive(false);
+		setValueSearchTerm('');
+		setIsElementShown(false);
+	};
+	window.addEventListener('resize', handleResize);
+	const handleInvalid = event => {
+		const input = event.target;
+		if (input.value.trim() === '') {
+			input.setCustomValidity('Por favor, ingrese un término de búsqueda');
+		} else {
+			input.setCustomValidity('');
+		}
+	};
+
+	const handleInput = event => {
+		event.target.setCustomValidity('');
 	};
 	return (
 		<header className='fixed top-0 z-50 flex h-[48px] w-full justify-center bg-[#50075D] px-4 py-3 text-white lg:h-[72px] lg:bg-[#50075D]  lg:px-14 lg:py-4'>
@@ -169,27 +190,34 @@ const Navbar = () => {
 						</div>
 					)}
 					<div className='search w-full overflow-hidden'>
-						<div
+						<form
 							className={`search-icon flex w-full items-center justify-end gap-1 rounded-[5px] lg:bg-white lg:p-2 ${
 								searchInputActive ? 'bg-white' : 'bg-transparent'
 							}`}
+							onSubmit={e => e.preventDefault()}
 						>
 							<input
 								type='search'
+								id='search'
+								required
 								className={`w-full border-none bg-transparent py-[2px] pl-3 font-semibold text-black placeholder-white outline-none lg:block lg:flex-1 ${
 									searchInputActive ? 'block' : 'hidden'
 								}`}
 								placeholder='Buscar'
 								onChange={handleChangeSearch}
 								onKeyDown={handleKeyPressSearch}
+								onInvalid={handleInvalid}
+								onInput={handleInput}
 							/>
-							<img
-								className='h-[1.2rem] w-[1.2rem] cursor-pointer object-cover object-center lg:h-[1.5rem] lg:w-[1.5rem]'
-								src={searchIcon}
-								alt='icono de lupa'
-								onClick={handleClickSearch}
-							/>
-						</div>
+							<button>
+								<img
+									className='h-[1.2rem] w-[1.2rem] cursor-pointer object-cover object-center lg:h-[1.5rem] lg:w-[1.5rem]'
+									src={searchIcon}
+									alt='icono de lupa'
+									onClick={handleClickSearch}
+								/>
+							</button>
+						</form>
 					</div>
 				</div>
 				<div className='user'>
