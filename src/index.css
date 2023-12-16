@@ -57,3 +57,23 @@ body {
 	background-repeat: no-repeat;
 }
 
+.skeleton-loader {
+	width: 100%;
+	background: linear-gradient(
+			to right,
+			rgba(255, 255, 255, 0),
+			rgba(240, 240, 240, 0.5) 50%,
+			rgba(255, 255, 255, 0) 80%
+		),
+		rgb(172, 167, 167);
+	background-repeat: repeat-y;
+	background-size: 50px 500px;
+	background-position: 0 0;
+	animation: shine 1s infinite;
+}
+
+@keyframes shine {
+	to {
+		background-position: 100% 0;
+	}
+}

@@ -1,20 +1,22 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
+import SkeletonGrid from '../../components/SkeletonGrid';
 import { useNavigate } from 'react-router';
 import { getMovieSearch } from '../../services/movies';
 import { useAuthContext } from '../../hooks/useAuthContext';
 
 const Search = () => {
 	const [searchResults, setSearchResults] = useState([]);
-	const [validSearchResults, setValidSearchResults] = useState([]); // [
+	const [validSearchResults, setValidSearchResults] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 	const navigate = useNavigate();
 	const { termSearch } = useAuthContext();
 	useEffect(() => {
-		console.log(termSearch);
 		if (!termSearch) {
 			navigate('/');
 			return;
 		}
+		setIsLoading(true);
 		const getSearchResults = async () => {
 			const results = await getMovieSearch(termSearch, 1);
 			setSearchResults(results.data.data);
@@ -28,6 +30,9 @@ const Search = () => {
 		const validResults = searchResults.filter(
 			movie => movie.poster_path.split('/')[7]
 		);
+		setTimeout(() => {
+			setIsLoading(false);
+		}, 1000);
 		setValidSearchResults(validResults);
 	}, [searchResults]);
 
@@ -48,8 +53,9 @@ const Search = () => {
 						</h2>
 						<p>{validSearchResults.length} títulos ordenados por popularidad</p>
 					</div>
+					{isLoading ? <SkeletonGrid /> : ''}
 					<div className='grid grid-cols-3 gap-x-2 gap-y-[3rem] pb-10 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-[2rem] xl:gap-x-[3rem] xl:gap-y-[4rem]'>
-						{validSearchResults.map(result => {
+						{validSearchResults.map((result, idx) => {
 							return (
 								<div
 									key={result.id}
@@ -67,6 +73,7 @@ const Search = () => {
 											className='h-full w-full object-cover object-center'
 											src={result.poster_path}
 											alt=''
+											loading={idx <= 10 ? 'eager' : 'lazy'}
 										/>
 									) : (
 										''

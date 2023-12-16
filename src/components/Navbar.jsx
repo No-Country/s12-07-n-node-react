@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import 'daisyui/dist/full.css';
 import { searchIcon, menuIcon, profileIcon, heartIcon } from '../assets/icons';
 import { Link, useNavigate } from 'react-router-dom';
@@ -80,6 +80,9 @@ const Navbar = () => {
 	};
 	const handleChangeSearch = e => {
 		setValueSearchTerm(e.target.value);
+		if (e.target.value !== '') {
+			setSearchInputActive(true);
+		}
 	};
 
 	const [isElementShown, setIsElementShown] = useState(false);
