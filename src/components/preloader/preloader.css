@@ -1,0 +1,61 @@
+.logo-container {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.growing-logo {
+	display: flex;
+	flex-wrap: wrap;
+	width: auto;
+	height: 5%;
+	animation: growLogo 1s ease-out;
+}
+
+.icono {
+	width: 30%;
+	margin-top: 35%;
+	margin-left: 35%;
+	position: absolute;
+}
+
+.rotating-square {
+	width: 100%;
+	height: 80%;
+	transform-origin: center;
+	animation: rotateSquare 1s ease-out;
+}
+
+.text {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	color: #f8effa;
+	font-size: 240%;
+	font-family: Rowdies;
+	font-weight: 700;
+	line-height: 120%;
+	letter-spacing: 0.24%;
+	word-wrap: 'break-word';
+}
+
+@keyframes growLogo {
+	0% {
+		transform: scale(0);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes rotateSquare {
+	0% {
+		transform: rotate(200deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
