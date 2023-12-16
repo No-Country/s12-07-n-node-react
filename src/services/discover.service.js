@@ -88,6 +88,7 @@ export const detailService = async (media_type, id) => {
   const trailerUrl = (arg) => {
     if (arg.length === 0) return false
     if (arg[0].key === undefined) return 'No trailer'
+    if (!arg[0].key) return 'No trailer'
 
     return 'https://www.youtube.com/watch?v=' + arg[0].key
   }
@@ -98,14 +99,14 @@ export const detailService = async (media_type, id) => {
       .then(res => res.data.results
         .filter(el => el.type === 'Trailer' || 'Teaser'))
       .catch((er) => {
-        return er
+        return { error: er.message, isError: true }
       })
 
     const tvDetail = await tmdbAxios
       .request(optionsHelper({ credits: 'credits', url: 'https://api.themoviedb.org/3/tv/' + id }))
       .then(res => transformImageUrl([res.data]))
       .catch((er) => {
-        return er
+        return { error: er.message, isError: true }
       })
 
 

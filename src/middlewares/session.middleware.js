@@ -3,6 +3,7 @@ import { verifyToken } from "../utils/session.helpers.js";
 
 const checkJWT = async (req, res, next) => {
   try {
+
     // Obtener el jwt que genera el usuario
     const jwtByUser = req.headers.authorization || '';
     if (!jwtByUser) {

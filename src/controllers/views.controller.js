@@ -13,3 +13,8 @@ export const contentViewController = async (req, res) => {
 export const discoverViewController = async (req, res) => {
   res.render('discover')
 }
+
+
+export const listViewController = async (req, res) => {
+  res.render('lists')
+}
