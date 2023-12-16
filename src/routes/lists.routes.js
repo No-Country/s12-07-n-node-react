@@ -1,8 +1,10 @@
 import { Router } from "express";
-import { listController } from "../controllers/lists.controller.js";
+import { addToListController, getListController } from "../controllers/lists.controller.js";
+import { checkJWT } from '../middlewares/session.middleware.js'
 
 const router = Router()
 
-router.get('/', listController)
+router.get('/:userId', getListController)
+router.post('/', checkJWT, addToListController)
 
 export default router
