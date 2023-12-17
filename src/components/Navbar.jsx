@@ -123,7 +123,6 @@ const Navbar = () => {
 
 	const handleInput = event => {
 		event.target.setCustomValidity('');
-		setSearchInputActive(true);
 	};
 	return (
 		<header className='fixed top-0 z-50 flex h-[48px] w-full justify-center bg-primary px-4 py-3 text-white lg:h-[72px] lg:bg-primary  lg:px-14 lg:py-4'>
@@ -237,7 +236,7 @@ const Navbar = () => {
 								type='search'
 								id='search'
 								required
-								className={`w-full border-none bg-transparent py-[2px] pl-3 font-semibold text-black placeholder-white outline-none lg:block lg:flex-1 ${
+								className={`option-modal-controller w-full border-none bg-transparent py-[2px] pl-3 font-semibold text-black placeholder-white outline-none lg:block lg:flex-1 ${
 									searchInputActive ? 'block' : 'hidden'
 								}`}
 								placeholder='Buscar'
