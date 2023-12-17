@@ -88,9 +88,7 @@ const Navbar = () => {
 	const [isElementShown, setIsElementShown] = useState(false);
 	const handleSubMenu = e => {
 		console.log(e.target);
-		if (e.target.role == 'show-submenu') {
-			setIsElementShown(!isElementShown);
-		}
+		setIsElementShown(!isElementShown);
 	};
 
 	const handleResize = () => {
@@ -113,7 +111,7 @@ const Navbar = () => {
 		event.target.setCustomValidity('');
 	};
 	return (
-		<header className='fixed top-0 z-50 flex h-[48px] w-full justify-center bg-[#50075D] px-4 py-3 text-white lg:h-[72px] lg:bg-[#50075D]  lg:px-14 lg:py-4'>
+		<header className='fixed top-0 z-50 flex h-[48px] w-full justify-center bg-primary px-4 py-3 text-white lg:h-[72px] lg:bg-primary  lg:px-14 lg:py-4'>
 			<div className='flex h-full w-full max-w-[1440px] items-center justify-between'>
 				<div className='hidden lg:block'>
 					<Link to='/' className='text-xl font-bold uppercase'>
@@ -131,29 +129,34 @@ const Navbar = () => {
 				<nav
 					className={`absolute left-0 lg:relative ${stylesMenuState} lg:inset-0`}
 				>
-					<ul className='flex flex-col gap-[0.13rem] bg-white font-semibold lg:flex-row  lg:bg-transparent'>
+					<ul className='flex flex-col gap-[1px] bg-white lg:flex-row  lg:bg-transparent'>
 						{optionsNavbar.map(option => (
 							<li
 								key={option.id}
-								className='bg-primary px-4 py-2 font-semibold hover:text-slate-500 lg:bg-transparent'
+								className=' bg-primary px-4
+								py-2'
 								onClick={() => handlerClickSection(option.name.toLowerCase())}
 							>
 								{option.submenu && option.submenu.length > 0 ? (
 									<div className='w-full'>
 										<span
 											onClick={handleSubMenu}
-											role='show-submenu'
-											className='hidden cursor-pointer lg:inline-block'
+											className='cursor-pointer hover:text-tertiary'
 										>
-											{option.name} +
+											{option.name}
+											<span className='hidden px-1 lg:inline-block'>+</span>
 										</span>
-										<div className={isElementShown ? 'lg:show' : 'lg:hidden'}>
+										<div className={isElementShown ? 'lg:show ' : ' lg:hidden'}>
 											<ul
 												className='flex
-													flex-col gap-1 bg-white p-4 text-black lg:absolute'
+													w-[175px] flex-col gap-[1px]  lg:absolute lg:mt-[23px]  lg:bg-white lg:text-black'
 											>
 												{option.submenu.map(item => (
-													<li className=' bg-[#D9D9D9]' key={item.name}>
+													<li
+														className='p-2 px-4 hover:text-primary lg:bg-[#D9D9D9]'
+														key={item.name}
+														onClick={handleSubMenu}
+													>
 														<Link to={item.url}>{item.name}</Link>
 													</li>
 												))}
@@ -161,7 +164,9 @@ const Navbar = () => {
 										</div>
 									</div>
 								) : (
-									<Link to={option.url}>{option.name}</Link>
+									<Link to={option.url} className='hover:text-tertiary'>
+										{option.name}
+									</Link>
 								)}
 							</li>
 						))}
