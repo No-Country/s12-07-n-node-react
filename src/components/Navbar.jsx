@@ -45,7 +45,6 @@ const Navbar = () => {
 	const { setTermSearch, termSearch } = useAuthContext();
 	const navigate = useNavigate();
 	const handleClickMenu = e => {
-		console.log(e.target.role);
 		if (e.target.role == 'icon-menu') {
 			setMenuVisible(!menuVisible);
 		}
@@ -55,20 +54,35 @@ const Navbar = () => {
 		setSignupVisible(!signupVisible);
 	};
 	const handleClickSearch = e => {
+		console.log(
+			'state input: ',
+			searchInputActive,
+			'Value to input: ',
+			valueSearchTerm
+		);
+		setSearchInputActive(!searchInputActive);
 		setMenuVisible(false);
-		console.log(valueSearchTerm);
+		if (window.screen.width < 1024 && !searchInputActive) return;
 		if (valueSearchTerm) {
 			setTermSearch(valueSearchTerm);
+			setSearchInputActive(true);
 			navigate(`/search`);
 			return;
 		}
-		setSearchInputActive(!searchInputActive);
 	};
+	console.log('Change state', searchInputActive);
 	const handleKeyPressSearch = e => {
+		console.log(
+			'key press search: ',
+			e.key,
+			'Value to input: ',
+			valueSearchTerm
+		);
 		if (e.key === 'Enter' && valueSearchTerm) {
 			setMenuVisible(false);
 			setTermSearch(valueSearchTerm);
 			navigate(`/search`);
+			console.log('value search: ', valueSearchTerm);
 		}
 	};
 	const handlerClickSection = section => {
@@ -79,12 +93,12 @@ const Navbar = () => {
 		setMenuVisible(false);
 	};
 	const handleChangeSearch = e => {
+		console.log('change search');
 		setValueSearchTerm(e.target.value);
 		if (e.target.value !== '') {
 			setSearchInputActive(true);
 		}
 	};
-	console.log('size', window.screen.width);
 	const [isElementShown, setIsElementShown] = useState(false);
 	const handleSubMenu = e => {
 		setIsElementShown(!isElementShown);
@@ -92,6 +106,7 @@ const Navbar = () => {
 	const handleClickOutside = e => {
 		console.log(e.target);
 		if (!e.target.className.includes('option-modal-controller')) {
+			console.log('click outside');
 			setIsElementShown(false);
 			setMenuVisible(false);
 			setSearchInputActive(false);
@@ -100,8 +115,6 @@ const Navbar = () => {
 	};
 	const handleResize = () => {
 		setMenuVisible(false);
-		setSearchInputActive(false);
-		setValueSearchTerm('');
 		setIsElementShown(false);
 	};
 	window.addEventListener('resize', handleResize);
@@ -244,6 +257,7 @@ const Navbar = () => {
 								onKeyDown={handleKeyPressSearch}
 								onInvalid={handleInvalid}
 								onInput={handleInput}
+								value={valueSearchTerm}
 								onFocus={() => setSearchInputActive(true)}
 							/>
 							<button className='option-modal-controller'>
