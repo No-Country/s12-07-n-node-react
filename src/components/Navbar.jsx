@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import 'daisyui/dist/full.css';
 import { searchIcon, menuIcon, profileIcon, heartIcon } from '../assets/icons';
 import { Link, useNavigate } from 'react-router-dom';
@@ -8,7 +8,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 const optionsNavbar = [
 	{
 		id: 1,
-		name: 'Género',
+		name: 'Géneros',
 		url: '/genre/',
 		submenu: [
 			{ name: 'Acción', url: '/genre/action' },
@@ -54,7 +54,7 @@ const Navbar = () => {
 		setMenuVisible(false);
 		setSignupVisible(!signupVisible);
 	};
-	const handleClickSearch = () => {
+	const handleClickSearch = e => {
 		setMenuVisible(false);
 		console.log(valueSearchTerm);
 		if (valueSearchTerm) {
@@ -73,7 +73,7 @@ const Navbar = () => {
 	};
 	const handlerClickSection = section => {
 		setSectionCurrent(section);
-		setMenuVisible(false);
+		// setMenuVisible(false);
 	};
 	const handleClickHeart = () => {
 		setMenuVisible(false);
@@ -84,13 +84,20 @@ const Navbar = () => {
 			setSearchInputActive(true);
 		}
 	};
-
+	console.log('size', window.screen.width);
 	const [isElementShown, setIsElementShown] = useState(false);
 	const handleSubMenu = e => {
-		console.log(e.target);
 		setIsElementShown(!isElementShown);
 	};
-
+	const handleClickOutside = e => {
+		console.log(e.target);
+		if (!e.target.className.includes('option-modal-controller')) {
+			setIsElementShown(false);
+			setMenuVisible(false);
+			setSearchInputActive(false);
+		}
+		e.stopPropagation();
+	};
 	const handleResize = () => {
 		setMenuVisible(false);
 		setSearchInputActive(false);
@@ -98,9 +105,16 @@ const Navbar = () => {
 		setIsElementShown(false);
 	};
 	window.addEventListener('resize', handleResize);
+	useEffect(() => {
+		document.addEventListener('click', handleClickOutside);
+		return () => {
+			document.removeEventListener('click', handleClickOutside);
+		};
+	}, []);
 	const handleInvalid = event => {
 		const input = event.target;
-		if (input.value.trim() === '') {
+		if (input.value.trim() === '' && searchInputActive) {
+			console.log('invalid');
 			input.setCustomValidity('Por favor, ingrese un término de búsqueda');
 		} else {
 			input.setCustomValidity('');
@@ -118,45 +132,60 @@ const Navbar = () => {
 						STREAMVIEW
 					</Link>
 				</div>
-				<div className='cursor-pointer lg:hidden' onClick={handleClickMenu}>
+				<div
+					className='option-modal-controller cursor-pointer lg:hidden'
+					onClick={handleClickMenu}
+				>
 					<img
-						className='h-6 w-6 object-cover'
+						className='option-modal-controller h-6 w-6 object-cover'
 						src={menuIcon}
 						role='icon-menu'
 						alt='icono de menu'
 					/>
 				</div>
 				<nav
-					className={`absolute left-0 lg:relative ${stylesMenuState} lg:inset-0`}
+					className={`absolute left-0 z-50 lg:relative ${stylesMenuState} lg:inset-0`}
 				>
 					<ul className='flex flex-col gap-[1px] bg-white lg:flex-row  lg:bg-transparent'>
 						{optionsNavbar.map(option => (
 							<li
 								key={option.id}
-								className='bg-primary px-4 py-2'
+								className='option-modal-controller bg-primary px-4 py-2'
 								onClick={() => handlerClickSection(option.name.toLowerCase())}
 							>
 								{option.submenu && option.submenu.length > 0 ? (
-									<div className='w-full'>
+									<div className='option-modal-controller w-full'>
 										<span
 											onClick={handleSubMenu}
-											className='cursor-pointer hover:text-tertiary'
+											className='option-modal-controller relative cursor-pointer hover:text-tertiary'
 										>
 											{option.name}
-											<span className='hidden px-1 lg:inline-block'>+</span>
+											<span className='option-modal-controller hidden px-1'>
+												+
+											</span>
 										</span>
-										<div className={isElementShown ? 'lg:show ' : ' lg:hidden'}>
+										<div
+											className={`overflow-hidden transition-opacity duration-500 ease-in-out
+												${isElementShown ? 'lg:opacity-100' : 'lg:opacity-0'}
+											`}
+										>
 											<ul
-												className='flex
-													w-[175px] flex-col gap-[1px]  lg:absolute lg:mt-[23px]  lg:bg-white lg:text-black'
+												className={`flex w-[175px] flex-col gap-[1px] overflow-hidden transition-all duration-300 lg:absolute lg:mt-[23px]  lg:bg-white lg:text-black ${
+													isElementShown ? 'h-[164px]' : 'h-0'
+												}`}
 											>
 												{option.submenu.map(item => (
 													<li
-														className='p-2 px-4 hover:text-primary lg:bg-[#D9D9D9]'
+														className='flex w-full hover:bg-gray-200 hover:text-primary lg:bg-[#D9D9D9]'
 														key={item.name}
 														onClick={handleSubMenu}
 													>
-														<Link to={item.url}>{item.name}</Link>
+														<Link
+															className='flex h-full w-full p-2 px-4'
+															to={item.url}
+														>
+															{item.name}
+														</Link>
 													</li>
 												))}
 											</ul>
@@ -216,9 +245,9 @@ const Navbar = () => {
 								onInvalid={handleInvalid}
 								onInput={handleInput}
 							/>
-							<button>
+							<button className='option-modal-controller'>
 								<img
-									className='h-[1.2rem] w-[1.2rem] cursor-pointer object-cover object-center lg:h-[1.5rem] lg:w-[1.5rem]'
+									className='option-modal-controller h-[1.2rem] w-[1.2rem] cursor-pointer object-cover object-center lg:h-[1.5rem] lg:w-[1.5rem]'
 									src={searchIcon}
 									alt='icono de lupa'
 									onClick={handleClickSearch}
