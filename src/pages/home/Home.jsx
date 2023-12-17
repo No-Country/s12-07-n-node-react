@@ -22,11 +22,11 @@ function Home() {
 						<Carousel />
 					</section>
 					<div className='flex justify-evenly gap-4 pb-14 pt-10'>
-						<Link to='/platform/prime'>
+						<Link to='/platform/disney'>
 							<img
-								src={Amazon}
+								src={Disney}
 								className='w-[120px] rounded-xl'
-								alt='amazonVideo'
+								alt='disney+'
 							/>
 						</Link>
 						<Link to='/platform/netflix'>
@@ -39,11 +39,11 @@ function Home() {
 						<Link to='/platform/hbomax'>
 							<img src={HBO} className='w-[120px] rounded-xl' alt='hbo' />
 						</Link>
-						<Link to='/platform/disney'>
+						<Link to='/platform/prime'>
 							<img
-								src={Disney}
+								src={Amazon}
 								className='w-[120px] rounded-xl'
-								alt='disney+'
+								alt='amazonVideo'
 							/>
 						</Link>
 					</div>

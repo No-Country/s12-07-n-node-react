@@ -91,7 +91,7 @@ const TechSheet = () => {
 				<div className='flex items-center justify-center gap-8 py-4 text-black lg:justify-start'>
 					<div className='hidden items-center gap-12 lg:flex'>
 						<h2 className='max-w-[500px] text-4xl font-bold text-white'>
-							{dataMovie.title}
+							{dataMovie.first_air_date ? dataMovie.name : dataMovie.title}
 						</h2>
 						<div>
 							<figure>

@@ -33,7 +33,13 @@ function Carousel() {
 						key={key}
 						className='aspect-[1.65] min-w-[330px] max-w-[1440px] overflow-hidden rounded-xl lg:aspect-[2.689]'
 					>
-						<Link to='detail'>
+						<Link
+							to={
+								movie.first_air_date
+									? `detail/tv/${movie.id}`
+									: `detail/movie/${movie.id}`
+							}
+						>
 							<img
 								src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
 								className='h-full w-full object-cover'

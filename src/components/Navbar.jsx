@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import 'daisyui/dist/full.css';
 import { searchIcon, menuIcon, profileIcon, heartIcon } from '../assets/icons';
 import { Link, useNavigate } from 'react-router-dom';
@@ -25,7 +25,7 @@ const optionsNavbar = [
 	{
 		id: 3,
 		name: 'Próximos estrenos',
-		url: 'proximos-estrenos',
+		url: 'upcoming',
 	},
 	{
 		id: 4,
@@ -133,8 +133,7 @@ const Navbar = () => {
 						{optionsNavbar.map(option => (
 							<li
 								key={option.id}
-								className=' bg-primary px-4
-								py-2'
+								className='bg-primary px-4 py-2'
 								onClick={() => handlerClickSection(option.name.toLowerCase())}
 							>
 								{option.submenu && option.submenu.length > 0 ? (
