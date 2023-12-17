@@ -5,6 +5,7 @@ import TechSheet from './components/TechSheet';
 import Search from './pages/search.jsx/Search';
 import Platform from './components/Platform';
 import GenreFilter from './components/GenreFilter';
+import Actor from './pages/actor/Actor';
 
 function App() {
 	return (
@@ -14,6 +15,7 @@ function App() {
 				<Routes>
 					<Route path='/' element={<Home />} />
 					<Route path='/detail/:type/:id' element={<TechSheet />} />
+					<Route path='/actor/:id' element={<Actor />} />
 					<Route path='/search' element={<Search />} />
 					<Route path='/platform/:platform' element={<Platform />} />
 					<Route path='/genre/:genre' element={<GenreFilter />} />

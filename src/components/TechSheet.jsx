@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
 import {
 	likeIcon,
-	dislikeIcon,
+	likeIconActive,
 	tagIcon,
 	bellIcon,
 	playIcon,
 } from '../assets/icons';
 import { getDetailMovie } from '../services/movies';
 import { useParams } from 'react-router-dom';
-import { data } from 'autoprefixer';
 
 const TechSheet = () => {
 	const [dataMovie, setDataMovie] = useState({});
 	const [trailer, setTrailer] = useState('');
-	const [likedMedia, setLikedMedia] = useState([0, 0]);
+	const [likedCountMedia, setLikedCountMedia] = useState([0, 0]);
+	const [likedContentForUser, setLikedContentForUser] = useState(false);
+	const [dislikedContentForUser, setDislikedContentForUser] = useState(false);
 	const { id, type } = useParams();
 
 	useEffect(() => {
@@ -21,7 +22,7 @@ const TechSheet = () => {
 			const data = await getDetailMovie(id, type);
 			setDataMovie(data.data.data[0]);
 			console.log('trailer: ', data.data.data.Trailer);
-			setLikedMedia([
+			setLikedCountMedia([
 				data.data.data[0].vote_average,
 				data.data.data[0].vote_count,
 			]);
@@ -29,7 +30,23 @@ const TechSheet = () => {
 		};
 		getInfo();
 	}, [id, type]);
-
+	const handleClickedLike = () => {
+		setLikedContentForUser(!likedContentForUser);
+		if (dislikedContentForUser) {
+			setDislikedContentForUser(!dislikedContentForUser);
+		}
+		if (likedContentForUser) {
+			likedCountMedia[1]--;
+		} else {
+			likedCountMedia[1]++;
+		}
+	};
+	const handleClickedDislike = () => {
+		setDislikedContentForUser(!dislikedContentForUser);
+		if (likedContentForUser) {
+			setLikedContentForUser(!likedContentForUser);
+		}
+	};
 	return (
 		<main className='mx-auto mt-[48px] flex h-full w-full max-w-[1440px] flex-col items-center px-6 py-10 font-roboto md:px-12 lg:mt-[72px] lg:flex-row lg:items-center lg:gap-10 lg:px-14 lg:py-[2rem] xl:gap-20 xl:py-[5rem]'>
 			<div className='lg:flex-[1.7] xl:flex-[1.1]'>
@@ -41,19 +58,31 @@ const TechSheet = () => {
 					/>
 				</figure>
 				<div className='mx-5 my-5 hidden items-start justify-center gap-3 bg-[#D9D9D9] p-2 lg:flex'>
-					<a href='#'>
-						<img src={likeIcon} alt='' className='h-8 w-8' />
+					<a href='#' onClick={handleClickedLike}>
+						<img
+							src={likedContentForUser ? likeIconActive : likeIcon}
+							alt=''
+							className='h-12 w-12 active:scale-90'
+						/>
 						<p className='text-center text-[14px] text-black'>
-							{likedMedia[1]}
+							{likedCountMedia[1]}
 						</p>
 					</a>
-					<a href='#'>
-						<img src={dislikeIcon} alt='' className='h-8 w-8' />
+					<a href='#' onClick={handleClickedDislike}>
+						<img
+							src={dislikedContentForUser ? likeIconActive : likeIcon}
+							alt=''
+							className='h-12 w-12 rotate-180'
+						/>
 					</a>
-					<a href='#'>
-						<img src={tagIcon} alt='' className='h-8 w-8' />
+					<a href='#' className='pt-[0.41rem]'>
+						<img
+							src={tagIcon}
+							alt=''
+							className='h-8 w-8 object-contain object-center'
+						/>
 					</a>
-					<a href='#'>
+					<a href='#' className='pt-[0.41rem]'>
 						<img src={bellIcon} alt='' className='h-8 w-8' />
 					</a>
 				</div>
@@ -87,18 +116,26 @@ const TechSheet = () => {
 				<div className='rounded-[0.32rem] bg-[#D9D9D9] p-4 lg:p-12'>
 					<div className='flex items-start justify-between lg:hidden'>
 						<a href='#' className='flex flex-col items-center'>
-							<img src={likeIcon} alt='' className='h-8 w-8' />
+							<img
+								src={likedContentForUser ? likeIconActive : likeIcon}
+								alt=''
+								className='h-12 w-12'
+							/>
 							<p className='text-center text-[13px] text-black'>
-								{likedMedia[1]}
+								{likedCountMedia[1]}
 							</p>
 						</a>
-						<a href='#'>
-							<img src={dislikeIcon} alt='' className='h-8 w-8' />
+						<a href='#' onClick={handleClickedDislike}>
+							<img
+								src={dislikedContentForUser ? likeIcon : likeIconActive}
+								alt=''
+								className='h-12 w-12 rotate-180'
+							/>
 						</a>
-						<a href='#'>
+						<a href='#' className='pt-[0.41rem]'>
 							<img src={tagIcon} alt='' className='h-8 w-8' />
 						</a>
-						<a href='#'>
+						<a href='#' className='pt-[0.41rem]'>
 							<img src={bellIcon} alt='' className='h-8 w-8' />
 						</a>
 						<div>

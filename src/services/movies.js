@@ -25,3 +25,7 @@ export const getGenreFilter = async path => {
 export const getDetailMovie = async (id, mType) => {
 	return await axios.get(`${API_URL}/discover/detail/${mType}/${id}`);
 };
+
+export const getDetailActor = async id => {
+	return await axios.get(`${API_URL}/discover/actors/${id}`);
+};

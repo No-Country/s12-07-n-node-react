@@ -26,7 +26,6 @@ const Search = () => {
 	}, [termSearch]);
 
 	useEffect(() => {
-		if (searchResults.length === 0) return;
 		const validResults = searchResults.filter(
 			movie => movie.poster_path.split('/')[7]
 		);
