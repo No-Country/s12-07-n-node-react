@@ -1,0 +1,112 @@
+<header>
+        <h1>Listas de peliculas y series favoritas</h1>
+    </header>
+
+    <section>
+
+
+
+  </ul>
+
+<div>
+
+        <h2>Endpoint: /api/v1/favourites/:userId</h2>
+        <p>Endpoint para obtener las listas de peliculas de un usuario</p>
+
+        <div class="endpoint">
+            <h3>Método HTTP</h3>
+            <code>GET</code>
+
+            <h3>URL</h3>
+            <code>/api/v1/favourites/:tu_id_de_usuario</code>
+        </div>
+
+        <div class="request-example">
+            <h3>Ejemplo de solicitud</h3>
+            <code>
+                curl -X GET
+                -H "Content-Type: application/json"
+                https://streamview.onrender.com/api/v1/favourites/65748f978a58b76724ed093b
+            </code>
+        </div>
+
+        <div class="response-example">
+            <h3>Ejemplo de respuesta</h3>
+    <pre>
+            <code>
+
+{
+    "_id": "657df0b10813c76a532c8af8",
+    "isShareable": false,
+    "ownerId": "65748f978a58b76724ed093b",
+    "list": [
+                {
+            "contentName": "test",
+            "contentId": "580",
+            "imageURL": "https://image.tmdb.org/t/p/w500/xWftQWlvdbgZx2uloutTVHc7CNP.jpg",
+            "media_type": "tv",
+            "_id": "657df56c0677c02ed36bda1e"
+        },
+        ...
+        ...]
+                
+}            </code>
+  </pre>
+        </div>
+
+</div>
+
+
+<hr>
+<hr>
+<hr>
+<div>
+
+        <h2>Endpoint: /api/v1/favourites</h2>
+        <p>Endpoint para agregar una pelicula o serie en la lista de favoritos, requiere de un objeto tal como se especifica en el ejemplo de solicitud</p>
+
+        <div class="endpoint">
+            <h3>Método HTTP</h3>
+            <code>POST</code>
+
+            <h3>URL</h3>
+            <code>/api/v1/discover/favourites</code>
+        </div>
+
+        <div class="request-example">
+            <h3>Ejemplo de solicitud</h3>
+            <code>
+curl -X POST \
+-H "Content-Type: application/json" \
+-H "Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzQ4Zjk3OGE1OGI3NjcyNGVkMDkzYiIsImlhdCI6MTcwMjUyNTU1Nn0.SIsvI5e_VUHhuhMKLZ3LV5YzhnpyvnWSfaJlQ03Zbvs" \
+-d '{"contentId": 12677, "imageURL": "https://image.tmdb.org/t/p/w500/xWftQWlvdbgZx2uloutTVHc7CNP.jpg", "contentName": "test", "media_type": "tv"}' \
+https://streamview.onrender.com/api/v1/favourites
+            </code>
+        </div>
+
+        <div class="response-example">
+            <h3>Ejemplo de respuesta</h3>
+    <pre>
+            <code>
+
+{
+    "message": "Content Added to your list",
+    "details": {
+        "acknowledged": true,
+        "modifiedCount": 1,
+        "upsertedId": null,
+        "upsertedCount": 0,
+        "matchedCount": 1
+    }
+}           </code>
+  </pre>
+        </div>
+
+</div>
+<hr> 
+
+    </section>
+
+    <footer>
+        <p>© 2023 Documentación de API</p>
+    </footer>

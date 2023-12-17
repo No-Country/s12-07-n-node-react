@@ -1,18 +1,14 @@
-import { createConnection } from 'mongoose';
+import mongoose from "mongoose"
 
 export async function mongoDB() {
-  try {
-    const DB_URI = process.env.MONGO_URI
-    const db = createConnection(DB_URI);
-
-    db.on('error', console.error.bind(console, 'Connection error:'));
-    db.once('open', () => {
-      console.log('Database connected successfully');
+  mongoose.set('strictQuery', false)
+  mongoose.connect(process.env.MONGO_URI, {
+  })
+    .then(() => {
+      console.log('Connected to MongoDB');
+    })
+    .catch((error) => {
+      console.error('Error connecting to MongoDB:', error);
     });
-    return db;
-  } catch (error) {
-    console.error('Error! \nError connecting to the database:', error);
-    throw error;
-  }
 }
 

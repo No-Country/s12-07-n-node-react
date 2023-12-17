@@ -1,0 +1,279 @@
+<header>
+        <h1>Contenido en tendencia</h1>
+    </header>
+
+    <section>
+
+
+
+  </ul>
+
+
+       <div>
+        <h2>Endpoint: /api/v1/trending/upcoming</h2>
+        <p>Trae un mix de 10 peliculas y series que esten en tendencia, estos estan ordenados por popularidad</p>
+
+        <div class="endpoint">
+            <h3>Método HTTP</h3>
+            <code>GET</code>
+
+            <h3>URL</h3>
+            <code>/api/v1/trending/upcoming</code>
+        </div>
+
+        <div class="request-example">
+            <h3>Ejemplo de solicitud</h3>
+            <code>
+                curl -X GET
+                -H "Content-Type: application/json"
+                https://streamview.onrender.com/api/v1/trending/upcoming
+            </code>
+        </div>
+
+        <div class="response-example">
+            <h3>Ejemplo de respuesta</h3>
+  <pre>
+            <code>
+[
+  {
+    "adult": false,
+    "backdrop_path": "https://image.tmdb.org/t/p/original//45zVtZx6Tzx3RKeDziK25K9geFf.jpg",
+    "genre_ids": [16, 10751, 10402, 14, 35],
+    "id": 901362,
+    "original_language": "en",
+    "original_title": "Trolls Band Together",
+    "overview": "Cuando Floyd, uno de los hermanos de Branch, es secuestrado por una pareja de maléficas estrellas del pop para aprovecharse de su talento musical, Branch y Poppy tendrán que embarcarse en un viaje tan aterrador como emotivo para reunir a la familia y rescatar a Floyd de un destino aún peor que el desolador olvido de los fans.",
+    "popularity": 1536.907,
+    "poster_path": "https://image.tmdb.org/t/p/original//yco6dWR1W3iANUEKxGT0vQRWrJn.jpg",
+    "release_date": "2023-10-12",
+    "title": "Trolls 3: Todos juntos",
+    "video": false,
+    "vote_average": 7.188,
+    "vote_count": 321
+  },
+  {
+    "adult": false,
+    "backdrop_path": "https://image.tmdb.org/t/p/original//yOm993lsJyPmBodlYjgpPwBjXP9.jpg",
+    "genre_ids": [35, 10751, 14],
+    "id": 787699,
+    "original_language": "en",
+    "original_title": "Wonka",
+    "overview": "Basada en el personaje que protagoniza \"Charlie y la fábrica de chocolate\", el libro infantil más emblemático de Roald Dahl y uno de los más vendidos de todos los tiempos, \"Wonka\" cuenta la historia de cómo el mayor inventor, mago y chocolatero del mundo se convirtió en el querido Willy Wonka que conocemos hoy en día.",
+    "popularity": 1061.577,
+    "poster_path": "https://image.tmdb.org/t/p/original//x6p5jZw7YwqBadiKBDzmXs03Emz.jpg",
+    "release_date": "2023-12-06",
+    "title": "Wonka",
+    "video": false,
+    "vote_average": 6.8,
+    "vote_count": 50
+  },
+      ...]
+    </code>
+    </pre>
+
+        </div>
+
+</div>
+<hr>
+<hr>
+<hr>
+<div>
+        <h2>Endpoint: /api/v1/trending/:plataforma</h2>
+        <p>Trae un mix de 10 peliculas y series que esten en tendencia, por plataforma, puede recibir "netflix", "prime", "disney", "hbomax"</p>
+
+        <div class="endpoint">
+            <h3>Método HTTP</h3>
+            <code>GET</code>
+
+            <h3>URL</h3>
+            <code>/api/v1/trending/:plataforma</code>
+        </div>
+
+        <div class="request-example">
+            <h3>Ejemplo de solicitud</h3>
+            <code>
+                curl -X GET
+                -H "Content-Type: application/json"
+                https://streamview.onrender.com/api/v1/trending/netflix
+            </code>
+        </div>
+
+        <div class="response-example">
+            <h3>Ejemplo de respuesta</h3>
+<pre>
+            <code>
+[
+  {
+    "adult": false,
+    "backdrop_path": "https://image.tmdb.org/t/p/original//45zVtZx6Tzx3RKeDziK25K9geFf.jpg",
+    "genre_ids": [16, 10751, 10402, 14, 35],
+    "id": 901362,
+    "original_language": "en",
+    "original_title": "Trolls Band Together",
+    "overview": "Cuando Floyd, uno de los hermanos de Branch, es secuestrado por una pareja de maléficas estrellas del pop para aprovecharse de su talento musical, Branch y Poppy tendrán que embarcarse en un viaje tan aterrador como emotivo para reunir a la familia y rescatar a Floyd de un destino aún peor que el desolador olvido de los fans.",
+    "popularity": 1536.907,
+    "poster_path": "https://image.tmdb.org/t/p/original//yco6dWR1W3iANUEKxGT0vQRWrJn.jpg",
+    "release_date": "2023-10-12",
+    "title": "Trolls 3: Todos juntos",
+    "video": false,
+    "vote_average": 7.188,
+    "vote_count": 321
+  },
+  {
+    "adult": false,
+    "backdrop_path": "https://image.tmdb.org/t/p/original//yOm993lsJyPmBodlYjgpPwBjXP9.jpg",
+    "genre_ids": [35, 10751, 14],
+    "id": 787699,
+    "original_language": "en",
+    "original_title": "Wonka",
+    "overview": "Basada en el personaje que protagoniza \"Charlie y la fábrica de chocolate\", el libro infantil más emblemático de Roald Dahl y uno de los más vendidos de todos los tiempos, \"Wonka\" cuenta la historia de cómo el mayor inventor, mago y chocolatero del mundo se convirtió en el querido Willy Wonka que conocemos hoy en día.",
+    "popularity": 1061.577,
+    "poster_path": "https://image.tmdb.org/t/p/original//x6p5jZw7YwqBadiKBDzmXs03Emz.jpg",
+    "release_date": "2023-12-06",
+    "title": "Wonka",
+    "video": false,
+    "vote_average": 6.8,
+    "vote_count": 50
+  },
+      ...]
+
+            </code>
+</pre>
+        </div>
+
+</div> 
+<div>
+        <h2>Endpoint: /api/v1/trending/genre/:genero</h2>
+        <p>Trae un mix de 10 peliculas y series que esten tendencia por genero, permite los siguientes "action", "drama", "horror", "romance"</p>
+
+        <div class="endpoint">
+            <h3>Método HTTP</h3>
+            <code>GET</code>
+
+            <h3>URL</h3>
+            <code>/api/v1/trending/genre/:genero</code>
+        </div>
+
+        <div class="request-example">
+            <h3>Ejemplo de solicitud</h3>
+            <code>
+                curl -X GET
+                -H "Content-Type: application/json"
+                https://streamview.onrender.com/api/v1/trending/genre/romance
+            </code>
+        </div>
+
+        <div class="response-example">
+            <h3>Ejemplo de respuesta</h3>
+  <pre>
+            <code>
+[
+  {
+    "backdrop_path": "https://image.tmdb.org/t/p/original//218ZehBKlH8efPRRccmB7bu0oLQ.jpg",
+    "first_air_date": "2023-09-25",
+    "genre_ids": [35, 9648, 10766, 18],
+    "id": 219109,
+    "name": "Elas por Elas",
+    "origin_country": ["BR"],
+    "original_language": "pt",
+    "original_name": "Elas por Elas",
+    "overview": "",
+    "popularity": 3261.262,
+    "poster_path": "https://image.tmdb.org/t/p/original//m0cvvnhnRXdQhLARx7qt9lz7hTE.jpg",
+    "vote_average": 5.7,
+    "vote_count": 29
+  },
+  {
+    "backdrop_path": "https://image.tmdb.org/t/p/original//eWF3oRyL4QWaidN9F4uvM7cBJUV.jpg",
+    "first_air_date": "2005-10-13",
+    "genre_ids": [10766],
+    "id": 206559,
+    "name": "Binnelanders",
+    "origin_country": ["ZA"],
+    "original_language": "af",
+    "original_name": "Binnelanders",
+    "overview": "",
+    "popularity": 2158.43,
+    "poster_path": "https://image.tmdb.org/t/p/original//v9nGSRx5lFz6KEgfmgHJMSgaARC.jpg",
+    "vote_average": 5.4,
+    "vote_count": 19
+  },
+      ...]
+    </code>
+    </pre>
+
+        </div>
+
+</div>
+
+
+  <hr>
+  <hr>
+  <hr>
+
+  <div>
+        <h2>Endpoint: /api/v1/trending/actors</h2>
+        <p>Trae un mix de 10 actores que esten en tendencia</p>
+
+        <div class="endpoint">
+            <h3>Método HTTP</h3>
+            <code>GET</code>
+
+            <h3>URL</h3>
+            <code>/api/v1/trending/actors</code>
+        </div>
+
+        <div class="request-example">
+            <h3>Ejemplo de solicitud</h3>
+            <code>
+                curl -X GET
+                -H "Content-Type: application/json"
+                https://streamview.onrender.com/api/v1/trending/actors
+            </code>
+        </div>
+
+        <div class="response-example">
+            <h3>Ejemplo de respuesta</h3>
+<pre>
+            <code>
+[
+ {
+    "adult": false,
+    "id": 974169,
+    "name": "Jenna Ortega",
+    "original_name": "Jenna Ortega",
+    "media_type": "person",
+    "popularity": 135.437,
+    "gender": 1,
+    "known_for_department": "Acting",
+    "profile_path": "https://image.tmdb.org/t/p/original//7oUAtVgZU0uLdUSvDHKkINt1y7Y.jpg",
+    "known_for": [
+      {
+        "adult": false,
+        "backdrop_path": "/iHSwvRVsRyxpX7FE7GbviaDvgGZ.jpg",
+        "id": 119051,
+        "name": "Miércoles",
+        "original_language": "en",
+        "original_name": "Wednesday",
+        "overview": "Miércoles Addams, lista, sarcástica y un poco muerta por dentro, investiga una oleada de asesinatos mientras hace amigos —y enemigos— en la Academia Nunca Más.",
+        "poster_path": "/q6j9Dn3iiXoCjpVitDppNNZXwVq.jpg",
+        "media_type": "tv",
+        "genre_ids": [10765, 9648, 35],
+        "popularity": 417.109,
+        "first_air_date": "2022-11-23",
+        "vote_average": 8.523,
+        "vote_count": 7768,
+        "origin_country": ["US"]
+      },
+            ...]
+
+            </code>
+</pre>
+        </div>
+
+</div>
+</section>
+
+    <footer>
+        <p>© 2023 Documentación de API</p>
+    </footer>

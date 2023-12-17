@@ -1,0 +1,341 @@
+<header>
+        <h1>Busquedas y contenido en general</h1>
+    </header>
+
+    <section>
+
+
+
+  </ul>
+
+<div>
+
+        <h2>Endpoint: /api/v1/discover/search</h2>
+        <p>Endpoint para realizar busquedas</p>
+
+        <div class="endpoint">
+            <h3>Método HTTP</h3>
+            <code>GET</code>
+
+            <h3>URL</h3>
+            <code>/api/v1/discover/search&query="tuvalor"&page="numero de pagina"</code>
+        </div>
+
+        <div class="request-example">
+            <h3>Ejemplo de solicitud</h3>
+            <code>
+                curl -X GET
+                -H "Content-Type: application/json"
+                https://streamview.onrender.com/api/v1/discover/search?query=batman&page=2
+            </code>
+        </div>
+
+        <div class="response-example">
+            <h3>Ejemplo de respuesta</h3>
+    <pre>
+            <code>
+
+[
+  {
+    "data": [
+      {
+        "adult": false,
+        "backdrop_path": "https://image.tmdb.org/t/p/original//f1AQhx6ZfGhPZFTVKgxG91PhEYc.jpg",
+        "id": 753342,
+        "title": "Napoleón",
+        "original_language": "en",
+        "original_title": "Napoleon",
+        "overview": "Una mirada personal a los orígenes del líder militar francés y su rápido y despiadado ascenso a emperador. La historia se ve a través de la lente de la relación adictiva y volátil de Napoleón Bonaparte con su esposa y único amor verdadero, Josefina.",
+        "poster_path": "https://image.tmdb.org/t/p/original//nGQYZ0TEUoGOlBzTCLFUCTRkZuQ.jpg",
+        "media_type": "movie",
+        "genre_ids": [18, 36, 10752],
+        "popularity": 406.671,
+        "release_date": "2023-11-22",
+        "video": false,
+        "vote_average": 6.421,
+        "vote_count": 648
+      },
+      {
+        "adult": false,
+        "backdrop_path": "https://image.tmdb.org/t/p/original//9XoUxZJ263hOggq6RiYDAWrL2Tl.jpg",
+        "id": 43320,
+        "title": "Napoleón",
+        "original_language": "fr",
+        "original_title": "Napoléon",
+        "overview": "Talleyrand, el gran político francés de finales del siglo XVIII y primer cuarto del XIX, rememora en una reunión de amigos, la vida del Emperador de los franceses, desde su nacimiento en Córcega, pasando por sus gestas militares, hasta su muerte en el destierro. La cinta es una pequeña lección de la historia de Francia.",
+        "poster_path": "https://image.tmdb.org/t/p/original//frKF1ZFc7KUf0NyUSAtNy2uSXPV.jpg",
+        "media_type": "movie",
+        "genre_ids": [18, 36, 10752],
+        "popularity": 22.633,
+        "release_date": "1955-03-25",
+        "video": false,
+        "vote_average": 6.6,
+        "vote_count": 14
+      },
+        ...
+        ...]
+                
+}            </code>
+  </pre>
+        </div>
+
+</div>
+
+
+<hr>
+<hr>
+<hr>
+<div>
+
+        <h2>Endpoint: /api/v1/discover/filter/genre/:genero/:pagina</h2>
+        <p>Endpoint para filtrar por genero, recibe "action", "horror", "romance", "drama", y numeros para la paginacion</p>
+
+        <div class="endpoint">
+            <h3>Método HTTP</h3>
+            <code>GET</code>
+
+            <h3>URL</h3>
+            <code>/api/v1/discover/filter/:genero/:pagina</code>
+        </div>
+
+        <div class="request-example">
+            <h3>Ejemplo de solicitud</h3>
+            <code>
+                curl -X GET
+                -H "Content-Type: application/json"
+                https://streamview.onrender.com/api/v1/discover/filter/genre/horror/2
+            </code>
+        </div>
+
+        <div class="response-example">
+            <h3>Ejemplo de respuesta</h3>
+    <pre>
+            <code>
+
+[
+  {
+    "data": [
+          "movies": [...],
+          "series": [...],
+        ]
+               
+}            </code>
+  </pre>
+        </div>
+
+</div>
+<hr> 
+<div>
+
+        <h2>Endpoint: /api/v1/discover/filter/platform/:plataforma/:pagina</h2>
+        <p>Endpoint para filtrar por plataforma, recibe "netflix", "hbomax", "disney" y "prime"</p>
+
+        <div class="endpoint">
+            <h3>Método HTTP</h3>
+            <code>GET</code>
+
+            <h3>URL</h3>
+            <code>/api/v1/discover/filter/platform/:plataforma/:pagina</code>
+        </div>
+
+        <div class="request-example">
+            <h3>Ejemplo de solicitud</h3>
+            <code>
+                curl -X GET
+                -H "Content-Type: application/json"
+                https://streamview.onrender.com/api/v1/discover/filter/platform/netflix/1
+            </code>
+        </div>
+
+        <div class="response-example">
+            <h3>Ejemplo de respuesta</h3>
+    <pre>
+            <code>
+
+[
+  {
+    "data": [
+          "movies": [...],
+          "series": [...],
+        ]
+               
+}            </code>
+  </pre>
+        </div>
+
+</div>
+
+  <hr> 
+  <div>
+
+        <h2>Endpoint: /api/v1/discover/actors/:id</h2>
+        <p>Endpoint para obtener detalle de un actor en base a un actor, ej: 500 para tomcruise</p>
+
+        <div class="endpoint">
+            <h3>Método HTTP</h3>
+            <code>GET</code>
+
+            <h3>URL</h3>
+            <code>/api/v1/discover/actors/:id</code>
+        </div>
+
+        <div class="request-example">
+            <h3>Ejemplo de solicitud</h3>
+            <code>
+                curl -X GET
+                -H "Content-Type: application/json"
+                https://streamview.onrender.com/api/v1/discover/actors/500
+            </code>
+        </div>
+
+        <div class="response-example">
+            <h3>Ejemplo de respuesta</h3>
+    <pre>
+            <code>
+
+
+{
+  "data": [
+    {
+      "adult": false,
+      "also_known_as": [
+        "Том Круз",
+        "トム・クルーズ",
+        "ทอม ครูซ",
+        "湯姆·克魯斯",
+        "톰 크루즈",
+        "توم كروز",
+        "Thomas Cruise Mapother IV",
+        "Τομ Κρουζ",
+        "טום קרוז",
+        "Thomas 'Tom' Cruise",
+        "汤姆·克鲁斯",
+        "TC",
+        "Toms Krūzs",
+        "تام کروز"
+      ],
+      "biography": "Tom es el único hijo (entre cuatro hijos) de padres nómadas, Mary Lee (Pfeiffer), maestra de educación especial, y Thomas Cruise Mapother III, ingeniero eléctrico. Sus padres eran de Louisville, Kentucky, y él tiene ascendencia alemana, irlandesa e inglesa. Young Tom pasó su infancia siempre en movimiento, y cuando tenía 14 años había asistido a 15 escuelas diferentes en los Estados Unidos y Canadá. Finalmente se estableció en Glen Ridge, Nueva Jersey, con su madre y su nuevo esposo. Mientras estaba en la escuela secundaria, Tom quería convertirse en sacerdote, pero muy pronto desarrolló un interés en la actuación y abandonó sus planes de convertirse en sacerdote, abandonó la escuela y, a la edad de 18 años, se dirigió a Nueva York y una posible carrera como actor. Los próximos 15 años de su vida son materia de leyendas. Hizo su debut en el cine con una pequeña parte en Amor sin fin (1981) y desde el principio exhibió un innegable atractivo de taquilla para el público masculino y femenino.\n\nCon una atractiva apariencia de estrella de cine y una sonrisa carismática, en un periodo de 5 años, Tom Cruise protagonizó algunas de las películas más taquilleras de la década de 1980, incluyendo Top Gun: Ídolos del aire (1986); El color del dinero (1986), Rain Man (1988) y Nacido el cuatro de julio (1989). En la década de 1990, era uno de los actores mejor pagados del mundo, ganando un promedio de 15 millones de dólares por película en éxitos tan exitosos como Entrevista con el vampiro (1994), Mission: Impossible (1996) y Jerry Maguire (1996), por la que Recibió una nominación al Oscar al mejor actor. La mayor franquicia de Tom Cruise, Mission Impossible, también ha ganado un total de 3 mil millones de dólares en todo el mundo. Tom Cruise también ha mostrado mucho interés en producir, siendo su crédito como productor más grande la franquicia de Misión imposible.\n\nEn 1990 renunció a sus devotas creencias católicas y abrazó a la Iglesia de la Cienciología afirmando que sus enseñanzas lo habían curado de la dislexia que lo había atormentado toda su vida. Un hombre amable y reflexivo, bien conocido por su compasión y generosidad, Tom Cruise es uno de los miembros más queridos de la comunidad cinematográfica. Estuvo casado con la actriz Nicole Kidman hasta 2001. Thomas Cruise Mapother IV ha recorrido un largo camino desde el solitario viaje de su juventud hasta convertirse en una de las mayores estrellas de cine de la historia.",
+      "birthday": "1962-07-03",
+      "deathday": null,
+      "gender": 2,
+      "homepage": "http://www.tomcruise.com",
+      "id": 500,
+      "imdb_id": "nm0000129",
+      "known_for_department": "Acting",
+      "name": "Tom Cruise",
+      "place_of_birth": "Syracuse, New York, USA",
+      "popularity": 42.162,
+      "profile_path": "https://image.tmdb.org/t/p/original//eOh4ubpOm2Igdg0QH2ghj0mFtC.jpg"
+    }
+  ]
+}
+          </code>
+  </pre>
+        </div>
+
+</div>
+  <hr>
+<div>
+
+        <h2>Endpoint: /api/v1/discover/:media_type/:id</h2>
+        <p>Endpoint para obtener detalle de pelicula o serie, requiere de media_type(Puede ser o 'tv', o 'movie',), y del id de la serie o pelicula</p>
+
+        <div class="endpoint">
+            <h3>Método HTTP</h3>
+            <code>GET</code>
+
+            <h3>URL</h3>
+            <code>/api/v1/discover/:media_type/:id</code>
+        </div>
+
+        <div class="request-example">
+            <h3>Ejemplo de solicitud</h3>
+            <code>
+                curl -X GET
+                -H "Content-Type: application/json"
+                https://streamview.onrender.com/api/v1/discover/detail/movie/500
+            </code>
+        </div>
+
+        <div class="response-example">
+            <h3>Ejemplo de respuesta</h3>
+    <pre>
+            <code>
+
+
+
+{
+  "data": {
+    "adult": false,
+    "backdrop_path": "/jqFjgNnxpXIXWuPsyfqmcLXRo9p.jpg",
+    "belongs_to_collection": null,
+    "budget": 1200000,
+    "genres": [
+      {
+        "id": 80,
+        "name": "Crimen"
+      },
+      {
+        "id": 53,
+        "name": "Suspense"
+      }
+    ],
+    "homepage": "",
+    "id": 500,
+    "imdb_id": "tt0105236",
+    "original_language": "en",
+    "original_title": "Reservoir Dogs",
+    "overview": "Una banda organizada formada por seis individuos es contratada para dar un golpe. Anteriormente varios de los miembros no se conocían entre sí, por lo que entre ellos usan nombres en clave. El objetivo: atracar una empresa para llevarse unos diamantes. Pero, antes de que suene la alarma, la policía ya está allí. Algunos mueren en el atraco, y el resto se reúne en el lugar convenido.",
+    "popularity": 67.618,
+    "poster_path": "/hxmJqXFFnXLlvPIdCW2k3UGLCgZ.jpg",
+    "production_companies": [
+      {
+        "id": 285,
+        "logo_path": null,
+        "name": "Live Entertainment",
+        "origin_country": "US"
+      },
+      {
+        "id": 26198,
+        "logo_path": null,
+        "name": "Dog Eat Dog Productions",
+        "origin_country": ""
+      }
+    ],
+    "production_countries": [
+      {
+        "iso_3166_1": "US",
+        "name": "United States of America"
+      }
+    ],
+    "release_date": "1992-09-02",
+    "revenue": 2859750,
+    "runtime": 99,
+    "spoken_languages": [
+      {
+        "english_name": "English",
+        "iso_639_1": "en",
+        "name": "English"
+      }
+    ],
+    "status": "Released",
+    "tagline": "Cada perro tiene su día.",
+    "title": "Reservoir Dogs",
+    "video": false,
+    "vote_average": 8.132,
+    "vote_count": 13463,
+    "Trailer": "https://www.youtube.com/watch?v=t_ecM-orD5w"
+  }
+}
+
+          </code>
+  </pre>
+        </div>
+
+</div>
+
+    </section>
+
+    <footer>
+        <p>© 2023 Documentación de API</p>
+    </footer>
