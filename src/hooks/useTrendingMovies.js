@@ -10,9 +10,6 @@ const useTrendingMovies = path => {
 		const fetchData = async () => {
 			try {
 				const response = await getTop10(path);
-				/*         if (response.statusText !== "OK") {
-          throw new Error(`Error: ${response.status}`);
-        } */
 				setTrendingData(response.data);
 			} catch (error) {
 				setTrendingError(error.message);

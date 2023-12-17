@@ -41,7 +41,13 @@ function CarouselItem({ path }) {
 					key={key}
 					className='aspect-[0.78] w-[136px] overflow-hidden rounded-xl lg:w-[190px]'
 				>
-					<Link to='detail'>
+					<Link
+						to={
+							movie.first_air_date
+								? `detail/tv/${movie.id}`
+								: `detail/movie/${movie.id}`
+						}
+					>
 						<img
 							src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
 							className='h-full w-full object-cover'
