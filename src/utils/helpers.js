@@ -41,6 +41,19 @@ export function transformImageUrl(array) {
 
 }
 
+export function transformImageUrlActors(array) {
+
+  const arr = array.map(function(el) {
+    let temp = el.profile_path
+    return {
+      ...el, profile_path: el.profile_path = `https://image.tmdb.org/t/p/original/${temp}`, backgrop_path: el.backdrop_path = `https://image.tmdb.org/t/p/original/${temp}`
+    }
+  })
+
+  return arr
+
+}
+
 
 
 
