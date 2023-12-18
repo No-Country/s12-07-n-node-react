@@ -76,7 +76,6 @@ export function transformImageUrl(array, actors) {
 
 }
 
-<<<<<<< HEAD
 export function transformImageUrlActors(array) {
 
   const arr = array.map(function(el) {
@@ -87,8 +86,8 @@ export function transformImageUrlActors(array) {
   })
 
   return arr
+}
 
-=======
 export function optionsHelper(options) {
 
   const { credits, url, page, query, sort, genre, provider, language = 'es-ES' } = options
@@ -110,9 +109,7 @@ export function optionsHelper(options) {
 
 
   }
->>>>>>> c35289545bc9609a7f6e68bd9e36764bb6203e06
 }
-
 
 
 
