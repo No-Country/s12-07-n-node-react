@@ -56,7 +56,7 @@ function Home() {
 						<Platforms title='Drama' path='genre/drama' />
 						<Platforms title='Terror' path='genre/horror' />
 						<Platforms title='Romance' path='genre/romance' />
-						<div className='pb-10'>
+						<div className='pb-10' id='actores'>
 							<div className='text-lg'>
 								<Title2 title='Actores' />
 							</div>

@@ -87,7 +87,18 @@ const Navbar = () => {
 	};
 	const handlerClickSection = section => {
 		setSectionCurrent(section);
+		console.log('section: ', section);
 		// setMenuVisible(false);
+		if (section == 'actores') {
+			console.log('scroll');
+			const elementScroll = document
+				.querySelector('#actores')
+				.getBoundingClientRect();
+			window.scrollTo({
+				top: elementScroll.top + window.scrollY - 100,
+				behavior: 'smooth',
+			});
+		}
 	};
 	const handleClickHeart = () => {
 		setMenuVisible(false);

@@ -9,6 +9,9 @@
 body {
 	font-family: 'Roboto Flex', sans-serif;
 }
+html {
+	scroll-behavior: smooth;
+}
 :root {
 	--swiper-pagination-color: var(--swiper-theme-color);
 	--swiper-pagination-left: auto;
