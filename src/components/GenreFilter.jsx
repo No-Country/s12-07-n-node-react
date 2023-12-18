@@ -6,6 +6,12 @@ const GenreFilter = () => {
 	const { genre } = useParams();
 	const [results, setResults] = useState();
 	const navigate = useNavigate();
+	const dict = {
+		action: 'Acción',
+		drama: 'Drama',
+		horror: 'Terror',
+		romance: 'Romance',
+	};
 	useEffect(() => {
 		const getSearchResults = async () => {
 			const results = await getGenreFilter(`${genre}/1`);
@@ -18,7 +24,9 @@ const GenreFilter = () => {
 		<section className='mx-auto mt-[48px] max-w-[1440px] px-4 md:px-8 md:pt-6 lg:mt-[72px] lg:px-10 lg:pt-10'>
 			<div>
 				<div className='pb-7 pt-7 text-white lg:pt-0'>
-					<h2 className='font-bold capitalize lg:text-xl'>{genre}</h2>
+					<h2 className='mb-6 font-bold capitalize lg:text-xl'>
+						{dict[genre]}
+					</h2>
 					<h2>PELICULAS</h2>
 				</div>
 				<div className='grid grid-cols-3 gap-x-2 gap-y-[3rem] pb-10 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-[2rem] xl:gap-x-[3rem] xl:gap-y-[4rem]'>

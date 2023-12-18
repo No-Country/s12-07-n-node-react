@@ -49,9 +49,9 @@ function Home() {
 					</div>
 					<section>
 						<Platforms title='Disney +' path='disney' />
+						<Platforms title='Netflix' path='netflix' />
 						<Platforms title='HBO Max' path='hbomax' />
 						<Platforms title='Prime Video +' path='prime' />
-						<Platforms title='Netflix' path='netflix' />
 						<Platforms title='Acción' path='genre/action' />
 						<Platforms title='Drama' path='genre/drama' />
 						<Platforms title='Terror' path='genre/horror' />
