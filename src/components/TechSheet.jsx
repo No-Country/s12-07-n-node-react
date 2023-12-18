@@ -8,6 +8,7 @@ import {
 } from '../assets/icons';
 import { getDetailMovie } from '../services/movies';
 import { useParams } from 'react-router-dom';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const TechSheet = () => {
 	const [dataMovie, setDataMovie] = useState({});
@@ -16,7 +17,7 @@ const TechSheet = () => {
 	const [likedContentForUser, setLikedContentForUser] = useState(false);
 	const [dislikedContentForUser, setDislikedContentForUser] = useState(false);
 	const { id, type } = useParams();
-
+	const { auth } = useAuthContext();
 	useEffect(() => {
 		const getInfo = async () => {
 			const data = await getDetailMovie(id, type);
@@ -31,6 +32,7 @@ const TechSheet = () => {
 		getInfo();
 	}, [id, type]);
 	const handleClickedLike = () => {
+		if (!auth) return alert('Debes iniciar sesión para dar like');
 		setLikedContentForUser(!likedContentForUser);
 		if (dislikedContentForUser) {
 			setDislikedContentForUser(!dislikedContentForUser);
@@ -42,6 +44,7 @@ const TechSheet = () => {
 		}
 	};
 	const handleClickedDislike = () => {
+		if (!auth) return alert('Debes iniciar sesión para dar dislike');
 		setDislikedContentForUser(!dislikedContentForUser);
 		if (likedContentForUser) {
 			setLikedContentForUser(!likedContentForUser);
@@ -104,11 +107,21 @@ const TechSheet = () => {
 						</div>
 					</div>
 					<a
-						href={trailer || 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'}
-						className='border-gradient-rounded my-3 flex h-fit w-fit items-center justify-center gap-4 rounded-md px-8 py-3 text-black'
-						target='_blank'
-						rel='noreferrer'
+						href={trailer || ''}
+						className={`border-gradient-rounded relative my-3 flex h-fit w-fit items-center justify-center gap-4 rounded-md px-8 py-3 text-black ${
+							!trailer && 'group  cursor-not-allowed'
+						}`}
+						target={trailer ? '_blank' : ''}
+						rel={trailer ? 'noreferrer' : ''}
+						onClick={e => {
+							if (!trailer) {
+								e.preventDefault();
+							}
+						}}
 					>
+						<p className='absolute -top-8 hidden font-bold text-white group-hover:block'>
+							Trailer no disponible
+						</p>
 						<img src={playIcon} className='w-6' alt='' />
 						<p className='font-semibold uppercase'>Ver trailer</p>
 					</a>

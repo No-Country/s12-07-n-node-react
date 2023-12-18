@@ -111,7 +111,7 @@ const Navbar = () => {
 		}
 	};
 	const [isElementShown, setIsElementShown] = useState(false);
-	const handleSubMenu = e => {
+	const handleSubMenu = () => {
 		setIsElementShown(!isElementShown);
 	};
 	const handleClickOutside = e => {
@@ -152,7 +152,13 @@ const Navbar = () => {
 		<header className='fixed top-0 z-50 flex h-[48px] w-full justify-center bg-primary px-4 py-3 text-white lg:h-[72px] lg:bg-primary  lg:px-14 lg:py-4'>
 			<div className='flex h-full w-full max-w-[1440px] items-center justify-between'>
 				<div className='font-karla hidden lg:block'>
-					<Link to='/' className='text-xl font-bold uppercase'>
+					<Link
+						to='/'
+						className='text-xl font-bold uppercase'
+						onClick={() => {
+							window.scrollTo(0, 0);
+						}}
+					>
 						STREAMVIEW
 					</Link>
 				</div>

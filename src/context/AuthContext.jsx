@@ -4,7 +4,7 @@ import { createContext, useState } from 'react';
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
 	const [termSearch, setTermSearch] = useState('');
-	const [auth, setAuth] = useState(true);
+	const [auth, setAuth] = useState(false);
 	const [user, setUser] = useState({
 		id: 1,
 		name: 'Patricio',
