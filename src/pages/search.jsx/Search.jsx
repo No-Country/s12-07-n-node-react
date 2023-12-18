@@ -18,7 +18,10 @@ const Search = () => {
 		}
 		setIsLoading(true);
 		const getSearchResults = async () => {
-			const results = await getMovieSearch(termSearch, 1);
+			const results = await getMovieSearch(
+				termSearch.split(' ').join('&20'),
+				1
+			);
 			setSearchResults(results.data.data);
 		};
 		getSearchResults();
@@ -27,7 +30,7 @@ const Search = () => {
 
 	useEffect(() => {
 		const validResults = searchResults.filter(
-			movie => movie.poster_path.split('/')[7]
+			movie => movie.poster_path.split('/')[7] || movie.profile_path
 		);
 		setTimeout(() => {
 			setIsLoading(false);
@@ -35,7 +38,7 @@ const Search = () => {
 		setValidSearchResults(validResults);
 	}, [searchResults]);
 
-	// console.log(validSearchResults);
+	console.log(validSearchResults);
 	return (
 		<section className='mx-auto mt-[48px] max-w-[1440px] px-4 md:px-8 md:pt-6 lg:mt-[72px] lg:px-10 lg:pt-10'>
 			{validSearchResults.length === 0 ? (
@@ -59,18 +62,31 @@ const Search = () => {
 								<div
 									key={result.id}
 									className={`${
-										result.poster_path.split('/')[7] ? '' : 'hidden'
+										result.poster_path.split('/')[7] || result.profile_path
+											? ''
+											: 'hidden'
 									} ease cursor-pointer transition-all duration-100 hover:opacity-70 id-${
 										result.id
 									}`}
-									onClick={() =>
-										navigate(`/detail/${result.media_type}/${result.id}`)
-									}
+									onClick={() => {
+										if (result.media_type === 'person') {
+											navigate(`/actor/${result.id}`);
+											return;
+										}
+										navigate(`/detail/${result.media_type}/${result.id}`);
+									}}
 								>
-									{result.poster_path.split('/')[7] ? (
+									{result.poster_path.split('/')[7] || result.profile_path ? (
 										<img
 											className='h-full w-full object-cover object-center'
-											src={result.poster_path}
+											src={
+												result.poster_path.split('/')[7]
+													? result.poster_path
+													: result.poster_path
+															.split('/')
+															.slice(0, 6)
+															.join('/') + result.profile_path
+											}
 											alt=''
 											loading={idx <= 10 ? 'eager' : 'lazy'}
 										/>

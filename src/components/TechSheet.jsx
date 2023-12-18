@@ -119,7 +119,7 @@ const TechSheet = () => {
 							}
 						}}
 					>
-						<p className='absolute -top-8 hidden font-bold text-white group-hover:block'>
+						<p className='absolute -top-6 hidden font-bold text-white group-hover:block'>
 							Trailer no disponible
 						</p>
 						<img src={playIcon} className='w-6' alt='' />

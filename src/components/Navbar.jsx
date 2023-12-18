@@ -96,7 +96,6 @@ const Navbar = () => {
 				.getBoundingClientRect();
 			window.scrollTo({
 				top: elementScroll.top + window.scrollY - 100,
-				behavior: 'smooth',
 			});
 		}
 	};
@@ -232,11 +231,11 @@ const Navbar = () => {
 				</nav>
 				<Link
 					to={'/'}
-					className={`text-white lg:hidden ${
+					className={`font-karla text-white lg:hidden ${
 						searchInputActive ? 'hidden' : 'block'
 					}`}
 				>
-					STREAMVIEW
+					STREAM VIEW
 				</Link>
 				{/* ICONS */}
 				<div
