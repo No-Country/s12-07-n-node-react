@@ -109,6 +109,7 @@ const Navbar = () => {
 	useEffect(() => {
 		console.log('section current: ', sectionCurrent);
 		if (sectionCurrent !== 'actores') return;
+		if (window.scrollY > 1000) return;
 		setTimeout(() => {
 			const elementScroll = document.querySelector('#actores');
 			if (!elementScroll) {
