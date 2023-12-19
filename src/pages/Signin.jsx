@@ -1,25 +1,58 @@
 /* import React from 'react' */
+import axios from 'axios';
+import { useState } from 'react';
 
 export default function Signin({vis, setVis}) {
 	const changeVis = () => {
 		setVis(!vis);
 	  }
 
-	  const manSubmint = async (e) => {
+	  const [userData, setUserData] = useState({
+		mail: 'test1@correo.com',
+		password: '123456789',
+	  })
+
+	  const handleSubmint = async (e) => {
 		e.preventDefault();
 	  
-	}	
+			try {
+				const response = await axios.post('https://streamview.onrender.com/api/v1/auth/login', userData, {
+				  headers: {
+					'Content-Type': 'application/json',
+				  },
+				});
+				console.log("PE", response.data);
+
+				localStorage.setItem("Token", response.data.user.token)
+			} catch (error) {
+				console.error('Error al registrar al usuario:', error);
+			  }
+
+		 /*  try {
+				const response = await axios.get('https://streamview.onrender.com/api/v1/auth/session',{
+				  headers: {
+					'Authorization': "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzQ4Zjk3OGE1OGI3NjcyNGVkMDkzYiIsImlhdCI6MTcwMjUyNTU1Nn0.SIsvI5e_VUHhuhMKLZ3LV5YzhnpyvnWSfaJlQ03Zbvs"
+				  },
+				})
+
+				console.log(response.data)
+				
+			} catch (error) {
+				console.error('Error al registrar al usuario:', error);
+			} */
+	  }
+	
 
 	return (
 		<>
 			{vis &&
 				<div id='conteiner' className='fixed top-0 bg-black bg-opacity-40 flex h-full w-full items-center justify-center text-center text-white'>
-				<form action='' className="w-3/5" onSubmit={manSubmint}>
+				<form action='' className="w-3/5" onSubmit={handleSubmint}>
 					<div className='bg-purple-800 rounded-md p-5 flex flex-col items-center relative'>
 						<div className="h-32 w-32 m-2">
-							<img src="" alt="" />
+							
 						</div>
-
+						
 						<button className="absolute top-3 right-3 h-7 w-7 bg-pink-600 hover:bg-pink-800 rounded-md"
                 		onClick={changeVis}>x</button>
 
