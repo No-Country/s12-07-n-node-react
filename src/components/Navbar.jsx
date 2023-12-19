@@ -95,9 +95,15 @@ const Navbar = () => {
 		const elementScroll = document.querySelector('#actores');
 		if (!elementScroll) {
 			console.log('no existe');
-			window.scrollTo({
-				top: window.scrollY + 3580,
-			});
+			setTimeout(() => {
+				const elementScroll = document.querySelector('#actores');
+				if (!elementScroll) return;
+				const position = elementScroll.getBoundingClientRect();
+				console.log('position: ', position.top);
+				window.scrollTo({
+					top: position.top + window.scrollY - 100,
+				});
+			}, 2500);
 			return;
 		}
 		const position = elementScroll.getBoundingClientRect();
@@ -106,26 +112,6 @@ const Navbar = () => {
 			top: position.top + window.scrollY - 100,
 		});
 	};
-	useEffect(() => {
-		console.log('section current: ', sectionCurrent);
-		if (sectionCurrent !== 'actores') return;
-		if (window.scrollY > 1000) return;
-		setTimeout(() => {
-			const elementScroll = document.querySelector('#actores');
-			if (!elementScroll) {
-				console.log('no existe use effect');
-				window.scrollTo({
-					top: window.scrollY + 3580,
-				});
-				return;
-			}
-			const position = elementScroll.getBoundingClientRect();
-			console.log('position: ', position.top);
-			window.scrollTo({
-				top: 3580,
-			});
-		}, 3000);
-	}, [sectionCurrent]);
 
 	const handleClickHeart = () => {
 		setMenuVisible(false);
