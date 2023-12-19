@@ -19,7 +19,7 @@ const Search = () => {
 		setIsLoading(true);
 		const getSearchResults = async () => {
 			const results = await getMovieSearch(
-				termSearch.split(' ').join('&20'),
+				termSearch,
 				1
 			);
 			setSearchResults(results.data.data);
