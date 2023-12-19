@@ -50,6 +50,7 @@ const TechSheet = () => {
 			setLikedContentForUser(!likedContentForUser);
 		}
 	};
+	console.log(dataMovie);
 	return (
 		<main className='mx-auto mt-[48px] flex h-full w-full max-w-[1440px] flex-col items-center px-6 py-10 font-roboto md:px-12 lg:mt-[72px] lg:flex-row lg:items-center lg:gap-10 lg:px-14 lg:py-[2rem] xl:gap-20 xl:py-[5rem]'>
 			<div className='lg:flex-[1.7] xl:flex-[1.1]'>

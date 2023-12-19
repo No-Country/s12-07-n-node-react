@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import 'daisyui/dist/full.css';
 import { searchIcon, menuIcon, profileIcon, heartIcon } from '../assets/icons';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Signup from '../pages/Signup';
 import { useAuthContext } from '../hooks/useAuthContext';
 
@@ -70,7 +70,7 @@ const Navbar = () => {
 			return;
 		}
 	};
-	console.log('Change state', searchInputActive);
+	// console.log('Change state', searchInputActive);
 	const handleKeyPressSearch = e => {
 		console.log(
 			'key press search: ',
@@ -82,23 +82,50 @@ const Navbar = () => {
 			setMenuVisible(false);
 			setTermSearch(valueSearchTerm);
 			navigate(`/search`);
-			console.log('value search: ', valueSearchTerm);
+			// console.log('value search: ', valueSearchTerm);
 		}
 	};
 	const handlerClickSection = section => {
 		setSectionCurrent(section);
 		console.log('section: ', section);
 		// setMenuVisible(false);
-		if (section == 'actores') {
-			console.log('scroll');
-			const elementScroll = document
-				.querySelector('#actores')
-				.getBoundingClientRect();
+		if (section !== 'actores') return;
+
+		console.log('scroll');
+		const elementScroll = document.querySelector('#actores');
+		if (!elementScroll) {
+			console.log('no existe');
 			window.scrollTo({
-				top: elementScroll.top + window.scrollY - 100,
+				top: window.scrollY + 3580,
 			});
+			return;
 		}
+		const position = elementScroll.getBoundingClientRect();
+		console.log('position: ', position.top);
+		window.scrollTo({
+			top: position.top + window.scrollY - 100,
+		});
 	};
+	useEffect(() => {
+		console.log('section current: ', sectionCurrent);
+		if (sectionCurrent !== 'actores') return;
+		setTimeout(() => {
+			const elementScroll = document.querySelector('#actores');
+			if (!elementScroll) {
+				console.log('no existe use effect');
+				window.scrollTo({
+					top: window.scrollY + 3580,
+				});
+				return;
+			}
+			const position = elementScroll.getBoundingClientRect();
+			console.log('position: ', position.top);
+			window.scrollTo({
+				top: 3580,
+			});
+		}, 3000);
+	}, [sectionCurrent]);
+
 	const handleClickHeart = () => {
 		setMenuVisible(false);
 	};
@@ -150,12 +177,13 @@ const Navbar = () => {
 	return (
 		<header className='fixed top-0 z-50 flex h-[48px] w-full justify-center bg-primary px-4 py-3 text-white lg:h-[72px] lg:bg-primary  lg:px-14 lg:py-4'>
 			<div className='flex h-full w-full max-w-[1440px] items-center justify-between'>
-				<div className='font-karla hidden lg:block'>
+				<div className='hidden font-karla lg:block'>
 					<Link
 						to='/'
 						className='text-xl font-bold uppercase'
 						onClick={() => {
 							window.scrollTo(0, 0);
+							setSectionCurrent('home');
 						}}
 					>
 						STREAMVIEW
