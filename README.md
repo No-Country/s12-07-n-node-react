@@ -9,6 +9,7 @@ Aplicacion web de seleccionado No Country, plataforma para status de Peliculas y
 - [X] Armar ruta, controlador y servicio para proximos estrenos.
 - [X] Configurar ruta basica para que redirija a /api/v1
 - [X] Configurar ruta /api/v1 para que muestre documentacion sobre nuestras rutas y sobre como funcionan
+- [ ] Agregar informacion de plataformas disponibles en el detalle de peliculas y series.
 
 
 
