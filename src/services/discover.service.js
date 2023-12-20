@@ -1,5 +1,5 @@
 import tmdbAxios from "../lib/tmdb-axios.js"
-import { optionsHelper, transformImageUrl, genreSelector, providerSelector } from "../utils/helpers.js"
+import { optionsHelper, transformImageUrl, genreSelector, providerSelector, transformImageUrlProviders } from "../utils/helpers.js"
 
 
 export const searchService = async (query, page) => {
@@ -111,7 +111,16 @@ export const detailService = async (media_type, id) => {
 
     const platformDetail = await tmdbAxios
       .request(optionsHelper({credits:'credits', url: `https://api.themoviedb.org/3/tv/${id}/watch/providers`}))
-      .then(res => res.data.results.PE.flatrate)
+      .then(
+        res => {
+          if (res.data.results && res.data.results.PE) {
+            const providersArray = res.data.results.PE.flatrate || res.data.results.PE.rent || res.data.results.PE.buy || [];
+            const transformedProviders = transformImageUrlProviders(providersArray);
+            return transformedProviders;
+          } else {
+            throw new Error('No existen datos de proveedores para este contenido en tu región');
+          }
+        })
       .catch((er) => {
         return { error: er.message, isError: true}
       })
@@ -139,7 +148,16 @@ export const detailService = async (media_type, id) => {
     
     const platformDetail = await tmdbAxios
       .request(optionsHelper({credits:'credits', url: `https://api.themoviedb.org/3/movie/${id}/watch/providers`}))
-      .then(res => res.data.results.PE.flatrate)
+      .then(
+        res => {
+          if (res.data.results && res.data.results.PE) {
+            const providersArray = res.data.results.PE.flatrate || res.data.results.PE.rent || res.data.results.PE.buy || [];
+            const transformedProviders = transformImageUrlProviders(providersArray);
+            return transformedProviders;
+          } else {
+            throw new Error('No existen datos de proveedores para este contenido en tu región');
+          }
+        })
       .catch((er) => {
         return { error: er.message, isError: true}
       })
