@@ -87,7 +87,7 @@ export function transformImageUrlContentByActor(array){
     let temp = el.poster_path
     let temp2 = el.backdrop_path
     return {
-      ...el, poster_path : `https://image.tmdb.org/t/p/original/${temp}`, backdrop_path : `https://image.tmdb.org/t/p/original/${temp2}`
+      ...el, poster_path : temp?`https://image.tmdb.org/t/p/original/${temp}`:null, backdrop_path : temp2?`https://image.tmdb.org/t/p/original/${temp2}`:null
     }
   })
 
@@ -95,7 +95,7 @@ export function transformImageUrlContentByActor(array){
     let temp = el.poster_path
     let temp2 = el.backdrop_path
     return {
-      ...el, poster_path : `https://image.tmdb.org/t/p/original/${temp}`, backdrop_path : `https://image.tmdb.org/t/p/original/${temp2}`
+      ...el, poster_path : temp?`https://image.tmdb.org/t/p/original/${temp}`:null, backdrop_path : temp2?`https://image.tmdb.org/t/p/original/${temp2}`:null
     }
   })
 
