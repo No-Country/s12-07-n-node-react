@@ -18,10 +18,7 @@ const Search = () => {
 		}
 		setIsLoading(true);
 		const getSearchResults = async () => {
-			const results = await getMovieSearch(
-				termSearch,
-				1
-			);
+			const results = await getMovieSearch(termSearch, 1);
 			setSearchResults(results.data.data);
 		};
 		getSearchResults();
@@ -65,7 +62,7 @@ const Search = () => {
 										result.poster_path.split('/')[7] || result.profile_path
 											? ''
 											: 'hidden'
-									} ease cursor-pointer transition-all duration-100 hover:opacity-70 id-${
+									} ease relative cursor-pointer transition-all duration-100 hover:opacity-70 id-${
 										result.id
 									}`}
 									onClick={() => {
@@ -76,6 +73,13 @@ const Search = () => {
 										navigate(`/detail/${result.media_type}/${result.id}`);
 									}}
 								>
+									<h3
+										className={`absolute top-0 bg-violet-500 text-white ${
+											result.profile_path ? '' : 'hidden'
+										}`}
+									>
+										{result.title || result.name || result.original_name}
+									</h3>
 									{result.poster_path.split('/')[7] || result.profile_path ? (
 										<img
 											className='h-full w-full object-cover object-center'

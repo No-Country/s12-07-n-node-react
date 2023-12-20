@@ -1,16 +1,21 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getDetailActor } from '../../services/movies';
 const Actor = () => {
 	const [dataActor, setDataActor] = useState([]);
+	const [dataMoviesActor, setDataMoviesActor] = useState([]);
 	const { id } = useParams();
+	const navigate = useNavigate();
 	useEffect(() => {
 		const fetchActor = async () => {
 			const actor = await getDetailActor(id);
-			setDataActor(actor.data.data[0]);
+			console.log(actor.data.data.actor[0]);
+			setDataActor(actor.data.data.actor[0]);
+			setDataMoviesActor(actor.data.data.movies.cast);
 		};
 		fetchActor();
 	}, [id]);
+	console.log(dataMoviesActor);
 	return (
 		<main className='mx-auto mt-[48px] max-w-[1440px] overflow-hidden px-4 md:px-8 md:pt-6 lg:mt-[72px] lg:px-10 lg:pt-10'>
 			<div className='flex w-full flex-col items-end justify-between gap-[3rem] lg:h-[500px] lg:flex-row'>
@@ -63,6 +68,34 @@ const Actor = () => {
 						</p>
 					</div>
 				</div>
+			</div>
+			<div className='mt-16 grid grid-cols-3 gap-x-2 gap-y-[3rem] pb-10 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-[2rem] xl:gap-x-[3rem] xl:gap-y-[4rem]'>
+				{dataMoviesActor?.map((result, idx) => {
+					return (
+						<div
+							key={result.id}
+							className={`${
+								result?.poster_path ? '' : 'hidden'
+							} ease cursor-pointer transition-all duration-100 hover:opacity-70 id-${
+								result.id
+							}`}
+							onClick={() => {
+								navigate(`/detail/movie/${result.id}`);
+							}}
+						>
+							{result.poster_path ? (
+								<img
+									className='h-full w-full object-cover object-center'
+									src={result.poster_path}
+									alt=''
+									loading={idx <= 10 ? 'eager' : 'lazy'}
+								/>
+							) : (
+								''
+							)}
+						</div>
+					);
+				})}
 			</div>
 		</main>
 	);

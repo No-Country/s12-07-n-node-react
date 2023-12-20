@@ -18,6 +18,12 @@ const TechSheet = () => {
 	const [dislikedContentForUser, setDislikedContentForUser] = useState(false);
 	const { id, type } = useParams();
 	const { auth } = useAuthContext();
+	const [logoPlatforms, setLogoPlatforms] = useState({
+		netflix: 'https://i.imgur.com/2WZw4uX.png',
+		disney: 'https://i.imgur.com/2WZw4uX.png',
+		amazon: 'https://i.imgur.com/2WZw4uX.png',
+		hbo: 'https://i.imgur.com/2WZw4uX.png',
+	});
 	useEffect(() => {
 		const getInfo = async () => {
 			const data = await getDetailMovie(id, type);

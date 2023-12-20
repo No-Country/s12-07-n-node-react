@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
 	const [auth, setAuth] = useState(false);
 	const [user, setUser] = useState({
 		id: 1,
-		name: 'Patricio',
+		name: 'Anonimo',
 		mail: '',
 		token: '',
 		phone: '',

@@ -168,14 +168,14 @@ const Navbar = () => {
 		event.target.setCustomValidity('');
 	};
 	const handleClickSignup = () => {
-		setSignupVisible(!signupVisible)
-	}
+		setSignupVisible(!signupVisible);
+	};
 	const handleClickSignin = () => {
-		setSigninVisible(!signinVisible)
-	}
+		setSigninVisible(!signinVisible);
+	};
 	const handleClickProfileV = () => {
-		setProfileVisible(!profileVisible)
-	}
+		setProfileVisible(!profileVisible);
+	};
 	return (
 		<header className='fixed top-0 z-50 flex h-[48px] w-full justify-center bg-primary px-4 py-3 text-white lg:h-[72px] lg:bg-primary  lg:px-14 lg:py-4'>
 			<div className='flex h-full w-full max-w-[1440px] items-center justify-between'>
@@ -261,7 +261,7 @@ const Navbar = () => {
 				</nav>
 				<Link
 					to={'/'}
-					className={`font-karla text-white lg:hidden ${
+					className={`font-[500] text-white lg:hidden ${
 						searchInputActive ? 'hidden' : 'block'
 					}`}
 				>
@@ -330,32 +330,21 @@ const Navbar = () => {
 					</div>
 				</div>
 
-				<div className={`absolute ${stylePerfilState} top-11 lg:top-[72px] right-0`}>
-					<ul className="flex flex-col gap-[0.13rem] bg-white font-semibold">
-						<li className="px-4 py-2 font-semibold bg-[#50075D] hover:text-slate-500">
-							<button
-							onClick={handleClickSignin}
-							>
-							Iniciar Sesion
-							</button>
+				<div
+					className={`absolute ${stylePerfilState} right-0 top-11 lg:top-[72px]`}
+				>
+					<ul className='flex flex-col gap-[0.13rem] bg-white font-semibold'>
+						<li className='bg-[#50075D] px-4 py-2 font-semibold hover:text-slate-500'>
+							<button onClick={handleClickSignin}>Iniciar Sesion</button>
 						</li>
-						<li className="px-4 py-2 font-semibold bg-[#50075D] hover:text-slate-500">
-							<button
-							onClick={handleClickSignup}
-							>
-							Registrarse
-							</button>
+						<li className='bg-[#50075D] px-4 py-2 font-semibold hover:text-slate-500'>
+							<button onClick={handleClickSignup}>Registrarse</button>
 						</li>
-						<li className="px-4 py-2 font-semibold bg-[#50075D] hover:text-slate-500">
-							<button
-							onClick={handleClickProfileV}
-							>
-							Perfil
-							</button>
+						<li className='bg-[#50075D] px-4 py-2 font-semibold hover:text-slate-500'>
+							<button onClick={handleClickProfileV}>Perfil</button>
 						</li>
 					</ul>
 				</div>
-
 			</div>
 			<Signup vis={signupVisible} setVis={setSignupVisible} />
 			<Signin vis={signinVisible} setVis={setSigninVisible} />
