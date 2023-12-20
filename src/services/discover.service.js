@@ -1,5 +1,5 @@
 import tmdbAxios from "../lib/tmdb-axios.js"
-import { optionsHelper, transformImageUrl, genreSelector, providerSelector, transformImageUrlProviders } from "../utils/helpers.js"
+import { optionsHelper, transformImageUrl, genreSelector, providerSelector, transformImageUrlProviders, transformImageUrlContentByActor } from "../utils/helpers.js"
 
 
 export const searchService = async (query, page) => {
@@ -70,17 +70,17 @@ export const actorDetailService = async (id) => {
     })
   const movies = await tmdbAxios
     .request(optionsHelper({ url: 'https://api.themoviedb.org/3/person/' + id + '/movie_credits' }))
-    .then(res => res.data)
+    .then(res => transformImageUrlContentByActor(res.data))
     .catch((er) => {
       return er
     })
   const series = await tmdbAxios
     .request(optionsHelper({ url: 'https://api.themoviedb.org/3/person/' + id + '/tv_credits' }))
-    .then(res => res.data)
+    .then(res => transformImageUrlContentByActor(res.data))
     .catch((er) => {
       return er
     })
-  return { ...actor, movies, series }
+  return { actor, movies:{...movies}, series:{...series} }
 }
 
 export const detailService = async (media_type, id) => {

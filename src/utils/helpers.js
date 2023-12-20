@@ -73,9 +73,8 @@ export function transformImageUrl(array, actors) {
   const arr = array.map(function(el) {
     let temp = el.poster_path
     let temp2 = el.backdrop_path
-    let temp3 = el.logo_path
     return {
-      ...el, poster_path: el.poster_path = `https://image.tmdb.org/t/p/original/${temp}`, backdrop_path: el.backdrop_path = `https://image.tmdb.org/t/p/original/${temp2}`, logo_path: el.logo_path, poster_path: el.poster_path = `https://image.tmdb.org/t/p/original/${temp3}`
+      ...el, poster_path: el.poster_path = `https://image.tmdb.org/t/p/original/${temp}`, backdrop_path: el.backdrop_path = `https://image.tmdb.org/t/p/original/${temp2}`
     }
   })
 
@@ -83,6 +82,26 @@ export function transformImageUrl(array, actors) {
 
 }
 
+export function transformImageUrlContentByActor(array){
+  const cast = array.cast.map(function(el) {
+    let temp = el.poster_path
+    let temp2 = el.backdrop_path
+    return {
+      ...el, poster_path : `https://image.tmdb.org/t/p/original/${temp}`, backdrop_path : `https://image.tmdb.org/t/p/original/${temp2}`
+    }
+  })
+
+  const crew = array.crew.map(function(el) {
+    let temp = el.poster_path
+    let temp2 = el.backdrop_path
+    return {
+      ...el, poster_path : `https://image.tmdb.org/t/p/original/${temp}`, backdrop_path : `https://image.tmdb.org/t/p/original/${temp2}`
+    }
+  })
+
+  return {cast:cast,crew:crew}
+
+}
 export function transformImageUrlActors(array) {
 
   const arr = array.map(function(el) {
