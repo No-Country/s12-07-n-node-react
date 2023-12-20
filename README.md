@@ -42,29 +42,20 @@ https://streamview.onrender.com/api/v1
 
 # Equipo 
 
-## Frontends 
+|Participante         | Cargo  	                 | 
+|---	                |---	                     |
+|Maday Choque    	    |Desarrolladora Frontend 	 | 
+|Anderson Ferrer   	  |Desarrollador Frontend    | 
+|Victor Raul   	      |Desarrollador Frontend    | 
+|Owen Ruiz   	        |Desarrollador Frontend    | 
+|David Martínez   	  |Desarrollador Frontend    | 
+|Violeta Pielvitori   |Tester QA Manual   	     | 
+|Hernan Esquivel   	  |Tester QA Manual   	     | 
+|German Soto   	      |Desarrollador Fullstack   | 
+|Richard Alfaro       |Desarrollador Backend     | 
+|Carlos Salima    	  |Diseñador UX/UI    	     | 
+|Roger Parra      	  |Project Manager    	     | 
 
-Maday Choque 
-Anderson Ferrer 
-Victor Raul 
-Owen Ruiz 
 
-## Backend 
-
-German Soto 
-Richard Alfaro 
-
-## QA 
-
-Violeta Pielvitori 
-Hernan Esquivel 
-
-## PM 
-
-Roger Parra
-
-## Diseño 
-
-Carlos Salima 
 
 
