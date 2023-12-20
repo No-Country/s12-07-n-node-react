@@ -48,7 +48,6 @@ https://streamview.onrender.com/api/v1
 |Anderson Ferrer   	  |Desarrollador Frontend    | 
 |Victor Raul   	      |Desarrollador Frontend    | 
 |Owen Ruiz   	        |Desarrollador Frontend    | 
-|David Martínez   	  |Desarrollador Frontend    | 
 |Violeta Pielvitori   |Tester QA Manual   	     | 
 |Hernan Esquivel   	  |Tester QA Manual   	     | 
 |German Soto   	      |Desarrollador Fullstack   | 
