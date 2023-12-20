@@ -1,7 +1,8 @@
 /* import React from 'react' */
-
 import { useState } from "react";
+import { validationUser, validationField } from '../services/validation';
 import axios  from 'axios';
+
 
 
 export default function Signup({ vis, setVis }) {
@@ -9,12 +10,23 @@ export default function Signup({ vis, setVis }) {
     setVis(!vis);
   }
   const [userData, setUserData] = useState({
-	mail: 'test1@correo.com',
-	password: '123456789',
-	name: 'user1',
-	surname: 'surname1',
-	phone: '123456789',
+	mail: '',
+	password: '',
+	name: '',
+	surname: '',
+	phone: '',
   })
+  const [alerts, setAlerts] = useState({
+	eName: false,
+	eSurname: false,
+	ePassword: false,
+	eAnpassword: false,
+	eConPassword: false,
+	ePhone: false,
+  })
+
+
+  const [confirmationPassword, setConfirmationPassword] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,21 +34,36 @@ export default function Signup({ vis, setVis }) {
       ...prevData,
       [name]: value,
     }));
+
+	
   };
 
-  const manSubmint = async (e) => {
-		e.preventDefault();
+  const handleConfirmationPassword = (e) => {
+	setConfirmationPassword(e.target.value)
+  }
 
-		try {
-			const response = await axios.post('https://streamview.onrender.com/api/v1/auth/register', userData, {
-			  headers: {
-				'Content-Type': 'application/json',
-			  },
-			});
-			console.log("PE", response.data.message);
-		} catch (error) {
-			console.error('Error al registrar al usuario:', error);
-		  }
+  const handleSubmint = async (e) => {
+		e.preventDefault();
+		validationUser(userData, setAlerts, confirmationPassword)
+
+		if(validationField(userData, alerts)){
+			console.log("signup")
+			try {
+					const response = await axios.post('https://streamview.onrender.com/api/v1/auth/register', userData, {
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					});
+					console.log("PE", response.data.message);
+					changeVis()
+				} catch (error) {
+					console.error('Error al registrar al usuario:', error);
+				}
+			window.location.reload();
+		}else{
+		console.log("Faltan Campos")
+		}
+	
   }
 
 	return (
@@ -46,8 +73,8 @@ export default function Signup({ vis, setVis }) {
 					id='conteiner'
 					className='fixed top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-40  overflow-auto'
 				>
-					<form action='#' className="w-3/5 h-5/6" onSubmit={manSubmint}>
-						<div className='relative flex flex-col items-center rounded-md bg-purple-800 p-10 pt-40 gap-5'>
+					<form action='#' className="w-3/5 h-5/6" onSubmit={handleSubmint}>
+						<div className='relative flex flex-col items-center rounded-md bg-purple-800 gap-x-5 gap-y-1 p-10 pt-40'>
 							<button
 								className='absolute right-3 top-3 h-7 w-7 rounded-md bg-pink-600 hover:bg-pink-800'
 								onClick={changeVis}
@@ -61,49 +88,90 @@ export default function Signup({ vis, setVis }) {
 								</button>
 							</div>
 
-							<div className='flex justify-center flex-wrap gap-5 text-black'>
-								<input
-									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
-									type='text'
-									placeholder='Nombre'
-								/>
-								<input
-									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
-									type='text'
-									placeholder='Apellido'
-								/>
+							<div className='flex justify-center flex-wrap gap-x-5 text-black'>
+								<div>
+									<h1 className="text-white text-xs">*Obligatorio</h1>
+									<input
+										className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
+										type='text'
+										placeholder='Nombre'
+										name="name"
+										value={userData.name}
+										onChange={handleInputChange}
+									/>
+									{alerts.eName && <h1 className="text-red-500 text-xs">Debe tener entre 3 y 20 caracteres</h1>}
+								</div>
+								<div>
+									<h1 className="text-white text-xs">*Obligatorio</h1>
+									<input
+										className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
+										type='text'
+										placeholder='Apellido'
+										name="surname"
+										value={userData.surnmae}
+										onChange={handleInputChange}
+									/>
+									{alerts.eSurname && <h1 className="text-red-500 text-xs">Debe tener entre 3 y 20 caracteres</h1>}
+								</div>
+								
 							</div>
-							<div className='flex justify-center flex-wrap gap-5 text-black'>
-								<input
-									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
-									type='number'
-									placeholder='Telefono'
-									
-								/>
-								<input
-									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2
-									invalid:border-red-600 invalid:text-red-600'
-									type='email'
-									placeholder='E-Mail'
-									
-								/>
+							<div className='flex justify-center flex-wrap gap-x-5 text-black'>
+								<div>
+								<h1 className="text-white text-xs">*Opcional</h1>
+									<input
+										className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
+										type='number'
+										placeholder='Telefono'
+										name="phone"
+										value={userData.phone}
+										onChange={handleInputChange}
+										
+									/>
+								</div>
+								{alerts.ePhone && <h1 className="text-red-500 text-xs">Maxiomo de 15 caracteres</h1>}
+								<div>
+								<h1 className="text-white text-xs">*Obligatorio</h1>
+									<input
+										className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2
+										invalid:border-red-600 invalid:text-red-600'
+										type='email'
+										placeholder='E-Mail'
+										name="mail"
+										value={userData.mail}
+										onChange={handleInputChange}
+									/>
+									{alerts.eMail && <h1 className="text-red-500 text-xs">El Correo no es valido</h1>}
+								</div>
 							</div>
-							<div className='flex justify-center flex-wrap gap-5 text-black'>
-								<input
-									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
-									type='number'
-									placeholder='Contraseña'
-									
-								/>
-								<input
-									className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
-									type='number'
-									placeholder='Confirmar Contraseña'
-								/>
+							<div className='flex justify-center flex-wrap gap-x-5 text-black'>
+								<div>
+									<h1 className="text-white text-xs">*Obligatorio</h1>
+									<input
+										className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
+										type='text'
+										placeholder='Contraseña'
+										name="password"
+										value={userData.password}
+										onChange={handleInputChange}
+									/>
+									{alerts.eAnpassword && <h1 className="text-red-500 text-xs">Debe ser Alfanumerico</h1>}
+									{alerts.ePassword && <h1 className="text-red-500 text-xs">Debe tener entre 8 y 12 caracteres</h1>}
+								</div>
+								
+								<div>
+									<h1 className="text-white text-xs">*Obligatorio</h1>
+									<input
+										className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
+										type='text'
+										placeholder='Confirmar Contraseña'
+										onChange={handleConfirmationPassword}
+									/>
+									{alerts.eConPassword && <h1 className="text-red-500 text-xs">Las contraseñas no coinsiden</h1>}
+								</div>
 							</div>
 
 							<h1 className='text-center text-white'>
-									*Campos Obligatorios*
+									{"*Campos Obligatorios*"}
 							</h1>
 							<button
 									type='submit'

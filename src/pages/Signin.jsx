@@ -1,32 +1,77 @@
 /* import React from 'react' */
+import axios from 'axios';
+import { useState } from 'react';
 
-export default function Signin({vis, changeVis}) {
+export default function Signin({vis, setVis}) {
+	const changeVis = () => {
+		setVis(!vis);
+	}
 
+	const [userData, setUserData] = useState({
+		mail: '',
+		password: '',
+	})
+
+	const handleInputChange = (e) => {
+		const { name, value } = e.target;
+		setUserData((prevData) => ({
+		...prevData,
+		[name]: value,
+		}));
+	}
+
+	  const handleSubmint = async (e) => {
+		e.preventDefault();
+	    console.log(userData)
+			try {
+				const response = await axios.post('https://streamview.onrender.com/api/v1/auth/login', userData, {
+				  headers: {
+					'Content-Type': 'application/json',
+				  },
+				});
+				console.log("PE", response.data);
+
+				localStorage.setItem("Token", response.data.user.token)
+				
+				window.location.reload();
+			} catch (error) {
+				console.error('Error al registrar al usuario:', error);
+			  }
+
+		 
+	  }
+	
 
 	return (
 		<>
-			{true &&
-				<div id='conteiner' className='fixed top-[48px] bg-black bg-opacity-40 flex h-full w-full items-center justify-center text-center text-white'>
-				<form action='' className="w-3/5">
+			{vis &&
+				<div id='conteiner' className='fixed top-0 bg-black bg-opacity-40 flex h-full w-full items-center justify-center text-center text-white'>
+				<form action='' className="w-3/5" onSubmit={handleSubmint}>
 					<div className='bg-purple-800 rounded-md p-5 flex flex-col items-center relative'>
 						<div className="h-32 w-32 m-2">
-							<img src="" alt="" />
+							
 						</div>
-
-						<button className="absolute top-3 right-3 h-7 w-7 bg-purple-600 rounded-md"
+						
+						<button className="absolute top-3 right-3 h-7 w-7 bg-pink-600 hover:bg-pink-800 rounded-md"
                 		onClick={changeVis}>x</button>
 
 						<h1 className="font-black">INICIAR SESION</h1>
 
 						<input
 							className='m-2 h-10 w-56 rounded-md border-2 border-blue-400 p-2 text-black'
-							type='text'
+							name='mail'
+							type='email'
 							placeholder='E-Mail'
+							value={userData.mail}
+							onChange={handleInputChange}
 						/>
 						<input
 							className='m-2 h-10 w-56 rounded-md border-2 border-blue-400 p-2 text-black'
-							type='number'
+							name='password'
+							type='text'
 							placeholder='Contraseña'
+							value={userData.password}
+							onChange={handleInputChange}
 						/>
 
 						<a href='' className='my-2 hover:underline font-black'>
@@ -35,18 +80,10 @@ export default function Signin({vis, changeVis}) {
 
 						<button
 							type='submit'
-							onClick={changeVis}
 							className='m-2 w-56 rounded-md border-b-2 border-b-purple-800 bg-pink-600 py-2 transition duration-200 hover:border-b-transparent hover:bg-pink-900'
 						>
 							Iniciar Sesion
 						</button>
-
-						{/* <a href='' className='my-2 font-black hover:underline'>
-							REGISTRATE
-						</a>
-
-						<Link to={"/signup"} className='my-2 font-black hover:underline'>REGISTRATE</Link> */}
-
 						<p>Inicia sesion con tus cuentas de redes sociales</p>
 
 						<div className="flex justify-center">
