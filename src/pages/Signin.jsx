@@ -5,16 +5,24 @@ import { useState } from 'react';
 export default function Signin({vis, setVis}) {
 	const changeVis = () => {
 		setVis(!vis);
-	  }
+	}
 
-	  const [userData, setUserData] = useState({
-		mail: 'test1@correo.com',
-		password: '123456789',
-	  })
+	const [userData, setUserData] = useState({
+		mail: '',
+		password: '',
+	})
+
+	const handleInputChange = (e) => {
+		const { name, value } = e.target;
+		setUserData((prevData) => ({
+		...prevData,
+		[name]: value,
+		}));
+	}
 
 	  const handleSubmint = async (e) => {
 		e.preventDefault();
-	  
+	    console.log(userData)
 			try {
 				const response = await axios.post('https://streamview.onrender.com/api/v1/auth/login', userData, {
 				  headers: {
@@ -24,22 +32,13 @@ export default function Signin({vis, setVis}) {
 				console.log("PE", response.data);
 
 				localStorage.setItem("Token", response.data.user.token)
+				
+				window.location.reload();
 			} catch (error) {
 				console.error('Error al registrar al usuario:', error);
 			  }
 
-		 /*  try {
-				const response = await axios.get('https://streamview.onrender.com/api/v1/auth/session',{
-				  headers: {
-					'Authorization': "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NzQ4Zjk3OGE1OGI3NjcyNGVkMDkzYiIsImlhdCI6MTcwMjUyNTU1Nn0.SIsvI5e_VUHhuhMKLZ3LV5YzhnpyvnWSfaJlQ03Zbvs"
-				  },
-				})
-
-				console.log(response.data)
-				
-			} catch (error) {
-				console.error('Error al registrar al usuario:', error);
-			} */
+		 
 	  }
 	
 
@@ -60,13 +59,19 @@ export default function Signin({vis, setVis}) {
 
 						<input
 							className='m-2 h-10 w-56 rounded-md border-2 border-blue-400 p-2 text-black'
-							type='text'
+							name='mail'
+							type='email'
 							placeholder='E-Mail'
+							value={userData.mail}
+							onChange={handleInputChange}
 						/>
 						<input
 							className='m-2 h-10 w-56 rounded-md border-2 border-blue-400 p-2 text-black'
-							type='number'
+							name='password'
+							type='text'
 							placeholder='Contraseña'
+							value={userData.password}
+							onChange={handleInputChange}
 						/>
 
 						<a href='' className='my-2 hover:underline font-black'>

@@ -47,17 +47,19 @@ export default function Signup({ vis, setVis }) {
 		validationUser(userData, setAlerts, confirmationPassword)
 
 		if(validationField(userData, alerts)){
-			console.log(":)")
-			/* try {
+			console.log("signup")
+			try {
 					const response = await axios.post('https://streamview.onrender.com/api/v1/auth/register', userData, {
 					headers: {
 						'Content-Type': 'application/json',
 					},
 					});
 					console.log("PE", response.data.message);
+					changeVis()
 				} catch (error) {
 					console.error('Error al registrar al usuario:', error);
-				} */
+				}
+			window.location.reload();
 		}else{
 		console.log("Faltan Campos")
 		}
@@ -86,7 +88,7 @@ export default function Signup({ vis, setVis }) {
 								</button>
 							</div>
 
-							<div className='flex justify-center flex-wrap gap-5 text-black'>
+							<div className='flex justify-center flex-wrap gap-x-5 text-black'>
 								<div>
 									<h1 className="text-white text-xs">*Obligatorio</h1>
 									<input
@@ -113,7 +115,7 @@ export default function Signup({ vis, setVis }) {
 								</div>
 								
 							</div>
-							<div className='flex justify-center flex-wrap gap-5 text-black'>
+							<div className='flex justify-center flex-wrap gap-x-5 text-black'>
 								<div>
 								<h1 className="text-white text-xs">*Opcional</h1>
 									<input
@@ -141,7 +143,7 @@ export default function Signup({ vis, setVis }) {
 									{alerts.eMail && <h1 className="text-red-500 text-xs">El Correo no es valido</h1>}
 								</div>
 							</div>
-							<div className='flex justify-center flex-wrap gap-5 text-black'>
+							<div className='flex justify-center flex-wrap gap-x-5 text-black'>
 								<div>
 									<h1 className="text-white text-xs">*Obligatorio</h1>
 									<input

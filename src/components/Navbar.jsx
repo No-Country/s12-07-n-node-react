@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Signup from '../pages/Signup';
 import { useAuthContext } from '../hooks/useAuthContext';
 import Signin from '../pages/Signin';
+import Profile from '../pages/Profile';
 
 const optionsNavbar = [
 	{
@@ -39,6 +40,7 @@ const Navbar = () => {
 	const [perfilMenuVisible, setPerfilMenuVisible] = useState(false);
 	const [signinVisible, setSigninVisible] = useState(false);
 	const [signupVisible, setSignupVisible] = useState(false);
+	const [profileVisible, setProfileVisible] = useState(false);
 	const [menuVisible, setMenuVisible] = useState(false);
 	const [sectionCurrent, setSectionCurrent] = useState('home'); // ['generos','ficha','favoritos','home']
 	const stylesMenuState = menuVisible ? 'top-11 left-0' : '-top-full left-full';
@@ -156,6 +158,9 @@ const Navbar = () => {
 	}
 	const handleClickSignin = () => {
 		setSigninVisible(!signinVisible)
+	}
+	const handleClickProfileV = () => {
+		setProfileVisible(!profileVisible)
 	}
 	return (
 		<header className='fixed top-0 z-50 flex h-[48px] w-full justify-center bg-primary px-4 py-3 text-white lg:h-[72px] lg:bg-primary  lg:px-14 lg:py-4'>
@@ -327,7 +332,11 @@ const Navbar = () => {
 							</button>
 						</li>
 						<li className="px-4 py-2 font-semibold bg-[#50075D] hover:text-slate-500">
-							<button>Perfil</button>
+							<button
+							onClick={handleClickProfileV}
+							>
+							Perfil
+							</button>
 						</li>
 					</ul>
 				</div>
@@ -335,6 +344,7 @@ const Navbar = () => {
 			</div>
 			<Signup vis={signupVisible} setVis={setSignupVisible} />
 			<Signin vis={signinVisible} setVis={setSigninVisible} />
+			<Profile vis={profileVisible} setVis={setProfileVisible} />
 		</header>
 	);
 };
