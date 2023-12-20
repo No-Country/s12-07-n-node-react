@@ -109,8 +109,15 @@ export const detailService = async (media_type, id) => {
         return { error: er.message, isError: true }
       })
 
+    const platformDetail = await tmdbAxios
+      .request(optionsHelper({credits:'credits', url: `https://api.themoviedb.org/3/tv/${id}/watch/providers`}))
+      .then(res => res.data.results.PE.flatrate)
+      .catch((er) => {
+        return { error: er.message, isError: true}
+      })
 
-    return { ...tvDetail, Trailer: trailerUrl(tvTrailer) }
+
+    return { ...tvDetail, ProvidersDetails: {...platformDetail}, Trailer: trailerUrl(tvTrailer) }
 
   }
 
@@ -123,14 +130,20 @@ export const detailService = async (media_type, id) => {
       .catch((er) => {
         return er
       })
-    const movieDetail = await tmdbAxios
-      .request(optionsHelper({ credits: 'credits', url: 'https://api.themoviedb.org/3/movie/' + id }))
+    const movieDetail = await tmdbAxios 
+      .request(optionsHelper({ credits: 'credits', url: 'https://api.themoviedb.org/3/movie/' + id })) //te manda de todas las regiones
       .then(res => transformImageUrl([res.data]))
       .catch((er) => {
         return er
       })
-
-    return { ...movieDetail, Trailer: trailerUrl(movieTrailer) }
+    
+    const platformDetail = await tmdbAxios
+      .request(optionsHelper({credits:'credits', url: `https://api.themoviedb.org/3/movie/${id}/watch/providers`}))
+      .then(res => res.data.results.PE.flatrate)
+      .catch((er) => {
+        return { error: er.message, isError: true}
+      })
+    return { ...movieDetail, ProvidersDetails: {...platformDetail} ,Trailer: trailerUrl(movieTrailer) }
 
   }
 
