@@ -9,6 +9,8 @@ import {
 import { getDetailMovie } from '../services/movies';
 import { useParams } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { postItemList } from '../services/user';
+import axios from 'axios';
 
 const TechSheet = () => {
 	const [dataMovie, setDataMovie] = useState({});
@@ -50,6 +52,27 @@ const TechSheet = () => {
 			setLikedContentForUser(!likedContentForUser);
 		}
 	};
+	const handleClickList = async () => {
+		if (!auth) return alert('Debes iniciar sesión para guardar en la Lista');
+		const itemList = {
+			contentId: dataMovie.id,
+			imageURL: dataMovie.poster_path,
+			contentName: (dataMovie.first_air_date ? dataMovie.name : dataMovie.title),
+			media_type: type,
+		}
+
+		try{
+			const response = await axios.post(`https://streamview.onrender.com/api/v1/discover/favourites`, itemList, {
+				headers: {
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${localStorage.getItem("Token")}`,
+				},
+			})
+			console.log(response.data)
+		}catch(error){
+			console.log("Hubo un problema guardando el item ", error)
+		}
+	}
 	return (
 		<main className='mx-auto mt-[48px] flex h-full w-full max-w-[1440px] flex-col items-center px-6 py-10 font-roboto md:px-12 lg:mt-[72px] lg:flex-row lg:items-center lg:gap-10 lg:px-14 lg:py-[2rem] xl:gap-20 xl:py-[5rem]'>
 			<div className='lg:flex-[1.7] xl:flex-[1.1]'>
@@ -78,7 +101,7 @@ const TechSheet = () => {
 							className='h-12 w-12 rotate-180'
 						/>
 					</a>
-					<a href='#' className='pt-[0.41rem]'>
+					<a href='#' onClick={handleClickList} className='pt-[0.41rem]'>
 						<img
 							src={tagIcon}
 							alt=''

@@ -9,37 +9,30 @@ import Actor from './pages/actor/Actor';
 import UpComing from './components/UpComing';
 import { useContext, useEffect } from 'react';
 import { AuthContext } from './context/AuthContext';
-import Axios from 'axios';
+import { authUser } from './services/user';
 
 function App() {
-	const {setUser} = useContext(AuthContext);
+	const {setUser, setAuth} = useContext(AuthContext);
 
 	useEffect(()=>{
 		
 	const loginUser = async ()=>{
 		try {
-			const response = await Axios.get('https://streamview.onrender.com/api/v1/auth/session',{
-			headers: {
-				'Authorization': `Bearer ${localStorage.getItem("Token")}`
-			},
-			})
-
+			const response = await authUser()
 			console.log(response.data)
-			
+			setAuth(true);
 			setUser(prevUser => ({
 				...prevUser,
 				...response.data.userInfo,
-			  }));
+			}));
 		} catch (error) {
 			console.error('Error al registrar al usuario:', error);
 		}
 
 		
 	}
-
 	loginUser()
-
-	}, [setUser])
+	}, [setUser, setAuth])
 
 	return (
 		<div className='background-img-gradient min-h-[calc(100vh-48px)] bg-[#23134D] bg-gradient-to-r from-[#23134D] via-secondary to-[#23134D] lg:min-h-[calc(100vh-72px)]'>

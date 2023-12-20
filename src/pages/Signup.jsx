@@ -6,43 +6,43 @@ import axios  from 'axios';
 
 
 export default function Signup({ vis, setVis }) {
-  const changeVis = () => {
-    setVis(!vis);
-  }
-  const [userData, setUserData] = useState({
-	mail: '',
-	password: '',
-	name: '',
-	surname: '',
-	phone: '',
-  })
-  const [alerts, setAlerts] = useState({
-	eName: false,
-	eSurname: false,
-	ePassword: false,
-	eAnpassword: false,
-	eConPassword: false,
-	ePhone: false,
-  })
+	const changeVis = () => {
+		setVis(!vis);
+	}
+	const [userData, setUserData] = useState({
+		mail: '',
+		password: '',
+		name: '',
+		surname: '',
+		phone: '',
+	})
+	const [alerts, setAlerts] = useState({
+		eName: false,
+		eSurname: false,
+		ePassword: false,
+		eAnpassword: false,
+		eConPassword: false,
+		ePhone: false,
+	})
 
 
-  const [confirmationPassword, setConfirmationPassword] = useState('');
+	const [confirmationPassword, setConfirmationPassword] = useState('');
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+	const handleInputChange = (e) => {
+		const { name, value } = e.target;
+		setUserData((prevData) => ({
+		...prevData,
+		[name]: value,
+		}));
 
-	
-  };
+		
+	};
 
-  const handleConfirmationPassword = (e) => {
-	setConfirmationPassword(e.target.value)
-  }
+	const handleConfirmationPassword = (e) => {
+		setConfirmationPassword(e.target.value)
+	}
 
-  const handleSubmint = async (e) => {
+	const handleSubmint = async (e) => {
 		e.preventDefault();
 		validationUser(userData, setAlerts, confirmationPassword)
 
@@ -54,17 +54,16 @@ export default function Signup({ vis, setVis }) {
 						'Content-Type': 'application/json',
 					},
 					});
-					console.log("PE", response.data.message);
-					changeVis()
+					console.log(response.data.message);
+					window.location.reload();
 				} catch (error) {
 					console.error('Error al registrar al usuario:', error);
 				}
-			window.location.reload();
 		}else{
 		console.log("Faltan Campos")
 		}
 	
-  }
+}
 
 	return (
 		<>
@@ -148,7 +147,7 @@ export default function Signup({ vis, setVis }) {
 									<h1 className="text-white text-xs">*Obligatorio</h1>
 									<input
 										className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
-										type='text'
+										type='password'
 										placeholder='Contraseña'
 										name="password"
 										value={userData.password}
@@ -162,7 +161,7 @@ export default function Signup({ vis, setVis }) {
 									<h1 className="text-white text-xs">*Obligatorio</h1>
 									<input
 										className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
-										type='text'
+										type='password'
 										placeholder='Confirmar Contraseña'
 										onChange={handleConfirmationPassword}
 									/>
