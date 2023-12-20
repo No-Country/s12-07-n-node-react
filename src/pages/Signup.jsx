@@ -24,8 +24,7 @@ export default function Signup({ vis, setVis }) {
 		eConPassword: false,
 		ePhone: false,
 	})
-
-
+	const [alert, setAlert] = useState(false)
 	const [confirmationPassword, setConfirmationPassword] = useState('');
 
 	const handleInputChange = (e) => {
@@ -37,11 +36,9 @@ export default function Signup({ vis, setVis }) {
 
 		
 	};
-
 	const handleConfirmationPassword = (e) => {
 		setConfirmationPassword(e.target.value)
 	}
-
 	useEffect(()=>{
 		validationUser(userData, setAlerts, confirmationPassword)
 	},[userData, confirmationPassword])
@@ -59,9 +56,11 @@ export default function Signup({ vis, setVis }) {
 					console.log(response.data.message);
 					window.location.reload();
 				} catch (error) {
+					setAlert(true)
 					console.error('Error al registrar al usuario:', error);
 				}
 		}else{
+		setAlert(!alert)
 		console.log("Faltan Campos")
 		}
 		
@@ -172,7 +171,7 @@ export default function Signup({ vis, setVis }) {
 							</div>
 
 							<h1 className='text-center text-white'>
-									{"*Campos Obligatorios*"}
+									{alert ? <h1 className="text-red-600">hubo un problema</h1> : <h1>*todos lo campos son obligatorios*</h1>}
 							</h1>
 							<button
 									type='submit'

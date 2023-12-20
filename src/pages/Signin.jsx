@@ -10,6 +10,7 @@ export default function Signin({vis, setVis}) {
 		mail: '',
 		password: '',
 	})
+	const [alert, setAlert] = useState(false)
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
 		setUserData((prevData) => ({
@@ -31,8 +32,10 @@ export default function Signin({vis, setVis}) {
 				localStorage.setItem("Token", response.data.user.token)
 				window.location.reload();
 			} catch (error) {
+				setAlert(true)
 				console.error('Error al iniciar sesion:', error);
 			}
+		setAlert(!alert)
 	}
 	
 
@@ -71,7 +74,7 @@ export default function Signin({vis, setVis}) {
 						<a href='' className='my-2 hover:underline font-black'>
 							¿OLVIDASTE TU CONTRASEÑA?
 						</a>
-
+						{alert && <h1 className="text-red-600">hubo un problema</h1>}
 						<button
 							type='submit'
 							className='m-2 w-56 rounded-md border-b-2 border-b-purple-800 bg-pink-600 py-2 transition duration-200 hover:border-b-transparent hover:bg-pink-900'
