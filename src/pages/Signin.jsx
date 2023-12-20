@@ -31,7 +31,7 @@ export default function Signin({vis, setVis}) {
 				localStorage.setItem("Token", response.data.user.token)
 				window.location.reload();
 			} catch (error) {
-				console.error('Error al registrar al usuario:', error);
+				console.error('Error al iniciar sesion:', error);
 			}
 	}
 	

@@ -26,7 +26,7 @@ function App() {
 				...response.data.userInfo,
 			}));
 		} catch (error) {
-			console.error('Error al registrar al usuario:', error);
+			console.error('Error al auntenticar usuario:', error);
 		}
 
 		

@@ -1,5 +1,5 @@
 /* import React from 'react' */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { validationUser, validationField } from '../services/validation';
 import axios  from 'axios';
 
@@ -42,12 +42,14 @@ export default function Signup({ vis, setVis }) {
 		setConfirmationPassword(e.target.value)
 	}
 
+	useEffect(()=>{
+		validationUser(userData, setAlerts, confirmationPassword)
+	},[userData, confirmationPassword])
+
 	const handleSubmint = async (e) => {
 		e.preventDefault();
-		validationUser(userData, setAlerts, confirmationPassword)
-
-		if(validationField(userData, alerts)){
-			console.log("signup")
+		const flag = validationField(userData, alerts, confirmationPassword)
+		if(flag){
 			try {
 					const response = await axios.post('https://streamview.onrender.com/api/v1/auth/register', userData, {
 					headers: {
@@ -62,7 +64,7 @@ export default function Signup({ vis, setVis }) {
 		}else{
 		console.log("Faltan Campos")
 		}
-	
+		
 }
 
 	return (

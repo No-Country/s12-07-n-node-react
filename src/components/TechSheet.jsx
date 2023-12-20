@@ -62,13 +62,13 @@ const TechSheet = () => {
 		}
 
 		try{
-			const response = await axios.post(`https://streamview.onrender.com/api/v1/discover/favourites`, itemList, {
+			const response = await axios.post(`https://streamview.onrender.com/api/v1/favourites`, itemList, {
 				headers: {
 					'Content-Type': 'application/json',
-					'Authorization': `Bearer ${localStorage.getItem("Token")}`,
+					'Authorization': `${localStorage.getItem("Token")}`,
 				},
 			})
-			console.log(response.data)
+			console.log(response)
 		}catch(error){
 			console.log("Hubo un problema guardando el item ", error)
 		}
