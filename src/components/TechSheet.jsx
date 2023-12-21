@@ -19,6 +19,12 @@ const TechSheet = () => {
 	const [dislikedContentForUser, setDislikedContentForUser] = useState(false);
 	const { id, type } = useParams();
 	const { auth } = useAuthContext();
+	const [logoPlatforms, setLogoPlatforms] = useState({
+		netflix: 'https://i.imgur.com/2WZw4uX.png',
+		disney: 'https://i.imgur.com/2WZw4uX.png',
+		amazon: 'https://i.imgur.com/2WZw4uX.png',
+		hbo: 'https://i.imgur.com/2WZw4uX.png',
+	});
 	useEffect(() => {
 		const getInfo = async () => {
 			const data = await getDetailMovie(id, type);
@@ -51,6 +57,7 @@ const TechSheet = () => {
 			setLikedContentForUser(!likedContentForUser);
 		}
 	};
+
 	const handleClickList = async () => {
 		if (!auth) return alert('Debes iniciar sesión para guardar en la Lista');
 		const itemList = {
@@ -73,6 +80,7 @@ const TechSheet = () => {
 			console.log("Hubo un problema guardando el item ", error)
 		}
 	}
+
 	return (
 		<main className='mx-auto mt-[48px] flex h-full w-full max-w-[1440px] flex-col items-center px-6 py-10 font-roboto md:px-12 lg:mt-[72px] lg:flex-row lg:items-center lg:gap-10 lg:px-14 lg:py-[2rem] xl:gap-20 xl:py-[5rem]'>
 			<div className='lg:flex-[1.7] xl:flex-[1.1]'>
