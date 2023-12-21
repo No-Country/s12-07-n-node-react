@@ -6,12 +6,11 @@ export default function Signin({vis, setVis}) {
 	const changeVis = () => {
 		setVis(!vis);
 	}
-
 	const [userData, setUserData] = useState({
 		mail: '',
 		password: '',
 	})
-
+	const [alert, setAlert] = useState(false)
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
 		setUserData((prevData) => ({
@@ -20,26 +19,24 @@ export default function Signin({vis, setVis}) {
 		}));
 	}
 
-	  const handleSubmint = async (e) => {
+	const handleSubmint = async (e) => {
 		e.preventDefault();
 	    console.log(userData)
 			try {
 				const response = await axios.post('https://streamview.onrender.com/api/v1/auth/login', userData, {
-				  headers: {
+				headers: {
 					'Content-Type': 'application/json',
-				  },
+				},
 				});
-				console.log("PE", response.data);
-
+				console.log(response.data);
 				localStorage.setItem("Token", response.data.user.token)
-				
 				window.location.reload();
 			} catch (error) {
-				console.error('Error al registrar al usuario:', error);
-			  }
-
-		 
-	  }
+				setAlert(true)
+				console.error('Error al iniciar sesion:', error);
+			}
+		setAlert(!alert)
+	}
 	
 
 	return (
@@ -68,7 +65,7 @@ export default function Signin({vis, setVis}) {
 						<input
 							className='m-2 h-10 w-56 rounded-md border-2 border-blue-400 p-2 text-black'
 							name='password'
-							type='text'
+							type='password'
 							placeholder='Contraseña'
 							value={userData.password}
 							onChange={handleInputChange}
@@ -77,7 +74,7 @@ export default function Signin({vis, setVis}) {
 						<a href='' className='my-2 hover:underline font-black'>
 							¿OLVIDASTE TU CONTRASEÑA?
 						</a>
-
+						{alert && <h1 className="text-red-600">hubo un problema</h1>}
 						<button
 							type='submit'
 							className='m-2 w-56 rounded-md border-b-2 border-b-purple-800 bg-pink-600 py-2 transition duration-200 hover:border-b-transparent hover:bg-pink-900'

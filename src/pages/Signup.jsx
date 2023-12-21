@@ -1,70 +1,70 @@
 /* import React from 'react' */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { validationUser, validationField } from '../services/validation';
 import axios  from 'axios';
 
 
 
 export default function Signup({ vis, setVis }) {
-  const changeVis = () => {
-    setVis(!vis);
-  }
-  const [userData, setUserData] = useState({
-	mail: '',
-	password: '',
-	name: '',
-	surname: '',
-	phone: '',
-  })
-  const [alerts, setAlerts] = useState({
-	eName: false,
-	eSurname: false,
-	ePassword: false,
-	eAnpassword: false,
-	eConPassword: false,
-	ePhone: false,
-  })
+	const changeVis = () => {
+		setVis(!vis);
+	}
+	const [userData, setUserData] = useState({
+		mail: '',
+		password: '',
+		name: '',
+		surname: '',
+		phone: '',
+	})
+	const [alerts, setAlerts] = useState({
+		eName: false,
+		eSurname: false,
+		ePassword: false,
+		eAnpassword: false,
+		eConPassword: false,
+		ePhone: false,
+	})
+	const [alert, setAlert] = useState(false)
+	const [confirmationPassword, setConfirmationPassword] = useState('');
 
+	const handleInputChange = (e) => {
+		const { name, value } = e.target;
+		setUserData((prevData) => ({
+		...prevData,
+		[name]: value,
+		}));
 
-  const [confirmationPassword, setConfirmationPassword] = useState('');
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-
-	
-  };
-
-  const handleConfirmationPassword = (e) => {
-	setConfirmationPassword(e.target.value)
-  }
-
-  const handleSubmint = async (e) => {
-		e.preventDefault();
+		
+	};
+	const handleConfirmationPassword = (e) => {
+		setConfirmationPassword(e.target.value)
+	}
+	useEffect(()=>{
 		validationUser(userData, setAlerts, confirmationPassword)
+	},[userData, confirmationPassword])
 
-		if(validationField(userData, alerts)){
-			console.log("signup")
+	const handleSubmint = async (e) => {
+		e.preventDefault();
+		const flag = validationField(userData, alerts, confirmationPassword)
+		if(flag){
 			try {
 					const response = await axios.post('https://streamview.onrender.com/api/v1/auth/register', userData, {
 					headers: {
 						'Content-Type': 'application/json',
 					},
 					});
-					console.log("PE", response.data.message);
-					changeVis()
+					console.log(response.data.message);
+					window.location.reload();
 				} catch (error) {
+					setAlert(true)
 					console.error('Error al registrar al usuario:', error);
 				}
-			window.location.reload();
 		}else{
+		setAlert(!alert)
 		console.log("Faltan Campos")
 		}
-	
-  }
+		
+}
 
 	return (
 		<>
@@ -148,7 +148,7 @@ export default function Signup({ vis, setVis }) {
 									<h1 className="text-white text-xs">*Obligatorio</h1>
 									<input
 										className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
-										type='text'
+										type='password'
 										placeholder='Contraseña'
 										name="password"
 										value={userData.password}
@@ -162,7 +162,7 @@ export default function Signup({ vis, setVis }) {
 									<h1 className="text-white text-xs">*Obligatorio</h1>
 									<input
 										className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
-										type='text'
+										type='password'
 										placeholder='Confirmar Contraseña'
 										onChange={handleConfirmationPassword}
 									/>
@@ -171,7 +171,7 @@ export default function Signup({ vis, setVis }) {
 							</div>
 
 							<h1 className='text-center text-white'>
-									{"*Campos Obligatorios*"}
+									{alert ? <h1 className="text-red-600">hubo un problema</h1> : <h1>*todos lo campos son obligatorios*</h1>}
 							</h1>
 							<button
 									type='submit'

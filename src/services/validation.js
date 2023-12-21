@@ -68,7 +68,7 @@ export const validationUser = (userData, setAlerts, confirmationPassword) => {
 	}
 }
 
-export const validationField = (userData, alerts)=>{
+export const validationField = (userData, alerts, confirmationPassword)=>{
 	if(userData.name === ""){
 		return false
 	}else if(userData.surname === ""){
@@ -76,6 +76,8 @@ export const validationField = (userData, alerts)=>{
 	}else if(userData.mail === ""){
 		return false
 	}else if(userData.password === ""){
+		return false
+	}else if(confirmationPassword === ""){
 		return false
 	}else if(alerts.eName){
 		return false
@@ -87,7 +89,7 @@ export const validationField = (userData, alerts)=>{
 		return false
 	}else if(alerts.eAnpassword){
 		return false
-	}else if(alerts.eConPassword){
+	}else if(alerts.eConPassword){console.log(":(")
 		return false
 	}
 return true
