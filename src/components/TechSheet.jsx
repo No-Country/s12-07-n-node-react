@@ -12,6 +12,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 
 const TechSheet = () => {
 	const [dataMovie, setDataMovie] = useState({});
+	const [providersDetails, setProvidersDetails] = useState({});
 	const [trailer, setTrailer] = useState('');
 	const [likedCountMedia, setLikedCountMedia] = useState([0, 0]);
 	const [likedContentForUser, setLikedContentForUser] = useState(false);
@@ -29,11 +30,13 @@ const TechSheet = () => {
 			const data = await getDetailMovie(id, type);
 			setDataMovie(data.data.data[0]);
 			console.log('trailer: ', data.data.data.Trailer);
+			console.log('data: ', data.data.data.ProvidersDetails);
 			setLikedCountMedia([
 				data.data.data[0].vote_average,
 				data.data.data[0].vote_count,
 			]);
 			setTrailer(data.data.data.Trailer);
+			setProvidersDetails(data.data.data.ProvidersDetails);
 		};
 		getInfo();
 	}, [id, type]);
@@ -106,7 +109,7 @@ const TechSheet = () => {
 						<div>
 							<figure>
 								<img
-									src='https://sm.ign.com/ign_latam/cover/d/disney-plu/disney-plus_sxyh.jpg'
+									src={providersDetails[0]?.logo_path || logoPlatforms.netflix}
 									className='w-16 rounded-lg'
 									alt=''
 								/>

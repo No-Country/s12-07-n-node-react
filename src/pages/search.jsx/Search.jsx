@@ -73,13 +73,18 @@ const Search = () => {
 										navigate(`/detail/${result.media_type}/${result.id}`);
 									}}
 								>
-									<h3
-										className={`absolute top-0 bg-violet-500 text-white ${
-											result.profile_path ? '' : 'hidden'
-										}`}
-									>
-										{result.title || result.name || result.original_name}
-									</h3>
+									<div>
+										<h3
+											className={`absolute right-0 top-0 bg-violet-400 px-3 font-bold text-white ${
+												result.profile_path ? '' : 'hidden'
+											}`}
+										>
+											{result.profile_path ? 'Actor' : ''}
+										</h3>
+										<h3 className='absolute bottom-0 w-full bg-slate-100 text-center font-bold text-black'>
+											{result.profile_path ? result.name : ''}
+										</h3>
+									</div>
 									{result.poster_path.split('/')[7] || result.profile_path ? (
 										<img
 											className='h-full w-full object-cover object-center'
