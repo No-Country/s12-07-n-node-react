@@ -14,6 +14,7 @@ const Actor = () => {
 			setDataMoviesActor(actor.data.data.movies.cast);
 		};
 		fetchActor();
+		window.scrollTo(0, 0);
 	}, [id]);
 	console.log(dataMoviesActor);
 	return (
