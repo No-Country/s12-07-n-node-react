@@ -5,6 +5,11 @@ import {
 	tagIcon,
 	bellIcon,
 	playIcon,
+	netflixLogo,
+	disneyLogo,
+	amazonLogo,
+	hboLogo,
+	appleLogo,
 } from '../assets/icons';
 import { getDetailMovie } from '../services/movies';
 import { useParams } from 'react-router-dom';
@@ -22,10 +27,11 @@ const TechSheet = () => {
 	const { id, type } = useParams();
 	const { auth } = useAuthContext();
 	const [logoPlatforms, setLogoPlatforms] = useState({
-		netflix: 'https://i.imgur.com/2WZw4uX.png',
-		disney: 'https://i.imgur.com/2WZw4uX.png',
-		amazon: 'https://i.imgur.com/2WZw4uX.png',
-		hbo: 'https://i.imgur.com/2WZw4uX.png',
+		8: netflixLogo,
+		337: disneyLogo,
+		119: amazonLogo,
+		384: hboLogo,
+		2: appleLogo,
 	});
 	useEffect(() => {
 		const getInfo = async () => {
@@ -67,22 +73,26 @@ const TechSheet = () => {
 		const itemList = {
 			contentId: dataMovie.id,
 			imageURL: dataMovie.poster_path,
-			contentName: (dataMovie.first_air_date ? dataMovie.name : dataMovie.title),
+			contentName: dataMovie.first_air_date ? dataMovie.name : dataMovie.title,
 			media_type: type,
-		}
+		};
 
-		try{
-			const response = await axios.post(`https://streamview.onrender.com/api/v1/favourites`, itemList, {
-				headers: {
-					'Content-Type': 'application/json',
-					'Authorization': `${localStorage.getItem("Token")}`,
-				},
-			})
-			console.log(response)
-		}catch(error){
-			console.log("Hubo un problema guardando el item ", error)
+		try {
+			const response = await axios.post(
+				`https://streamview.onrender.com/api/v1/favourites`,
+				itemList,
+				{
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `${localStorage.getItem('Token')}`,
+					},
+				}
+			);
+			console.log(response);
+		} catch (error) {
+			console.log('Hubo un problema guardando el item ', error);
 		}
-	}
+	};
 
 	return (
 		<main className='mx-auto mt-[48px] flex h-full w-full max-w-[1440px] flex-col items-center px-6 py-10 font-roboto md:px-12 lg:mt-[72px] lg:flex-row lg:items-center lg:gap-10 lg:px-14 lg:py-[2rem] xl:gap-20 xl:py-[5rem]'>
@@ -131,10 +141,14 @@ const TechSheet = () => {
 							{dataMovie.first_air_date ? dataMovie.name : dataMovie.title}
 						</h2>
 						<div>
-							<figure>
+							<figure className='relative h-16 w-16'>
 								<img
-									src={providersDetails[0]?.logo_path || logoPlatforms.netflix}
-									className='w-16 rounded-lg'
+									src={
+										logoPlatforms[providersDetails[0]?.provider_id] ||
+										providersDetails[0]?.logo_path ||
+										logoPlatforms.netflix
+									}
+									className='w-full rounded-[.5rem] object-cover object-center'
 									alt=''
 								/>
 							</figure>
@@ -188,7 +202,11 @@ const TechSheet = () => {
 						<div>
 							<figure>
 								<img
-									src='https://sm.ign.com/ign_latam/cover/d/disney-plu/disney-plus_sxyh.jpg'
+									src={
+										logoPlatforms[providersDetails[0]?.provider_id] ||
+										providersDetails[0]?.logo_path ||
+										logoPlatforms.netflix
+									}
 									className='w-16 rounded-lg'
 									alt=''
 								/>

@@ -9,6 +9,11 @@ import dislikeIcon from './dislike-icon.png';
 import tagIcon from './tag-icon.svg';
 import bellIcon from './bell-icon.png';
 import playIcon from './play-icon.svg';
+import netflixLogo from './netflix.png';
+import hboLogo from './HBO.png';
+import amazonLogo from './Amazon.png';
+import disneyLogo from './disney.png';
+import appleLogo from './AppleTV.png';
 export {
 	searchIcon,
 	menuIcon,
@@ -21,4 +26,9 @@ export {
 	bellIcon,
 	playIcon,
 	likeIconActive,
+	netflixLogo,
+	hboLogo,
+	amazonLogo,
+	disneyLogo,
+	appleLogo,
 };

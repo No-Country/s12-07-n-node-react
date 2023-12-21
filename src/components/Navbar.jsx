@@ -55,18 +55,18 @@ const Navbar = () => {
 			setMenuVisible(!menuVisible);
 		}
 	};
-	const handleClickProfile = (e) => {
+	const handleClickProfile = e => {
 		e.stopPropagation();
 		setMenuVisible(false);
 		setPerfilMenuVisible(!perfilMenuVisible);
 	};
 	const handleClickSearch = e => {
-		console.log(
-			'state input: ',
-			searchInputActive,
-			'Value to input: ',
-			valueSearchTerm
-		);
+		// console.log(
+		// 	'state input: ',
+		// 	searchInputActive,
+		// 	'Value to input: ',
+		// 	valueSearchTerm
+		// );
 		setSearchInputActive(!searchInputActive);
 		setMenuVisible(false);
 		if (window.screen.width < 1024 && !searchInputActive) return;
@@ -79,12 +79,6 @@ const Navbar = () => {
 	};
 	// console.log('Change state', searchInputActive);
 	const handleKeyPressSearch = e => {
-		console.log(
-			'key press search: ',
-			e.key,
-			'Value to input: ',
-			valueSearchTerm
-		);
 		if (e.key === 'Enter' && valueSearchTerm) {
 			setMenuVisible(false);
 			setTermSearch(valueSearchTerm);
@@ -94,19 +88,19 @@ const Navbar = () => {
 	};
 	const handlerClickSection = section => {
 		setSectionCurrent(section);
-		console.log('section: ', section);
+		// console.log('section: ', section);
 		// setMenuVisible(false);
 		if (section !== 'actores') return;
 
-		console.log('scroll');
+		// console.log('scroll');
 		const elementScroll = document.querySelector('#actores');
 		if (!elementScroll) {
-			console.log('no existe');
+			// console.log('no existe');
 			setTimeout(() => {
 				const elementScroll = document.querySelector('#actores');
 				if (!elementScroll) return;
 				const position = elementScroll.getBoundingClientRect();
-				console.log('position: ', position.top);
+				// console.log('position: ', position.top);
 				window.scrollTo({
 					top: position.top + window.scrollY - 100,
 				});
@@ -114,7 +108,7 @@ const Navbar = () => {
 			return;
 		}
 		const position = elementScroll.getBoundingClientRect();
-		console.log('position: ', position.top);
+		// console.log('position: ', position.top);
 		window.scrollTo({
 			top: position.top + window.scrollY - 100,
 		});
@@ -124,7 +118,7 @@ const Navbar = () => {
 		setMenuVisible(false);
 	};
 	const handleChangeSearch = e => {
-		console.log('change search');
+		// console.log('change search');
 		setValueSearchTerm(e.target.value);
 		if (e.target.value !== '') {
 			setSearchInputActive(true);
@@ -137,11 +131,11 @@ const Navbar = () => {
 	const handleClickOutside = e => {
 		console.log(e.target);
 		if (!e.target.className.includes('option-modal-controller')) {
-			console.log('click outside');
+			// console.log('click outside');
 			setIsElementShown(false);
 			setMenuVisible(false);
 			setSearchInputActive(false);
-			setPerfilMenuVisible(false)
+			setPerfilMenuVisible(false);
 		}
 		e.stopPropagation();
 	};
