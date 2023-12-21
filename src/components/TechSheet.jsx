@@ -9,7 +9,6 @@ import {
 import { getDetailMovie } from '../services/movies';
 import { useParams } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
-import { postItemList } from '../services/user';
 import axios from 'axios';
 
 const TechSheet = () => {
@@ -60,11 +59,12 @@ const TechSheet = () => {
 			contentName: (dataMovie.first_air_date ? dataMovie.name : dataMovie.title),
 			media_type: type,
 		}
-
+		console.log(itemList)
 		try{
 			const response = await axios.post(`https://streamview.onrender.com/api/v1/favourites`, itemList, {
 				headers: {
-					'Content-Type': 'application/json',
+					'Content-Type': 'application/x-www-form-urlencoded',
+					
 					'Authorization': `${localStorage.getItem("Token")}`,
 				},
 			})

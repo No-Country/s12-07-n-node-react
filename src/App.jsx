@@ -25,6 +25,7 @@ function App() {
 				...prevUser,
 				...response.data.userInfo,
 			}));
+			console.log(response.data.userInfo)
 		} catch (error) {
 			console.error('Error al auntenticar usuario:', error);
 		}

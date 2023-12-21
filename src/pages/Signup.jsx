@@ -54,7 +54,7 @@ export default function Signup({ vis, setVis }) {
 					},
 					});
 					console.log(response.data.message);
-					window.location.reload();
+					/* window.location.reload(); */
 				} catch (error) {
 					setAlert(true)
 					console.error('Error al registrar al usuario:', error);
@@ -90,9 +90,8 @@ export default function Signup({ vis, setVis }) {
 
 							<div className='flex justify-center flex-wrap gap-x-5 text-black'>
 								<div>
-									<h1 className="text-white text-xs">*Obligatorio</h1>
 									<input
-										className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
+										className='m-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
 										type='text'
 										placeholder='Nombre'
 										name="name"
@@ -102,9 +101,8 @@ export default function Signup({ vis, setVis }) {
 									{alerts.eName && <h1 className="text-red-500 text-xs">Debe tener entre 3 y 20 caracteres</h1>}
 								</div>
 								<div>
-									<h1 className="text-white text-xs">*Obligatorio</h1>
 									<input
-										className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
+										className='m-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
 										type='text'
 										placeholder='Apellido'
 										name="surname"
@@ -117,9 +115,8 @@ export default function Signup({ vis, setVis }) {
 							</div>
 							<div className='flex justify-center flex-wrap gap-x-5 text-black'>
 								<div>
-								<h1 className="text-white text-xs">*Opcional</h1>
 									<input
-										className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
+										className='m-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
 										type='number'
 										placeholder='Telefono'
 										name="phone"
@@ -130,9 +127,8 @@ export default function Signup({ vis, setVis }) {
 								</div>
 								{alerts.ePhone && <h1 className="text-red-500 text-xs">Maxiomo de 15 caracteres</h1>}
 								<div>
-								<h1 className="text-white text-xs">*Obligatorio</h1>
 									<input
-										className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2
+										className='m-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2
 										invalid:border-red-600 invalid:text-red-600'
 										type='email'
 										placeholder='E-Mail'
@@ -145,9 +141,8 @@ export default function Signup({ vis, setVis }) {
 							</div>
 							<div className='flex justify-center flex-wrap gap-x-5 text-black'>
 								<div>
-									<h1 className="text-white text-xs">*Obligatorio</h1>
 									<input
-										className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
+										className='m-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
 										type='password'
 										placeholder='Contraseña'
 										name="password"
@@ -159,18 +154,17 @@ export default function Signup({ vis, setVis }) {
 								</div>
 								
 								<div>
-									<h1 className="text-white text-xs">*Obligatorio</h1>
 									<input
-										className='mx-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
+										className='m-1 h-10 w-56 rounded-md border-2 border-blue-400 p-2'
 										type='password'
 										placeholder='Confirmar Contraseña'
 										onChange={handleConfirmationPassword}
 									/>
-									{alerts.eConPassword && <h1 className="text-red-500 text-xs">Las contraseñas no coinsiden</h1>}
+									{alerts.eConPassword && <h1 className="text-red-500 text-xs">Las contraseñas no coinciden</h1>}
 								</div>
 							</div>
 
-							<h1 className='text-center text-white'>
+							<h1 className='text-center text-white m-2'>
 									{alert ? <h1 className="text-red-600">hubo un problema</h1> : <h1>*todos lo campos son obligatorios*</h1>}
 							</h1>
 							<button

@@ -79,6 +79,8 @@ export const validationField = (userData, alerts, confirmationPassword)=>{
 		return false
 	}else if(confirmationPassword === ""){
 		return false
+	}else if(userData.phone === ""){
+		return false
 	}else if(alerts.eName){
 		return false
 	}else if(alerts.eSurname){
