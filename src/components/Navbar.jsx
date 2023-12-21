@@ -55,7 +55,8 @@ const Navbar = () => {
 			setMenuVisible(!menuVisible);
 		}
 	};
-	const handleClickProfile = () => {
+	const handleClickProfile = (e) => {
+		e.stopPropagation();
 		setMenuVisible(false);
 		setPerfilMenuVisible(!perfilMenuVisible);
 	};
@@ -140,6 +141,7 @@ const Navbar = () => {
 			setIsElementShown(false);
 			setMenuVisible(false);
 			setSearchInputActive(false);
+			setPerfilMenuVisible(false)
 		}
 		e.stopPropagation();
 	};
