@@ -11,7 +11,7 @@ export const addToListService = async (content, owner) => {
 
   try {
 
-    if (!currentList) {
+    if (!currentList || currentList === null) {
       const response = await listModel.create({ ownerId: owner, list: [content] })
       return response
     } else {
@@ -31,6 +31,7 @@ export const getListService = async (userId) => {
 
   try {
     const list = await listModel.findOne({ ownerId: userId })
+    if (!list) return false
     return list
   } catch (error) {
     console.log('Error on getlist service')

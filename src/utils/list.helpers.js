@@ -8,5 +8,6 @@ export async function validateContent(opt) {
 }
 
 export function isDuplicate(arr, value) {
+  if (!arr) return false
   return arr.some(el => el.contentId === value)
 }
